@@ -386,9 +386,6 @@ window.addEventListener('load', function() {
     height: 100%;
     z-index: 1;
     overflow: hidden;
-    transform: translateZ(0);           /* Force GPU layer */
-    -webkit-transform: translateZ(0);
-    isolation: isolate;                 /* Contain compositing to this layer */
 }
 
 .hero-video {
@@ -4964,6 +4961,9 @@ body { margin: 0 !important; padding: 0 !important; }
             <source src="7782704-hd_1080_1920_30fps.mp4" type="video/mp4">
         </video>
 
+        <!-- Black cover to hide decode artifacts during transition -->
+        <div id="heroFadeCover" style="position:absolute;inset:0;background:#000;z-index:1;pointer-events:none;opacity:0;"></div>
+
         <!-- Mobile: Static image -->
         <img 
             src="pexels-cottonbro-5082237 (1).jpg" 
@@ -4981,102 +4981,102 @@ body { margin: 0 !important; padding: 0 !important; }
         </div>
     </div>
 
-<style>
-.hero-video-slide {
-    position: absolute;
-    top: 0; right: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    z-index: 0;
-    pointer-events: none !important;
-    opacity: 0;
-    transition: opacity 1.5s ease;
-}
-.hero-video-slide.active {
-    opacity: 1;
-}
-.hvd {
-    width: 28px;
-    height: 2px;
-    background: rgba(255,255,255,0.3);
-    border-radius: 2px;
-    cursor: pointer;
-    transition: background 0.3s, width 0.3s;
-    display: block;
-}
-.hvd.active { background: #f4c87e; width: 44px; }
-.hero-video-dots {
-    position: absolute;
-    bottom: 28px;
-    right: 32px;
-    display: flex;
-    gap: 8px;
-    z-index: 10;
-}
-@media (max-width: 768px) { .hero-video-dots { display: none; } }
-</style>
-
-<script>
-(function(){
-    var slides = document.querySelectorAll('.hero-video-slide');
-    var dots = document.querySelectorAll('.hvd');
-    var current = 0;
-    var total = slides.length;
-
-    function goTo(idx) {
-        slides[current].classList.remove('active');
-        slides[current].pause();
-        dots[current].classList.remove('active');
-        current = (idx + total) % total;
-        slides[current].currentTime = 0;
-        slides[current].muted = true;
-        slides[current].play().catch(function(){});
-        slides[current].classList.add('active');
-        dots[current].classList.add('active');
+    <style>
+    .hero-video-slide {
+        position: absolute;
+        top: 0; right: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+        z-index: 0;
+        pointer-events: none !important;
+        opacity: 0;
+        transition: opacity 1.2s ease;
     }
+    .hero-video-slide.active { opacity: 1; }
+    .hero-video-dots {
+        position: absolute;
+        bottom: 28px;
+        right: 32px;
+        display: flex;
+        gap: 8px;
+        z-index: 10;
+    }
+    .hvd {
+        width: 28px;
+        height: 2px;
+        background: rgba(255,255,255,0.3);
+        border-radius: 2px;
+        cursor: pointer;
+        transition: background 0.3s, width 0.3s;
+        display: block;
+    }
+    .hvd.active { background: #f4c87e; width: 44px; }
+    @media (max-width: 768px) { .hero-video-dots { display: none; } }
+    </style>
 
-    slides.forEach(function(v, i) {
-        v.addEventListener('ended', function() { goTo(i + 1); });
-    });
+    <script>
+    (function(){
+        var slides = document.querySelectorAll('.hero-video-slide');
+        var dots = document.querySelectorAll('.hvd');
+        var cover = document.getElementById('heroFadeCover');
+        var current = 0;
+        var total = slides.length;
 
-    dots.forEach(function(d, i) {
-        d.addEventListener('click', function() { goTo(i); });
-    });
+        function goTo(idx) {
+            // Instantly slam black cover on to hide any decode artifacts
+            cover.style.transition = 'none';
+            cover.style.opacity = '1';
 
-    slides[0].muted = true;
-    slides[0].play().catch(function(){
-        var t = setInterval(function(){
-            slides[0].play().then(function(){ clearInterval(t); }).catch(function(){});
-        }, 500);
-    });
+            slides[current].classList.remove('active');
+            slides[current].pause();
+            dots[current].classList.remove('active');
+            current = (idx + total) % total;
 
-    document.addEventListener('visibilitychange', function(){
-        if (!document.hidden && slides[current].paused) {
-            slides[current].play().catch(function(){});
+            var next = slides[current];
+            next.currentTime = 0;
+            next.muted = true;
+            next.play().catch(function(){});
+            dots[current].classList.add('active');
+
+            // Fade cover away once next video has a clean first frame
+            function onReady() {
+                next.removeEventListener('canplay', onReady);
+                next.classList.add('active');
+                cover.style.transition = 'opacity 1.2s ease';
+                cover.style.opacity = '0';
+            }
+            next.addEventListener('canplay', onReady);
+
+            // Fallback in case canplay doesn't fire
+            setTimeout(function() {
+                next.removeEventListener('canplay', onReady);
+                next.classList.add('active');
+                cover.style.transition = 'opacity 1.2s ease';
+                cover.style.opacity = '0';
+            }, 1000);
         }
-    });
-})();
-</script>
 
-<script>
-    function goTo(idx) {
-    slides[current].classList.remove('active');
-    slides[current].pause();
-    dots[current].classList.remove('active');
-    current = (idx + total) % total;
-    slides[current].currentTime = 0;
-    slides[current].muted = true;
+        slides.forEach(function(v, i) {
+            v.addEventListener('ended', function() { goTo(i + 1); });
+        });
 
-    // Start playing but wait for first frame before fading in
-    slides[current].play().catch(function(){});
+        dots.forEach(function(d, i) {
+            d.addEventListener('click', function() { goTo(i); });
+        });
 
-    slides[current].addEventListener('canplay', function onCanPlay() {
-        slides[current].removeEventListener('canplay', onCanPlay);
-        slides[current].classList.add('active');
-        dots[current].classList.add('active');
-    });
-}
-</script>
+        // Start first video
+        slides[0].muted = true;
+        slides[0].play().catch(function(){
+            var t = setInterval(function(){
+                slides[0].play().then(function(){ clearInterval(t); }).catch(function(){});
+            }, 500);
+        });
+
+        document.addEventListener('visibilitychange', function(){
+            if (!document.hidden && slides[current].paused) slides[current].play().catch(function(){});
+        });
+    })();
+    </script>
     
     <div class="hero-content">
         <div class="hero-text">
@@ -6265,7 +6265,7 @@ document.addEventListener('DOMContentLoaded', function(){
 <section class="attio-section" id="crmShowcase">
     <div class="attio-video-panel-wrapper" id="crmVisual">
         <div class="avp-inner">
-            <img class="avp-video avp-active" data-video="crmpanel-1" src="13590170_3840_2160_60fps.mp4" alt="Cinematic video production" style="object-fit:cover;width:100%;height:100%;position:absolute;inset:0;">
+            <img class="avp-video avp-active" data-video="crmpanel-1" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90&fit=crop" alt="Cinematic video production" style="object-fit:cover;width:100%;height:100%;position:absolute;inset:0;">
             <img class="avp-video" data-video="crmpanel-2" src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&q=90&fit=crop" alt="Brand films western" style="object-fit:cover;width:100%;height:100%;position:absolute;inset:0;">
             <img class="avp-video" data-video="crmpanel-3" src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=1200&q=90&fit=crop" alt="Event coverage western" style="object-fit:cover;width:100%;height:100%;position:absolute;inset:0;">
             <img class="avp-video" data-video="crmpanel-4" src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1200&q=90&fit=crop" alt="Aerial western" style="object-fit:cover;width:100%;height:100%;position:absolute;inset:0;">
