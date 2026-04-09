@@ -184,7 +184,7 @@ window.addEventListener('load', function() {
         
         .announcement-banner {
             margin-top: 0;
-            background: #1a0a02;
+            background: #2A1005;
             color: #fff;
             padding: 12px 20px;
             text-align: center;
@@ -373,7 +373,7 @@ window.addEventListener('load', function() {
     display: flex;
     align-items: center;
     overflow: hidden;
-    background: #000;
+    background: #FAF4EA;
     margin-top: 113px;
     padding-bottom: 80px;
 }
@@ -386,6 +386,11 @@ window.addEventListener('load', function() {
     height: 100%;
     z-index: 1;
     overflow: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    isolation: isolate;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 18%, rgba(0,0,0,0.85) 30%, black 45%);
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 18%, rgba(0,0,0,0.85) 30%, black 45%);
 }
 
 .hero-video {
@@ -400,13 +405,18 @@ window.addEventListener('load', function() {
 }
 
 .hero-background::before {
+    display: none;
+}
+
+/* Subtle warm tint over the whole video so it feels cohesive */
+.hero-background::after {
     content: '';
     position: absolute;
     top: 0; left: 0;
-    width: 65%;
+    width: 100%;
     height: 100%;
-    background: linear-gradient(to right, #000 0%, rgba(0,0,0,0.85) 35%, rgba(0,0,0,0.5) 60%, transparent 100%);
-    z-index: 2;
+    background: rgba(42,16,5,0.28);
+    z-index: 1;
     pointer-events: none;
 }
 
@@ -437,13 +447,13 @@ window.addEventListener('load', function() {
             font-style: normal; /* NOT italic */
             margin-bottom: 30px;
             letter-spacing: -0.5px;
-            color: #fff;
+            color: #2A1005;
         }
 
         .hero-subtitle {
             font-size: 18px;
             line-height: 1.7;
-            color: #d0d0d0;
+            color: #6B3D1A;
             margin-bottom: 40px;
         }
 
@@ -474,21 +484,21 @@ window.addEventListener('load', function() {
 
         .btn-secondary {
             background: transparent;
-            color: #fff;
+            color: #2A1005;
             padding: 16px 40px;
             text-decoration: none;
             font-size: 13px;
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
-            border: 2px solid #fff;
+            border: 2px solid #2A1005;
             border-radius: 8px;
             transition: all 0.3s;
         }
 
         .btn-secondary:hover {
-            background: #fff;
-            color: #000;
+            background: #2A1005;
+            color: #FAF4EA;
         }
         
 .logo-carousel {
@@ -523,8 +533,8 @@ window.addEventListener('load', function() {
         .logo-item img {
             height: 100%;
             width: auto;
-            filter: brightness(0) invert(1);
-            opacity: 0.5;
+            filter: brightness(0);
+            opacity: 0.35;
         }
         
         @keyframes scroll {
@@ -3918,7 +3928,7 @@ nav {
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
+    color: rgba(42,16,5,0.5);
 }
 .hero-eyebrow-dot {
     width: 6px;
@@ -3947,7 +3957,7 @@ nav {
     gap: 14px;
     margin-top: 36px;
     padding-top: 28px;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid rgba(42,16,5,0.15);
     flex-wrap: wrap;
 }
 .hrb-stars {
@@ -3958,7 +3968,7 @@ nav {
 }
 .hrb-text {
     font-size: 14px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(42,16,5,0.55);
     font-weight: 500;
     flex: 1;
     white-space: nowrap;
@@ -3999,7 +4009,7 @@ nav {
 .hsi-track {
     width: 1.5px;
     height: 56px;
-    background: rgba(255,255,255,0.15);
+    background: rgba(42,16,5,0.15);
     border-radius: 2px;
     overflow: hidden;
     position: relative;
@@ -4019,7 +4029,7 @@ nav {
     font-size: 9px;
     letter-spacing: 2.5px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
+    color: rgba(42,16,5,0.3);
     font-weight: 700;
     writing-mode: vertical-rl;
     transform: rotate(180deg);
@@ -4159,7 +4169,7 @@ body { background: #fff; color: #1a1a1a; }
 
 /* ─── ANNOUNCEMENT BANNER ─── */
 .announcement-banner {
-    background: #000 !important;
+    background: #2A1005 !important;
     color: rgba(255,255,255,0.85) !important;
     border-bottom: 1px solid rgba(255,255,255,0.08) !important;
     box-shadow: none !important;
@@ -4194,11 +4204,11 @@ nav.nav-solid {
     border-color: var(--leather-deeper) !important;
 }
 
-/* ─── HERO — Pure black so gradient is clean ─── */
-.hero { background: #000 !important; }
+/* ─── HERO — Light parchment tan to match brand-building-section ─── */
+.hero { background: #FAF4EA !important; }
 
-/* ─── LOGO CAROUSEL — semi-transparent over hero bottom ─── */
-.logo-carousel { background: rgba(0,0,0,0.12) !important; }
+/* ─── LOGO CAROUSEL — semi-transparent over parchment hero bottom ─── */
+.logo-carousel { background: rgba(250,244,234,0.5) !important; }
 
 /* ─── BRAND/SERVICES SECTION — White ─── */
 .brand-building-section { background: #fff !important; }
@@ -4315,13 +4325,13 @@ footer ul a:hover, footer p a:hover { color: #f4c87e !important; }
 }
 .btn-secondary {
     background: transparent !important;
-    color: #fff !important;
-    border-color: rgba(255,255,255,0.65) !important;
+    color: #2A1005 !important;
+    border-color: rgba(42,16,5,0.65) !important;
     border-radius: 8px !important;
 }
 .btn-secondary:hover {
-    background: #fff !important;
-    color: #000 !important;
+    background: #2A1005 !important;
+    color: #FAF4EA !important;
 }
 
 /* ─── MODAL ─── */
@@ -4536,7 +4546,7 @@ p, span, a, li, label, input, button {
 
 /* ── ANNOUNCEMENT BANNER — Wanted poster strip ── */
 .announcement-banner {
-    background: #000 !important;
+    background: #2A1005 !important;
     border-bottom: 2px solid #7B4422 !important;
     font-family: 'Inter', sans-serif !important;
     font-size: 12px !important;
@@ -4623,7 +4633,7 @@ nav.nav-solid {
 
 /* ── HERO — complete western overhaul ── */
 .hero {
-    background: #000 !important;
+    background: #FAF4EA !important;
     min-height: 62vh !important;
 }
 
@@ -4664,7 +4674,7 @@ nav.nav-solid {
 
 /* Hero subtitle */
 .hero-subtitle {
-    color: rgba(255,255,255,0.65) !important;
+    color: #5C3018 !important;
     font-size: 17px !important;
     line-height: 1.75 !important;
     max-width: 560px !important;
@@ -4672,9 +4682,9 @@ nav.nav-solid {
 
 /* Hero CTA buttons — western broadside style */
 .btn-primary {
-    background: #fff !important;
-    color: #000 !important;
-    border: 2px solid #fff !important;
+    background: #7B4422 !important;
+    color: #FAF4EA !important;
+    border: 2px solid #7B4422 !important;
     border-radius: 8px !important;
     letter-spacing: 3px !important;
     font-size: 11px !important;
@@ -4683,24 +4693,25 @@ nav.nav-solid {
     transition: all 0.25s !important;
 }
 .btn-primary:hover {
-    background: #7B4422 !important;
-    border-color: #7B4422 !important;
-    color: #fff !important;
+    background: #2A1005 !important;
+    border-color: #2A1005 !important;
+    color: #FAF4EA !important;
 }
 .btn-secondary {
-    border: 2px solid rgba(255,255,255,0.45) !important;
+    border: 2px solid rgba(123,68,34,0.55) !important;
     border-radius: 8px !important;
     letter-spacing: 3px !important;
     font-size: 11px !important;
     font-weight: 700 !important;
     padding: 16px 36px !important;
-    color: rgba(255,255,255,0.85) !important;
+    color: #7B4422 !important;
+    background: transparent !important;
     transition: all 0.25s !important;
 }
 .btn-secondary:hover {
-    border-color: #fff !important;
-    color: #fff !important;
-    background: rgba(255,255,255,0.05) !important;
+    border-color: #2A1005 !important;
+    color: #FAF4EA !important;
+    background: #2A1005 !important;
 }
 
 /* ── HERO EYEBROW — western broadside style ── */
@@ -4708,7 +4719,7 @@ nav.nav-solid {
     font-family: 'Rye', serif !important;
     font-size: 9px !important;
     letter-spacing: 3px !important;
-    color: rgba(255,255,255,0.6) !important;
+    color: rgba(123,68,34,0.75) !important;
     margin-bottom: 20px !important;
     display: flex !important;
     align-items: center !important;
@@ -4730,14 +4741,14 @@ nav.nav-solid {
 
 /* ── REVIEW BAR — tightened ── */
 .hero-review-bar {
-    border-top: 1px solid rgba(255,255,255,0.08) !important;
+    border-top: 1px solid rgba(123,68,34,0.2) !important;
     margin-top: 36px !important;
     padding-top: 24px !important;
 }
 .hrb-stars svg { width: 15px !important; height: 15px !important; }
 .hrb-text {
     font-size: 13px !important;
-    color: rgba(255,255,255,0.45) !important;
+    color: rgba(92,48,24,0.7) !important;
     font-style: normal !important;
     font-family: 'Inter', sans-serif !important;
 }
@@ -4817,15 +4828,15 @@ body { margin: 0 !important; padding: 0 !important; }
     position: absolute !important;
     inset: 0 !important;
     background: linear-gradient(to right,
-        rgba(0,0,0,1.00)  0%,
-        rgba(0,0,0,0.97) 12%,
-        rgba(0,0,0,0.90) 22%,
-        rgba(0,0,0,0.78) 30%,
-        rgba(0,0,0,0.60) 38%,
-        rgba(0,0,0,0.40) 45%,
-        rgba(0,0,0,0.20) 52%,
-        rgba(0,0,0,0.07) 58%,
-        rgba(0,0,0,0.00) 65%) !important;
+        rgba(250,244,234,1.00)  0%,
+        rgba(250,244,234,0.97) 12%,
+        rgba(250,244,234,0.90) 22%,
+        rgba(250,244,234,0.78) 30%,
+        rgba(250,244,234,0.60) 38%,
+        rgba(250,244,234,0.40) 45%,
+        rgba(250,244,234,0.20) 52%,
+        rgba(250,244,234,0.07) 58%,
+        rgba(250,244,234,0.00) 65%) !important;
     z-index: 5 !important;
     pointer-events: none !important;
 }
@@ -4849,14 +4860,14 @@ body { margin: 0 !important; padding: 0 !important; }
     }
     .hero::after {
         background: linear-gradient(to right,
-            rgba(0,0,0,1.00)  0%,
-            rgba(0,0,0,0.97) 15%,
-            rgba(0,0,0,0.90) 26%,
-            rgba(0,0,0,0.75) 34%,
-            rgba(0,0,0,0.55) 42%,
-            rgba(0,0,0,0.30) 50%,
-            rgba(0,0,0,0.10) 58%,
-            rgba(0,0,0,0.00) 66%) !important;
+            rgba(250,244,234,1.00)  0%,
+            rgba(250,244,234,0.97) 15%,
+            rgba(250,244,234,0.90) 26%,
+            rgba(250,244,234,0.75) 34%,
+            rgba(250,244,234,0.55) 42%,
+            rgba(250,244,234,0.30) 50%,
+            rgba(250,244,234,0.10) 58%,
+            rgba(250,244,234,0.00) 66%) !important;
     }
     .hero-content {
         padding: 80px 120px 40px !important;
@@ -4949,10 +4960,10 @@ body { margin: 0 !important; padding: 0 !important; }
     <div class="hero-background">
         <!-- Desktop: Multiple videos cycling automatically -->
         <video id="heroVideo0" class="hero-video hero-video-slide active" autoplay muted playsinline preload="auto" webkit-playsinline>
-            <source src="15372727_3840_2160_30fps.mp4" type="video/mp4">
+            <source src="11977490_2160_3840_24fps.mp4" type="video/mp4">
         </video>
         <video id="heroVideo1" class="hero-video hero-video-slide" muted playsinline preload="metadata" webkit-playsinline>
-            <source src="11977490_2160_3840_24fps.mp4" type="video/mp4">
+            <source src="Video Project 1.mp4" type="video/mp4">
         </video>
         <video id="heroVideo2" class="hero-video hero-video-slide" muted playsinline preload="metadata" webkit-playsinline>
             <source src="9316884-uhd_3840_2160_24fps.mp4" type="video/mp4">
@@ -4960,9 +4971,6 @@ body { margin: 0 !important; padding: 0 !important; }
         <video id="heroVideo3" class="hero-video hero-video-slide" muted playsinline preload="metadata" webkit-playsinline>
             <source src="7782704-hd_1080_1920_30fps.mp4" type="video/mp4">
         </video>
-
-        <!-- Black cover to hide decode artifacts during transition -->
-        <div id="heroFadeCover" style="position:absolute;inset:0;background:#000;z-index:1;pointer-events:none;opacity:0;"></div>
 
         <!-- Mobile: Static image -->
         <img 
@@ -4981,102 +4989,102 @@ body { margin: 0 !important; padding: 0 !important; }
         </div>
     </div>
 
-    <style>
-    .hero-video-slide {
-        position: absolute;
-        top: 0; right: 0;
-        width: 100%; height: 100%;
-        object-fit: cover;
-        z-index: 0;
-        pointer-events: none !important;
-        opacity: 0;
-        transition: opacity 1.2s ease;
+<style>
+.hero-video-slide {
+    position: absolute;
+    top: 0; right: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none !important;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+.hero-video-slide.active {
+    opacity: 1;
+}
+.hvd {
+    width: 28px;
+    height: 2px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.3s, width 0.3s;
+    display: block;
+}
+.hvd.active { background: #f4c87e; width: 44px; }
+.hero-video-dots {
+    position: absolute;
+    bottom: 28px;
+    right: 32px;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+@media (max-width: 768px) { .hero-video-dots { display: none; } }
+</style>
+
+<script>
+(function(){
+    var slides = document.querySelectorAll('.hero-video-slide');
+    var dots = document.querySelectorAll('.hvd');
+    var current = 0;
+    var total = slides.length;
+
+    function goTo(idx) {
+        slides[current].classList.remove('active');
+        slides[current].pause();
+        dots[current].classList.remove('active');
+        current = (idx + total) % total;
+        slides[current].currentTime = 0;
+        slides[current].muted = true;
+        slides[current].play().catch(function(){});
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
     }
-    .hero-video-slide.active { opacity: 1; }
-    .hero-video-dots {
-        position: absolute;
-        bottom: 28px;
-        right: 32px;
-        display: flex;
-        gap: 8px;
-        z-index: 10;
-    }
-    .hvd {
-        width: 28px;
-        height: 2px;
-        background: rgba(255,255,255,0.3);
-        border-radius: 2px;
-        cursor: pointer;
-        transition: background 0.3s, width 0.3s;
-        display: block;
-    }
-    .hvd.active { background: #f4c87e; width: 44px; }
-    @media (max-width: 768px) { .hero-video-dots { display: none; } }
-    </style>
 
-    <script>
-    (function(){
-        var slides = document.querySelectorAll('.hero-video-slide');
-        var dots = document.querySelectorAll('.hvd');
-        var cover = document.getElementById('heroFadeCover');
-        var current = 0;
-        var total = slides.length;
+    slides.forEach(function(v, i) {
+        v.addEventListener('ended', function() { goTo(i + 1); });
+    });
 
-        function goTo(idx) {
-            // Instantly slam black cover on to hide any decode artifacts
-            cover.style.transition = 'none';
-            cover.style.opacity = '1';
+    dots.forEach(function(d, i) {
+        d.addEventListener('click', function() { goTo(i); });
+    });
 
-            slides[current].classList.remove('active');
-            slides[current].pause();
-            dots[current].classList.remove('active');
-            current = (idx + total) % total;
+    slides[0].muted = true;
+    slides[0].play().catch(function(){
+        var t = setInterval(function(){
+            slides[0].play().then(function(){ clearInterval(t); }).catch(function(){});
+        }, 500);
+    });
 
-            var next = slides[current];
-            next.currentTime = 0;
-            next.muted = true;
-            next.play().catch(function(){});
-            dots[current].classList.add('active');
-
-            // Fade cover away once next video has a clean first frame
-            function onReady() {
-                next.removeEventListener('canplay', onReady);
-                next.classList.add('active');
-                cover.style.transition = 'opacity 1.2s ease';
-                cover.style.opacity = '0';
-            }
-            next.addEventListener('canplay', onReady);
-
-            // Fallback in case canplay doesn't fire
-            setTimeout(function() {
-                next.removeEventListener('canplay', onReady);
-                next.classList.add('active');
-                cover.style.transition = 'opacity 1.2s ease';
-                cover.style.opacity = '0';
-            }, 1000);
+    document.addEventListener('visibilitychange', function(){
+        if (!document.hidden && slides[current].paused) {
+            slides[current].play().catch(function(){});
         }
+    });
+})();
+</script>
 
-        slides.forEach(function(v, i) {
-            v.addEventListener('ended', function() { goTo(i + 1); });
-        });
+<script>
+    function goTo(idx) {
+    slides[current].classList.remove('active');
+    slides[current].pause();
+    dots[current].classList.remove('active');
+    current = (idx + total) % total;
+    slides[current].currentTime = 0;
+    slides[current].muted = true;
 
-        dots.forEach(function(d, i) {
-            d.addEventListener('click', function() { goTo(i); });
-        });
+    // Start playing but wait for first frame before fading in
+    slides[current].play().catch(function(){});
 
-        // Start first video
-        slides[0].muted = true;
-        slides[0].play().catch(function(){
-            var t = setInterval(function(){
-                slides[0].play().then(function(){ clearInterval(t); }).catch(function(){});
-            }, 500);
-        });
-
-        document.addEventListener('visibilitychange', function(){
-            if (!document.hidden && slides[current].paused) slides[current].play().catch(function(){});
-        });
-    })();
-    </script>
+    slides[current].addEventListener('canplay', function onCanPlay() {
+        slides[current].removeEventListener('canplay', onCanPlay);
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+    });
+}
+</script>
     
     <div class="hero-content">
         <div class="hero-text">
@@ -6265,7 +6273,7 @@ document.addEventListener('DOMContentLoaded', function(){
 <section class="attio-section" id="crmShowcase">
     <div class="attio-video-panel-wrapper" id="crmVisual">
         <div class="avp-inner">
-            <img class="avp-video avp-active" data-video="crmpanel-1" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90&fit=crop" alt="Cinematic video production" style="object-fit:cover;width:100%;height:100%;position:absolute;inset:0;">
+            <img class="avp-video avp-active" data-video="crmpanel-1" src="13590170_3840_2160_60fps.mp4" alt="Cinematic video production" style="object-fit:cover;width:100%;height:100%;position:absolute;inset:0;">
             <img class="avp-video" data-video="crmpanel-2" src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&q=90&fit=crop" alt="Brand films western" style="object-fit:cover;width:100%;height:100%;position:absolute;inset:0;">
             <img class="avp-video" data-video="crmpanel-3" src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=1200&q=90&fit=crop" alt="Event coverage western" style="object-fit:cover;width:100%;height:100%;position:absolute;inset:0;">
             <img class="avp-video" data-video="crmpanel-4" src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1200&q=90&fit=crop" alt="Aerial western" style="object-fit:cover;width:100%;height:100%;position:absolute;inset:0;">

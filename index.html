@@ -184,7 +184,7 @@ window.addEventListener('load', function() {
         
         .announcement-banner {
             margin-top: 0;
-            background: #1a0a02;
+            background: #2A1005;
             color: #fff;
             padding: 12px 20px;
             text-align: center;
@@ -373,7 +373,7 @@ window.addEventListener('load', function() {
     display: flex;
     align-items: center;
     overflow: hidden;
-    background: #000;
+    background: #FAF4EA;
     margin-top: 113px;
     padding-bottom: 80px;
 }
@@ -386,9 +386,11 @@ window.addEventListener('load', function() {
     height: 100%;
     z-index: 1;
     overflow: hidden;
-    transform: translateZ(0);           /* Force GPU layer */
+    transform: translateZ(0);
     -webkit-transform: translateZ(0);
-    isolation: isolate;                 /* Contain compositing to this layer */
+    isolation: isolate;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 18%, rgba(0,0,0,0.85) 30%, black 45%);
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 18%, rgba(0,0,0,0.85) 30%, black 45%);
 }
 
 .hero-video {
@@ -403,13 +405,18 @@ window.addEventListener('load', function() {
 }
 
 .hero-background::before {
+    display: none;
+}
+
+/* Subtle warm tint over the whole video so it feels cohesive */
+.hero-background::after {
     content: '';
     position: absolute;
     top: 0; left: 0;
-    width: 65%;
+    width: 100%;
     height: 100%;
-    background: linear-gradient(to right, #000 0%, rgba(0,0,0,0.85) 35%, rgba(0,0,0,0.5) 60%, transparent 100%);
-    z-index: 2;
+    background: rgba(42,16,5,0.28);
+    z-index: 1;
     pointer-events: none;
 }
 
@@ -440,13 +447,13 @@ window.addEventListener('load', function() {
             font-style: normal; /* NOT italic */
             margin-bottom: 30px;
             letter-spacing: -0.5px;
-            color: #fff;
+            color: #2A1005;
         }
 
         .hero-subtitle {
             font-size: 18px;
             line-height: 1.7;
-            color: #d0d0d0;
+            color: #6B3D1A;
             margin-bottom: 40px;
         }
 
@@ -477,21 +484,21 @@ window.addEventListener('load', function() {
 
         .btn-secondary {
             background: transparent;
-            color: #fff;
+            color: #2A1005;
             padding: 16px 40px;
             text-decoration: none;
             font-size: 13px;
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
-            border: 2px solid #fff;
+            border: 2px solid #2A1005;
             border-radius: 8px;
             transition: all 0.3s;
         }
 
         .btn-secondary:hover {
-            background: #fff;
-            color: #000;
+            background: #2A1005;
+            color: #FAF4EA;
         }
         
 .logo-carousel {
@@ -526,8 +533,8 @@ window.addEventListener('load', function() {
         .logo-item img {
             height: 100%;
             width: auto;
-            filter: brightness(0) invert(1);
-            opacity: 0.5;
+            filter: brightness(0);
+            opacity: 0.35;
         }
         
         @keyframes scroll {
@@ -2648,7 +2655,7 @@ window.addEventListener('load', function() {
     justify-content: center;
     cursor: pointer;
     box-shadow: 0 4px 20px rgba(42,16,5,0.45), 0 0 0 2px rgba(244,200,126,0.4);
-    z-index: 9999;
+    z-index: 200000;
     transition: all 0.3s ease;
     border: none;
 }
@@ -2679,16 +2686,16 @@ window.addEventListener('load', function() {
 .chatbot-window {
     position: fixed;
     bottom: 100px; right: 24px;
+    top: auto !important;
     width: 380px;
-    top: 156px;
     height: auto;
-    max-height: calc(100vh - 256px);
+    max-height: calc(100vh - 160px);
     background: #fff;
     border-radius: 16px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.2), 0 0 0 1px rgba(123,68,34,0.12);
     display: none;
     flex-direction: column;
-    z-index: 9998;
+    z-index: 199999;
     overflow: hidden;
 }
 .chatbot-window.active { display: flex; }
@@ -2795,7 +2802,7 @@ window.addEventListener('load', function() {
 @media (max-width: 768px) {
     .chatbot-window {
         width: calc(100% - 32px); right: 16px; left: 16px;
-        bottom: 90px; top: 159px; height: auto; max-height: none; border-radius: 16px;
+        bottom: 90px; top: auto !important; height: auto; max-height: calc(100vh - 160px); border-radius: 16px;
     }
 }
 
@@ -3410,13 +3417,22 @@ window.addEventListener('load', function() {
         
 @media (max-width: 768px) {
     .announcement-banner {
-        font-size: 12px;
-        padding: 10px 16px;
+        font-size: 11px !important;
+        padding: 10px 48px 10px 16px !important;
+        height: auto !important;
+        min-height: 44px !important;
+        line-height: 1.45 !important;
+        white-space: normal !important;
+        letter-spacing: 0.5px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
     }
 
 nav {
-    padding: 12px 20px; /* Reduce padding on mobile */
-    top: 38px;
+    padding: 12px 20px;
+    top: 44px; /* safe default; JS will correct after render */
 }
     
     .nav-links {
@@ -3921,7 +3937,7 @@ nav {
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
+    color: rgba(42,16,5,0.5);
 }
 .hero-eyebrow-dot {
     width: 6px;
@@ -3950,7 +3966,7 @@ nav {
     gap: 14px;
     margin-top: 36px;
     padding-top: 28px;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid rgba(42,16,5,0.15);
     flex-wrap: wrap;
 }
 .hrb-stars {
@@ -3961,7 +3977,7 @@ nav {
 }
 .hrb-text {
     font-size: 14px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(42,16,5,0.55);
     font-weight: 500;
     flex: 1;
     white-space: nowrap;
@@ -4002,7 +4018,7 @@ nav {
 .hsi-track {
     width: 1.5px;
     height: 56px;
-    background: rgba(255,255,255,0.15);
+    background: rgba(42,16,5,0.15);
     border-radius: 2px;
     overflow: hidden;
     position: relative;
@@ -4022,58 +4038,52 @@ nav {
     font-size: 9px;
     letter-spacing: 2.5px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
+    color: rgba(42,16,5,0.3);
     font-weight: 700;
     writing-mode: vertical-rl;
     transform: rotate(180deg);
 }
 
 
-/* ── JWM Wordmark ── */
-.nav-wordmark {
+/* ── JWM Redesigned Logo ── */
+.jwm-logo-lockup {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+.jwm-logo-mark {
+    flex-shrink: 0;
+}
+.jwm-logo-text {
     display: flex;
     flex-direction: column;
-    gap: 3px;
-    line-height: 1;
+    gap: 2px;
 }
-.nav-wordmark-jwm {
-    display: flex;
-    align-items: baseline;
-    color: #fff;
-}
-.nwj-j, .nwj-m {
-    font-family: 'Dancing Script', cursive;
-    font-size: 26px;
+.jwm-logo-jwm {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px;
     font-weight: 700;
-    font-style: normal;
-    color: #fff;
+    font-style: italic;
+    color: #ffffff;
+    letter-spacing: 3px;
     line-height: 1;
-    letter-spacing: -1px;
-}
-.nwj-w {
-    font-family: 'Dancing Script', cursive;
-    font-size: 26px;
-    font-weight: 700;
-    font-style: normal;
-    color: #f4c87e;
-    display: inline-block;
-    vertical-align: baseline;
-    line-height: 1;
-    letter-spacing: -1px;
-    margin: 0;
-}
-.nav-wordmark-sub {
-    font-size: 8px;
-    letter-spacing: 4px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.65);
-    font-weight: 600;
+}
+.jwm-logo-sub {
     font-family: 'Inter', sans-serif;
+    font-size: 7.5px;
+    font-weight: 600;
+    letter-spacing: 4.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    line-height: 1;
 }
 @media (max-width: 768px) {
-    .nav-wordmark-sub { display: none; }
-    .nwj-j, .nwj-m { font-size: 22px; }
-    .nwj-w { font-size: 22px; }
+    .jwm-logo-lockup { gap: 9px; }
+    .jwm-logo-jwm { font-size: 19px; letter-spacing: 2px; }
+    .jwm-logo-sub { font-size: 6.5px; letter-spacing: 3px; display: block; }
+    .jwm-logo-mark { width: 17px; height: 29px; }
 }
 .nav-logo::after {
     content: '';
@@ -4162,7 +4172,7 @@ body { background: #fff; color: #1a1a1a; }
 
 /* ─── ANNOUNCEMENT BANNER ─── */
 .announcement-banner {
-    background: #000 !important;
+    background: #2A1005 !important;
     color: rgba(255,255,255,0.85) !important;
     border-bottom: 1px solid rgba(255,255,255,0.08) !important;
     box-shadow: none !important;
@@ -4170,10 +4180,14 @@ body { background: #fff; color: #1a1a1a; }
 .announcement-banner a { color: #f4c87e !important; }
 
 /* ─── NAV — Leather ─── */
-nav { background: var(--leather) !important; }
+nav {
+    background: #3D1E0A !important;
+    border-bottom: 1px solid rgba(244,200,126,0.08) !important;
+}
 nav.nav-solid {
-    background: var(--leather-dark) !important;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.55) !important;
+    background: #311608 !important;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.65) !important;
+    border-bottom: 1px solid rgba(244,200,126,0.12) !important;
 }
 .dropdown-menu {
     background: var(--leather-dark) !important;
@@ -4197,11 +4211,11 @@ nav.nav-solid {
     border-color: var(--leather-deeper) !important;
 }
 
-/* ─── HERO — Pure black so gradient is clean ─── */
-.hero { background: #000 !important; }
+/* ─── HERO — Light parchment tan to match brand-building-section ─── */
+.hero { background: #FAF4EA !important; }
 
-/* ─── LOGO CAROUSEL — semi-transparent over hero bottom ─── */
-.logo-carousel { background: rgba(0,0,0,0.12) !important; }
+/* ─── LOGO CAROUSEL — semi-transparent over parchment hero bottom ─── */
+.logo-carousel { background: rgba(250,244,234,0.5) !important; }
 
 /* ─── BRAND/SERVICES SECTION — White ─── */
 .brand-building-section { background: #fff !important; }
@@ -4318,13 +4332,13 @@ footer ul a:hover, footer p a:hover { color: #f4c87e !important; }
 }
 .btn-secondary {
     background: transparent !important;
-    color: #fff !important;
-    border-color: rgba(255,255,255,0.65) !important;
+    color: #2A1005 !important;
+    border-color: rgba(42,16,5,0.65) !important;
     border-radius: 8px !important;
 }
 .btn-secondary:hover {
-    background: #fff !important;
-    color: #000 !important;
+    background: #2A1005 !important;
+    color: #FAF4EA !important;
 }
 
 /* ─── MODAL ─── */
@@ -4539,7 +4553,7 @@ p, span, a, li, label, input, button {
 
 /* ── ANNOUNCEMENT BANNER — Wanted poster strip ── */
 .announcement-banner {
-    background: #000 !important;
+    background: #2A1005 !important;
     border-bottom: 2px solid #7B4422 !important;
     font-family: 'Inter', sans-serif !important;
     font-size: 12px !important;
@@ -4547,10 +4561,17 @@ p, span, a, li, label, input, button {
     letter-spacing: 2px !important;
     text-transform: uppercase !important;
     color: rgba(255,255,255,0.75) !important;
-    padding: 0 20px !important;
-    height: 40px !important;
-    line-height: 40px !important;
+    padding: 10px 20px !important;
+    min-height: 40px !important;
+    height: auto !important;
+    line-height: 1.4 !important;
     box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+    text-align: center !important;
 }
 .announcement-banner::before {
     content: '✦';
@@ -4626,7 +4647,7 @@ nav.nav-solid {
 
 /* ── HERO — complete western overhaul ── */
 .hero {
-    background: #000 !important;
+    background: #FAF4EA !important;
     min-height: 62vh !important;
 }
 
@@ -4667,7 +4688,7 @@ nav.nav-solid {
 
 /* Hero subtitle */
 .hero-subtitle {
-    color: rgba(255,255,255,0.65) !important;
+    color: #5C3018 !important;
     font-size: 17px !important;
     line-height: 1.75 !important;
     max-width: 560px !important;
@@ -4675,9 +4696,9 @@ nav.nav-solid {
 
 /* Hero CTA buttons — western broadside style */
 .btn-primary {
-    background: #fff !important;
-    color: #000 !important;
-    border: 2px solid #fff !important;
+    background: #7B4422 !important;
+    color: #FAF4EA !important;
+    border: 2px solid #7B4422 !important;
     border-radius: 8px !important;
     letter-spacing: 3px !important;
     font-size: 11px !important;
@@ -4686,24 +4707,25 @@ nav.nav-solid {
     transition: all 0.25s !important;
 }
 .btn-primary:hover {
-    background: #7B4422 !important;
-    border-color: #7B4422 !important;
-    color: #fff !important;
+    background: #2A1005 !important;
+    border-color: #2A1005 !important;
+    color: #FAF4EA !important;
 }
 .btn-secondary {
-    border: 2px solid rgba(255,255,255,0.45) !important;
+    border: 2px solid rgba(123,68,34,0.55) !important;
     border-radius: 8px !important;
     letter-spacing: 3px !important;
     font-size: 11px !important;
     font-weight: 700 !important;
     padding: 16px 36px !important;
-    color: rgba(255,255,255,0.85) !important;
+    color: #7B4422 !important;
+    background: transparent !important;
     transition: all 0.25s !important;
 }
 .btn-secondary:hover {
-    border-color: #fff !important;
-    color: #fff !important;
-    background: rgba(255,255,255,0.05) !important;
+    border-color: #2A1005 !important;
+    color: #FAF4EA !important;
+    background: #2A1005 !important;
 }
 
 /* ── HERO EYEBROW — western broadside style ── */
@@ -4711,7 +4733,7 @@ nav.nav-solid {
     font-family: 'Rye', serif !important;
     font-size: 9px !important;
     letter-spacing: 3px !important;
-    color: rgba(255,255,255,0.6) !important;
+    color: rgba(123,68,34,0.75) !important;
     margin-bottom: 20px !important;
     display: flex !important;
     align-items: center !important;
@@ -4733,14 +4755,14 @@ nav.nav-solid {
 
 /* ── REVIEW BAR — tightened ── */
 .hero-review-bar {
-    border-top: 1px solid rgba(255,255,255,0.08) !important;
+    border-top: 1px solid rgba(123,68,34,0.2) !important;
     margin-top: 36px !important;
     padding-top: 24px !important;
 }
 .hrb-stars svg { width: 15px !important; height: 15px !important; }
 .hrb-text {
     font-size: 13px !important;
-    color: rgba(255,255,255,0.45) !important;
+    color: rgba(92,48,24,0.7) !important;
     font-style: normal !important;
     font-family: 'Inter', sans-serif !important;
 }
@@ -4820,15 +4842,15 @@ body { margin: 0 !important; padding: 0 !important; }
     position: absolute !important;
     inset: 0 !important;
     background: linear-gradient(to right,
-        rgba(0,0,0,1.00)  0%,
-        rgba(0,0,0,0.97) 12%,
-        rgba(0,0,0,0.90) 22%,
-        rgba(0,0,0,0.78) 30%,
-        rgba(0,0,0,0.60) 38%,
-        rgba(0,0,0,0.40) 45%,
-        rgba(0,0,0,0.20) 52%,
-        rgba(0,0,0,0.07) 58%,
-        rgba(0,0,0,0.00) 65%) !important;
+        rgba(250,244,234,1.00)  0%,
+        rgba(250,244,234,0.97) 12%,
+        rgba(250,244,234,0.90) 22%,
+        rgba(250,244,234,0.78) 30%,
+        rgba(250,244,234,0.60) 38%,
+        rgba(250,244,234,0.40) 45%,
+        rgba(250,244,234,0.20) 52%,
+        rgba(250,244,234,0.07) 58%,
+        rgba(250,244,234,0.00) 65%) !important;
     z-index: 5 !important;
     pointer-events: none !important;
 }
@@ -4852,14 +4874,14 @@ body { margin: 0 !important; padding: 0 !important; }
     }
     .hero::after {
         background: linear-gradient(to right,
-            rgba(0,0,0,1.00)  0%,
-            rgba(0,0,0,0.97) 15%,
-            rgba(0,0,0,0.90) 26%,
-            rgba(0,0,0,0.75) 34%,
-            rgba(0,0,0,0.55) 42%,
-            rgba(0,0,0,0.30) 50%,
-            rgba(0,0,0,0.10) 58%,
-            rgba(0,0,0,0.00) 66%) !important;
+            rgba(250,244,234,1.00)  0%,
+            rgba(250,244,234,0.97) 15%,
+            rgba(250,244,234,0.90) 26%,
+            rgba(250,244,234,0.75) 34%,
+            rgba(250,244,234,0.55) 42%,
+            rgba(250,244,234,0.30) 50%,
+            rgba(250,244,234,0.10) 58%,
+            rgba(250,244,234,0.00) 66%) !important;
     }
     .hero-content {
         padding: 80px 120px 40px !important;
@@ -4870,6 +4892,23 @@ body { margin: 0 !important; padding: 0 !important; }
 </head>
 <body>
 
+<script>
+// Sync nav top to actual rendered banner height — runs after body opens
+document.addEventListener('DOMContentLoaded', function() {
+    var banner = document.querySelector('.announcement-banner');
+    var nav    = document.querySelector('nav');
+    var hero   = document.querySelector('.hero');
+    if (!banner || !nav) return;
+    function syncNav() {
+        var h = banner.offsetHeight;
+        nav.style.top = h + 'px';
+        if (hero) hero.style.marginTop = (h + nav.offsetHeight) + 'px';
+    }
+    syncNav();
+    window.addEventListener('resize', syncNav);
+});
+</script>
+
     <!-- Announcement Banner -->
     <div class="announcement-banner">
         Book Your JWM® Free Consultation &nbsp;—&nbsp; <a href="portfolio.html">Book Now</a>
@@ -4879,23 +4918,25 @@ body { margin: 0 !important; padding: 0 !important; }
     <nav>
         <div class="nav-container">
             <a href="#" class="nav-logo">
-                <!-- Camera icon -->
-                <svg width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;opacity:0.9;">
-                  <rect x="10" y="30" width="80" height="52" rx="8" fill="none" stroke="#f4c87e" stroke-width="4"/>
-                  <rect x="30" y="20" width="26" height="14" rx="4" fill="none" stroke="white" stroke-width="3.5"/>
-                  <circle cx="73" cy="25" r="5" fill="white" opacity="0.7"/>
-                  <circle cx="43" cy="56" r="19" fill="none" stroke="white" stroke-width="3.5"/>
-                  <circle cx="43" cy="56" r="10" fill="none" stroke="white" stroke-width="2.5" opacity="0.6"/>
-                  <circle cx="38" cy="51" r="3" fill="white" opacity="0.25"/>
-                  <rect x="66" y="40" width="14" height="8" rx="2" fill="none" stroke="white" stroke-width="2.5"/>
-                </svg>
-
-                <!-- JWM wordmark using Rye western font -->
-                <span class="nav-wordmark">
-                    <span class="nav-wordmark-jwm">
-                        <span class="nwj-j">J</span><span class="nwj-w">W</span><span class="nwj-m">M</span>
+                <!-- Redesigned JWM Logo Mark -->
+                <span class="jwm-logo-lockup">
+                    <!-- Diamond mark with gold accent -->
+                    <svg class="jwm-logo-mark" width="22" height="38" viewBox="0 0 22 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Vertical line -->
+                        <line x1="11" y1="0" x2="11" y2="38" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                        <!-- Diamond -->
+                        <path d="M11 10 L17 19 L11 28 L5 19 Z" fill="none" stroke="#f4c87e" stroke-width="1.2"/>
+                        <!-- Inner dot -->
+                        <circle cx="11" cy="19" r="1.8" fill="#f4c87e"/>
+                        <!-- Top tick -->
+                        <line x1="11" y1="0" x2="11" y2="8" stroke="#f4c87e" stroke-width="1.2"/>
+                        <!-- Bottom tick -->
+                        <line x1="11" y1="30" x2="11" y2="38" stroke="#f4c87e" stroke-width="1.2"/>
+                    </svg>
+                    <span class="jwm-logo-text">
+                        <span class="jwm-logo-jwm">JWM</span>
+                        <span class="jwm-logo-sub">Photography</span>
                     </span>
-                    <span class="nav-wordmark-sub">Photography</span>
                 </span>
             </a>
             <ul class="nav-links">
@@ -4952,10 +4993,10 @@ body { margin: 0 !important; padding: 0 !important; }
     <div class="hero-background">
         <!-- Desktop: Multiple videos cycling automatically -->
         <video id="heroVideo0" class="hero-video hero-video-slide active" autoplay muted playsinline preload="auto" webkit-playsinline>
-            <source src="15372727_3840_2160_30fps.mp4" type="video/mp4">
+            <source src="11977490_2160_3840_24fps.mp4" type="video/mp4">
         </video>
         <video id="heroVideo1" class="hero-video hero-video-slide" muted playsinline preload="metadata" webkit-playsinline>
-            <source src="11977490_2160_3840_24fps.mp4" type="video/mp4">
+            <source src="Video Project 1.mp4" type="video/mp4">
         </video>
         <video id="heroVideo2" class="hero-video hero-video-slide" muted playsinline preload="metadata" webkit-playsinline>
             <source src="9316884-uhd_3840_2160_24fps.mp4" type="video/mp4">
@@ -5161,7 +5202,7 @@ body { margin: 0 !important; padding: 0 !important; }
         <div class="psl-wrap ps-svc-0">
           <div class="psl-hero">
             <video class="psl-hero-video" autoplay muted loop playsinline preload="auto" poster="">
-              <source src="11997585_3840_2160_60fps.mp4" type="video/mp4">
+              <source src="7782704-hd_1080_1920_30fps.mp4" type="video/mp4">
             </video>
             <div class="psl-hero-overlay"></div>
             <div class="psl-hero-label">
@@ -5184,7 +5225,7 @@ body { margin: 0 !important; padding: 0 !important; }
         <div class="psl-wrap ps-svc-1 active">
           <div class="psl-hero">
             <video class="psl-hero-video" autoplay muted loop playsinline preload="auto" poster="">
-              <source src="13145862_2160_3840_30fps.mp4" type="video/mp4">
+              <source src="11997585_3840_2160_60fps.mp4" type="video/mp4">
             </video>
             <div class="psl-hero-overlay"></div>
             <div class="psl-hero-label">
@@ -5207,7 +5248,7 @@ body { margin: 0 !important; padding: 0 !important; }
         <div class="psl-wrap ps-svc-2">
           <div class="psl-hero">
             <video class="psl-hero-video" autoplay muted loop playsinline preload="auto" poster="">
-              <source src="13171246_1920_1080_60fps.mp4" type="video/mp4">
+              <source src="15372727_3840_2160_30fps.mp4" type="video/mp4">
             </video>
             <div class="psl-hero-overlay"></div>
             <div class="psl-hero-label">
@@ -5230,7 +5271,7 @@ body { margin: 0 !important; padding: 0 !important; }
         <div class="psl-wrap ps-svc-3">
           <div class="psl-hero">
             <video class="psl-hero-video" autoplay muted loop playsinline preload="auto" poster="">
-              <source src="17393125-uhd_3840_2160_60fps.mp4" type="video/mp4">
+              <source src="13590170_3840_2160_60fps.mp4" type="video/mp4">
             </video>
             <div class="psl-hero-overlay"></div>
             <div class="psl-hero-label">
@@ -6351,6 +6392,658 @@ document.addEventListener('DOMContentLoaded', function(){
 })();
 </script>
 
+<!-- ═══════════════════════════════════
+     THE SHOP — CAROUSEL STOREFRONT
+     ═══════════════════════════════════ -->
+<style>
+/* ── SHOP SECTION ── */
+.jwm-shop {
+    position: relative;
+    padding: 110px 0 120px;
+    overflow: hidden;
+    background: #FAF4EA;
+}
+
+/* Full-bleed photo background */
+.jwm-shop-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1800&q=80&fit=crop');
+    background-size: cover;
+    background-position: center 30%;
+    z-index: 0;
+}
+.jwm-shop-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        160deg,
+        rgba(250,244,234,0.96) 0%,
+        rgba(250,244,234,0.88) 40%,
+        rgba(250,244,234,0.92) 100%
+    );
+}
+
+.jwm-shop-inner {
+    position: relative;
+    z-index: 1;
+}
+
+/* ── HEADER ROW ── */
+.jwm-shop-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 64px;
+    margin-bottom: 52px;
+    gap: 24px;
+}
+@media (max-width: 768px) {
+    .jwm-shop-head { padding: 0 24px; flex-direction: column; align-items: flex-start; gap: 20px; }
+    .jwm-shop { padding: 80px 0 90px; }
+}
+
+.jwm-shop-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+.jwm-shop-label-line {
+    width: 32px;
+    height: 1px;
+    background: #7B4422;
+    opacity: 0.4;
+}
+.jwm-shop-label-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #7B4422;
+}
+.jwm-shop-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: #2A1005;
+    line-height: 1.05;
+    letter-spacing: -1px;
+}
+.jwm-shop-title em {
+    font-style: italic;
+    color: rgba(42,16,5,0.35);
+}
+@media (max-width: 768px) {
+    .jwm-shop-title { font-size: 36px; }
+}
+.jwm-shop-sub {
+    font-size: 14px;
+    color: #6B3D1A;
+    line-height: 1.6;
+    max-width: 360px;
+    margin-top: 10px;
+}
+.jwm-shop-head-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+    flex-shrink: 0;
+}
+.jwm-shop-arrows {
+    display: flex;
+    gap: 10px;
+}
+.jwm-arrow-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid rgba(42,16,5,0.18);
+    background: rgba(42,16,5,0.05);
+    color: #2A1005;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.jwm-arrow-btn:hover:not(:disabled) {
+    background: #2A1005;
+    border-color: #2A1005;
+    color: #f4c87e;
+    transform: scale(1.06);
+}
+.jwm-arrow-btn:disabled {
+    opacity: 0.22;
+    cursor: default;
+}
+.jwm-shop-count {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: rgba(42,16,5,0.35);
+    font-family: 'Inter', sans-serif;
+}
+
+/* ── CAROUSEL TRACK ── */
+.jwm-shop-rail {
+    overflow: hidden;
+    padding: 0 64px;
+    cursor: grab;
+}
+.jwm-shop-rail:active { cursor: grabbing; }
+@media (max-width: 768px) {
+    .jwm-shop-rail { padding: 0 24px; }
+}
+
+.jwm-shop-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    width: max-content;
+}
+
+/* ── PRODUCT CARD ── */
+.jwm-card {
+    width: 300px;
+    flex-shrink: 0;
+    background: #ffffff;
+    border: 1px solid rgba(42,16,5,0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    position: relative;
+}
+.jwm-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(123,68,34,0.25);
+    box-shadow: 0 20px 50px rgba(42,16,5,0.12);
+}
+
+/* Sale ribbon */
+.jwm-card-ribbon {
+    position: absolute;
+    top: 18px;
+    right: 0;
+    background: #f4c87e;
+    color: #000;
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 5px 14px 5px 10px;
+    clip-path: polygon(8px 0%, 100% 0%, 100% 100%, 8px 100%, 0% 50%);
+    font-family: 'Inter', sans-serif;
+    z-index: 2;
+}
+
+/* Image area — themed gradient placeholders */
+.jwm-card-img {
+    width: 100%;
+    height: 190px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.jwm-card-img-fill {
+    position: absolute;
+    inset: 0;
+}
+.jwm-card-img-fill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.55) 100%);
+}
+.cg1 { background: linear-gradient(135deg, #3d1f0c 0%, #7b4422 50%, #b06030 100%); }
+.cg2 { background: linear-gradient(135deg, #0f0703 0%, #3d1f0c 50%, #5c3018 100%); }
+.cg3 { background: linear-gradient(135deg, #5c3018 0%, #9b6040 60%, #c08050 100%); }
+.cg4 { background: linear-gradient(135deg, #2a1005 0%, #4a2510 60%, #7b4422 100%); }
+.cg5 { background: linear-gradient(135deg, #1a0e06 0%, #5c3018 50%, #7b4422 100%); }
+.cg6 { background: linear-gradient(135deg, #7b4422 0%, #2a1005 60%, #4a2510 100%); }
+
+/* Category tag inside image */
+.jwm-card-cat {
+    position: absolute;
+    bottom: 12px;
+    left: 14px;
+    z-index: 3;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    font-family: 'Inter', sans-serif;
+}
+
+/* Card body */
+.jwm-card-body {
+    padding: 22px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 8px;
+}
+.jwm-card-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #2A1005;
+    line-height: 1.3;
+}
+.jwm-card-desc {
+    font-size: 12.5px;
+    color: #6B3D1A;
+    line-height: 1.65;
+    flex: 1;
+    padding-bottom: 4px;
+}
+
+/* Divider */
+.jwm-card-rule {
+    height: 1px;
+    background: rgba(42,16,5,0.08);
+    margin: 4px 0;
+}
+
+/* Price + CTA row */
+.jwm-card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 4px;
+}
+.jwm-price-sale {
+    font-size: 24px;
+    font-weight: 800;
+    color: #2A1005;
+    font-family: 'Inter', sans-serif;
+    line-height: 1;
+    letter-spacing: -0.5px;
+}
+.jwm-book-btn {
+    background: #2A1005;
+    color: #f4c87e;
+    border: 1px solid #2A1005;
+    padding: 10px 18px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.25s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.jwm-book-btn:hover {
+    background: #7B4422;
+    border-color: #7B4422;
+    color: #fff;
+}
+
+/* ── VIEW MORE END-CARD ── */
+.jwm-card-viewmore {
+    width: 220px;
+    flex-shrink: 0;
+    border: 1px solid rgba(42,16,5,0.15);
+    border-radius: 3px;
+    background: rgba(42,16,5,0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 40px 28px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    align-self: stretch;
+}
+.jwm-card-viewmore:hover {
+    background: rgba(42,16,5,0.08);
+    border-color: rgba(42,16,5,0.3);
+    transform: translateY(-8px);
+}
+.jwm-vm-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px solid rgba(42,16,5,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2A1005;
+    transition: all 0.3s;
+}
+.jwm-card-viewmore:hover .jwm-vm-icon {
+    background: #2A1005;
+    color: #f4c87e;
+    border-color: #2A1005;
+}
+.jwm-vm-label {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #2A1005;
+    text-align: center;
+    line-height: 1.3;
+}
+.jwm-vm-sub {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #7B4422;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ── PROGRESS BAR ── */
+.jwm-shop-progress {
+    margin: 32px 64px 0;
+    height: 1px;
+    background: rgba(42,16,5,0.1);
+    border-radius: 1px;
+    position: relative;
+    overflow: hidden;
+}
+.jwm-shop-progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, #7B4422, rgba(123,68,34,0.3));
+    border-radius: 1px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 16.6%;
+}
+@media (max-width: 768px) {
+    .jwm-shop-progress { margin: 24px 24px 0; }
+}
+</style>
+
+<style>
+/* ── MOBILE-ONLY SHOP CONTROLS (below cards) ── */
+.jwm-mobile-controls {
+    display: none;
+}
+@media (max-width: 768px) {
+    /* Header */
+    .jwm-shop-head-right { display: none !important; }
+    .jwm-shop { padding: 60px 0 70px !important; }
+    .jwm-shop-head { padding: 0 20px !important; margin-bottom: 32px !important; }
+    .jwm-shop-title { font-size: 32px !important; }
+    .jwm-shop-sub { font-size: 13px !important; }
+
+    /* Rail: centred, no side padding — JS offsets from card width */
+    .jwm-shop-rail { padding: 0 !important; overflow: hidden !important; }
+    .jwm-shop-track { gap: 0 !important; }
+
+    /* Cards: compact, centred with side margin */
+    .jwm-card {
+        width: calc(100vw - 40px) !important;
+        max-width: 320px !important;
+        min-width: 0 !important;
+        flex-shrink: 0 !important;
+        margin: 0 20px !important;
+        box-sizing: border-box !important;
+    }
+    /* Smaller image on mobile */
+    .jwm-card-img { height: 140px !important; }
+    /* Compact body */
+    .jwm-card-body { padding: 16px !important; gap: 6px !important; }
+    .jwm-card-name { font-size: 15px !important; }
+    .jwm-card-desc { font-size: 12px !important; line-height: 1.55 !important; }
+    .jwm-price-sale { font-size: 20px !important; }
+    /* Full-width button on mobile */
+    .jwm-card-foot { flex-direction: column !important; align-items: stretch !important; gap: 10px !important; }
+    .jwm-book-btn { width: 100% !important; text-align: center !important; padding: 12px !important; font-size: 10px !important; }
+
+    /* Hide cards 4-6 and desktop view-more */
+    .jwm-card:nth-child(n+4), .jwm-card-viewmore { display: none !important; }
+
+    /* Mobile controls row */
+    .jwm-mobile-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 24px 20px 0;
+    }
+    .jwm-mob-arrow {
+        width: 42px; height: 42px; border-radius: 50%;
+        border: 1px solid rgba(42,16,5,0.18);
+        background: #fff; color: #2A1005;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer; transition: all 0.25s; flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(42,16,5,0.08);
+    }
+    .jwm-mob-arrow:active:not(:disabled) { background: #2A1005; border-color: #2A1005; color: #f4c87e; }
+    .jwm-mob-arrow:disabled { opacity: 0.22; cursor: default; }
+    .jwm-mob-dots { display: flex; gap: 8px; align-items: center; }
+    .jwm-mob-dot {
+        width: 6px; height: 6px; border-radius: 50%;
+        background: rgba(42,16,5,0.18); transition: all 0.25s;
+        cursor: pointer; border: none; padding: 0;
+    }
+    .jwm-mob-dot.active { background: #2A1005; width: 20px; border-radius: 3px; }
+
+    /* View More button */
+    .jwm-mob-viewmore {
+        display: none;
+        width: calc(100% - 40px);
+        margin: 16px 20px 0;
+        background: #2A1005; color: #f4c87e;
+        border: none; padding: 15px;
+        font-size: 11px; font-weight: 800; letter-spacing: 2px;
+        text-transform: uppercase; font-family: "Inter", sans-serif;
+        border-radius: 3px; cursor: pointer; text-align: center;
+        text-decoration: none; transition: background 0.25s;
+        box-sizing: border-box;
+    }
+    .jwm-mob-viewmore:active { background: #7B4422; }
+    .jwm-shop-progress { display: none !important; }
+}
+</style>
+
+<section class="jwm-shop" id="shop">
+    <div class="jwm-shop-bg"></div>
+    <div class="jwm-shop-inner">
+        <div class="jwm-shop-head">
+            <div>
+                <div class="jwm-shop-label">
+                    <div class="jwm-shop-label-line"></div>
+                    <span class="jwm-shop-label-text">The Print Shop</span>
+                    <div class="jwm-shop-label-line"></div>
+                </div>
+                <h2 class="jwm-shop-title">Fine art prints, <em>professionally crafted.</em></h2>
+                <p class="jwm-shop-sub">Browse our collection of professional photographs — available as museum-quality canvas, metal, fine art paper prints, and more. Each image is ready to ship in your chosen format and size.</p>
+            </div>
+            <div class="jwm-shop-head-right">
+                <div class="jwm-shop-arrows">
+                    <button class="jwm-arrow-btn" id="jwmPrev" onclick="jwmShift(-1)" disabled aria-label="Previous">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>
+                    <button class="jwm-arrow-btn" id="jwmNext" onclick="jwmShift(1)" aria-label="Next">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
+                </div>
+                <div class="jwm-shop-count" id="jwmCount">01 / 06</div>
+            </div>
+        </div>
+
+        <div class="jwm-shop-rail" id="jwmRail">
+            <div class="jwm-shop-track" id="jwmTrack">
+
+                <div class="jwm-card">
+                    <div class="jwm-card-img"><div class="jwm-card-img-fill cg1"></div><div class="jwm-card-cat">Canvas Wrap</div></div>
+                    <div class="jwm-card-body">
+                        <div class="jwm-card-name">Gallery Canvas Wrap</div>
+                        <div class="jwm-card-desc">A professionally shot photograph printed on hand-stretched canvas with a solid wood frame. Fade-resistant inks, rich color depth, ready to hang straight from the box. Available from 11×14 to 40×60.</div>
+                        <div class="jwm-card-rule"></div>
+                        <div class="jwm-card-foot"><div><div class="jwm-price-sale">$185</div></div><button class="jwm-book-btn" onclick="openModal()">Order Now</button></div>
+                    </div>
+                </div>
+
+                <div class="jwm-card">
+                    <div class="jwm-card-img"><div class="jwm-card-img-fill cg2"></div><div class="jwm-card-cat">Fine Art Paper</div></div>
+                    <div class="jwm-card-body">
+                        <div class="jwm-card-name">Fine Art Paper Print</div>
+                        <div class="jwm-card-desc">One of our professional photographs reproduced on 100% cotton rag archival paper. Deep blacks, luminous highlights, and a natural texture that elevates the image into a true collector's piece.</div>
+                        <div class="jwm-card-rule"></div>
+                        <div class="jwm-card-foot"><div><div class="jwm-price-sale">$120</div></div><button class="jwm-book-btn" onclick="openModal()">Order Now</button></div>
+                    </div>
+                </div>
+
+                <div class="jwm-card">
+                    <div class="jwm-card-img"><div class="jwm-card-img-fill cg3"></div><div class="jwm-card-cat">Metal Print</div></div>
+                    <div class="jwm-card-body">
+                        <div class="jwm-card-name">ChromaLuxe Metal Print</div>
+                        <div class="jwm-card-desc">A professional photograph infused directly onto aluminum — vibrant, waterproof, and scratch-resistant. A bold contemporary statement piece for any wall. Floating mount included.</div>
+                        <div class="jwm-card-rule"></div>
+                        <div class="jwm-card-foot"><div><div class="jwm-price-sale">$210</div></div><button class="jwm-book-btn" onclick="openModal()">Order Now</button></div>
+                    </div>
+                </div>
+
+                <div class="jwm-card">
+                    <div class="jwm-card-img"><div class="jwm-card-img-fill cg4"></div><div class="jwm-card-cat">Wood Print</div></div>
+                    <div class="jwm-card-body">
+                        <div class="jwm-card-name">Reclaimed Wood Print</div>
+                        <div class="jwm-card-desc">A professionally photographed image printed on real reclaimed pine — the natural wood grain shows through, giving every print a one-of-a-kind, handcrafted character no two are alike.</div>
+                        <div class="jwm-card-rule"></div>
+                        <div class="jwm-card-foot"><div><div class="jwm-price-sale">$195</div></div><button class="jwm-book-btn" onclick="openModal()">Order Now</button></div>
+                    </div>
+                </div>
+
+                <div class="jwm-card">
+                    <div class="jwm-card-img"><div class="jwm-card-img-fill cg5"></div><div class="jwm-card-cat">Framed Print</div></div>
+                    <div class="jwm-card-body">
+                        <div class="jwm-card-name">Framed Signature Print</div>
+                        <div class="jwm-card-desc">A professional photograph printed on fine art paper, set in a hand-selected hardwood frame with an archival mat. Ready to hang and built to last generations. Available in 4 frame finishes.</div>
+                        <div class="jwm-card-rule"></div>
+                        <div class="jwm-card-foot"><div><div class="jwm-price-sale">$290</div></div><button class="jwm-book-btn" onclick="openModal()">Order Now</button></div>
+                    </div>
+                </div>
+
+                <div class="jwm-card">
+                    <div class="jwm-card-img"><div class="jwm-card-img-fill cg6"></div><div class="jwm-card-cat">Print Bundle</div></div>
+                    <div class="jwm-card-body">
+                        <div class="jwm-card-name">Heirloom Print Set</div>
+                        <div class="jwm-card-desc">Three professional photographs curated to complement each other — available in your choice of sizes and formats (canvas, paper, or metal) and designed to work together as a cohesive wall grouping.</div>
+                        <div class="jwm-card-rule"></div>
+                        <div class="jwm-card-foot"><div><div class="jwm-price-sale">$480</div></div><button class="jwm-book-btn" onclick="openModal()">Order Now</button></div>
+                    </div>
+                </div>
+
+                <a href="pricing.html" class="jwm-card-viewmore">
+                    <div class="jwm-vm-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+                    <div class="jwm-vm-label">See Everything</div>
+                    <div class="jwm-vm-sub">View More</div>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- Mobile controls -->
+        <div class="jwm-mobile-controls" id="jwmMobileControls">
+            <button class="jwm-mob-arrow" id="jwmMobPrev" onclick="jwmMobShift(-1)" disabled aria-label="Previous">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="jwm-mob-dots">
+                <button class="jwm-mob-dot active" onclick="jwmMobGo(0)"></button>
+                <button class="jwm-mob-dot" onclick="jwmMobGo(1)"></button>
+                <button class="jwm-mob-dot" onclick="jwmMobGo(2)"></button>
+            </div>
+            <button class="jwm-mob-arrow" id="jwmMobNext" onclick="jwmMobShift(1)" aria-label="Next">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+        </div>
+        <a href="pricing.html" class="jwm-mob-viewmore" id="jwmMobViewMore" style="display:none">View More Prints</a>
+
+        <div class="jwm-shop-progress">
+            <div class="jwm-shop-progress-fill" id="jwmProgress"></div>
+        </div>
+    </div>
+</section>
+
+<script>
+(function() {
+    var track = document.getElementById('jwmTrack');
+    var rail = document.getElementById('jwmRail');
+    var prevBtn = document.getElementById('jwmPrev');
+    var nextBtn = document.getElementById('jwmNext');
+    var countEl = document.getElementById('jwmCount');
+    var progressEl = document.getElementById('jwmProgress');
+    if (!track || !rail) return;
+
+    // ── DESKTOP ──
+    var idx = 0;
+    var CARD_W = 300 + 20;
+    var TOTAL = 6;
+    function getVisibleCount() { return Math.max(1, Math.floor(rail.offsetWidth / CARD_W)); }
+    function maxIdx() { return Math.max(0, TOTAL - getVisibleCount() + 1); }
+    function desktopUpdate() {
+        track.style.transform = 'translateX(-' + (idx * CARD_W) + 'px)';
+        prevBtn.disabled = idx === 0;
+        nextBtn.disabled = idx >= maxIdx();
+        countEl.textContent = String(Math.min(idx + 1, TOTAL)).padStart(2,'0') + ' / ' + String(TOTAL).padStart(2,'0');
+        if (progressEl) progressEl.style.width = Math.max(12, maxIdx() > 0 ? (idx / maxIdx()) * 100 : 0) + '%';
+    }
+    window.jwmShift = function(dir) { idx = Math.max(0, Math.min(maxIdx(), idx + dir)); desktopUpdate(); };
+    var isDragging = false, startX = 0, startIdx = 0;
+    rail.addEventListener('mousedown', function(e) { isDragging = true; startX = e.clientX; startIdx = idx; rail.style.userSelect = 'none'; });
+    window.addEventListener('mousemove', function(e) { if (!isDragging) return; idx = Math.max(0, Math.min(maxIdx(), startIdx + Math.round((startX - e.clientX) / CARD_W))); desktopUpdate(); });
+    window.addEventListener('mouseup', function() { isDragging = false; rail.style.userSelect = ''; });
+
+    // ── MOBILE ──
+    var MOB_TOTAL = 3;
+    var mobIdx = 0;
+    var mobPrev = document.getElementById('jwmMobPrev');
+    var mobNext = document.getElementById('jwmMobNext');
+    var mobDots = document.querySelectorAll('.jwm-mob-dot');
+    var mobVM = document.getElementById('jwmMobViewMore');
+
+    function mobUpdate() {
+        // Card width = viewport - 40px margins, capped at 320px, plus 40px total margin per slot
+        var cardEl = track.querySelector('.jwm-card');
+        var cardW = cardEl ? cardEl.offsetWidth + 40 : rail.offsetWidth;
+        track.style.transform = 'translateX(-' + (mobIdx * cardW) + 'px)';
+        mobPrev.disabled = mobIdx === 0;
+        mobDots.forEach(function(d, i) { d.classList.toggle('active', i === mobIdx); });
+        if (mobIdx === MOB_TOTAL - 1) {
+            mobNext.style.visibility = 'hidden';
+            if (mobVM) { mobVM.style.display = 'block'; }
+        } else {
+            mobNext.style.visibility = 'visible';
+            if (mobVM) { mobVM.style.display = 'none'; }
+        }
+    }
+    window.jwmMobShift = function(dir) { mobIdx = Math.max(0, Math.min(MOB_TOTAL - 1, mobIdx + dir)); mobUpdate(); };
+    window.jwmMobGo = function(i) { mobIdx = i; mobUpdate(); };
+
+    var touchStartX = 0;
+    rail.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+    rail.addEventListener('touchend', function(e) {
+        var diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) {
+            if (diff > 0 && mobIdx < MOB_TOTAL - 1) { mobIdx++; mobUpdate(); }
+            else if (diff < 0 && mobIdx > 0) { mobIdx--; mobUpdate(); }
+        }
+    }, { passive: true });
+
+    window.addEventListener('resize', function() {
+        if (window.innerWidth <= 768) { mobUpdate(); } else { desktopUpdate(); }
+    });
+    if (window.innerWidth <= 768) { mobUpdate(); } else { desktopUpdate(); }
+})();
+</script>
+
     <!-- Services/Pricing Section -->
     <!-- Blog Articles Section -->
     <section class="blog-section">
@@ -7012,20 +7705,18 @@ document.addEventListener('DOMContentLoaded', function(){
 
             <!-- Brand -->
             <div>
-                <a href="index.html" style="display:flex;align-items:center;gap:14px;text-decoration:none;margin-bottom:20px;">
-                    <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
-                        <rect x="10" y="30" width="80" height="52" rx="8" fill="none" stroke="#f4c87e" stroke-width="3.5" opacity="0.6"/>
-                        <rect x="30" y="20" width="26" height="14" rx="4" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="3"/>
-                        <circle cx="73" cy="25" r="4" fill="rgba(255,255,255,0.25)"/>
-                        <circle cx="43" cy="56" r="19" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="3"/>
-                        <circle cx="43" cy="56" r="9" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
-                        <rect x="66" y="40" width="14" height="8" rx="2" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+                <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;margin-bottom:20px;">
+                    <!-- Diamond mark — matches nav logo -->
+                    <svg width="20" height="34" viewBox="0 0 22 38" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+                        <line x1="11" y1="0" x2="11" y2="38" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                        <path d="M11 10 L17 19 L11 28 L5 19 Z" fill="none" stroke="#f4c87e" stroke-width="1.2" opacity="0.8"/>
+                        <circle cx="11" cy="19" r="1.8" fill="#f4c87e" opacity="0.8"/>
+                        <line x1="11" y1="0" x2="11" y2="8" stroke="#f4c87e" stroke-width="1.2" opacity="0.8"/>
+                        <line x1="11" y1="30" x2="11" y2="38" stroke="#f4c87e" stroke-width="1.2" opacity="0.8"/>
                     </svg>
-                    <div style="display:flex;flex-direction:column;gap:4px;line-height:1;">
-                        <div style="display:flex;align-items:baseline;letter-spacing:-2px;">
-                            <span style="font-family:'Dancing Script',cursive;font-size:32px;font-weight:700;color:#fff;">J</span><span style="font-family:'Dancing Script',cursive;font-size:32px;font-weight:700;color:#f4c87e;">W</span><span style="font-family:'Dancing Script',cursive;font-size:32px;font-weight:700;color:#fff;">M</span>
-                        </div>
-                        <div style="font-size:7px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.25);font-weight:600;font-family:'Inter',sans-serif;">Photography</div>
+                    <div style="display:flex;flex-direction:column;gap:3px;line-height:1;">
+                        <span style="font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:700;font-style:italic;color:#fff;letter-spacing:3px;">JWM</span>
+                        <span style="font-family:'Inter',sans-serif;font-size:7px;letter-spacing:4.5px;text-transform:uppercase;color:rgba(255,255,255,0.35);font-weight:600;">Photography</span>
                     </div>
                 </a>
                 <p class="ft-col-desc">Professional photography &amp; video production delivered coast to coast. Capturing stories worth telling since 2018.</p>
@@ -8396,6 +9087,7 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </style>
 
+
 <!-- FEATURE INFO POPUPS -->
 <div class="feature-popup-overlay" id="featurePopupOverlay" onclick="closeFeaturePopup()">
     <div class="feature-popup" id="featurePopup" onclick="event.stopPropagation()">
@@ -8691,5 +9383,49 @@ document.getElementById('featurePopupOverlay').addEventListener('click', functio
     if (document.readyState !== 'loading') { checkBlogCarousel(); }
 })();
 </script>
+<!-- ── BACK TO TOP BUTTON ── -->
+<style>
+.btt-btn {
+    position: fixed;
+    bottom: 96px;
+    left: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #2A1005;
+    border: 1px solid rgba(244,200,126,0.35);
+    color: #f4c87e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 199998;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.25s;
+    box-shadow: 0 4px 16px rgba(42,16,5,0.35);
+}
+.btt-btn.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.btt-btn:hover {
+    background: #7B4422;
+    border-color: rgba(244,200,126,0.7);
+}
+</style>
+<button class="btt-btn" id="bttBtn" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+<script>
+(function(){
+    var btn = document.getElementById('bttBtn');
+    if (!btn) return;
+    window.addEventListener('scroll', function(){
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+})();
+</script>
+
 </body>
 </html>
