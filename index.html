@@ -4120,6 +4120,46 @@ nav {
 .nav-links a:hover::after { width: 100%; }
 .nav-links a:hover { opacity: 1; color: #f4c87e; }
 
+/* Cart icon in nav */
+.nav-cart-icon {
+    position: relative;
+    background: transparent;
+    border: 1px solid rgba(244,200,126,0.35);
+    color: #f4c87e;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+.nav-cart-icon:hover {
+    background: rgba(244,200,126,0.12);
+    border-color: rgba(244,200,126,0.7);
+}
+.nav-cart-icon svg { width: 18px; height: 18px; }
+.nav-cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #f4c87e;
+    color: #2A1005;
+    font-size: 10px;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+.nav-cart-badge.visible { display: flex; }
+
 /* Nav CTA button refined */
 .nav-cta-btn {
     background: transparent;
@@ -4888,6 +4928,7 @@ body { margin: 0 !important; padding: 0 !important; }
     }
 }
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 <body>
@@ -4978,6 +5019,14 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="contact-info">
                 <a href="tel:+19402178680" class="phone">(512) 980-0393</a>
                 <a href="client_portal.html" class="login-link">LOG IN</a>
+                <button class="nav-cart-icon" id="navCartBtn" onclick="openIndexCart()" aria-label="View cart">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <path d="M16 10a4 4 0 0 1-8 0"/>
+                    </svg>
+                    <span class="nav-cart-badge" id="navCartBadge"></span>
+                </button>
                 <button class="nav-cta-btn" onclick="openModal()">BOOK NOW</button>
                 <button class="mobile-menu-btn">
                     <span></span>
@@ -9424,6 +9473,651 @@ document.getElementById('featurePopupOverlay').addEventListener('click', functio
     window.addEventListener('scroll', function(){
         btn.classList.toggle('visible', window.scrollY > 400);
     }, { passive: true });
+})();
+</script>
+
+<!-- ── SHARED CART + CHECKOUT (exact match to pricing.html) ── -->
+<style>
+/* ── CART DRAWER ── */
+.cart-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 50000; }
+.cart-overlay.active { display: block; }
+.cart-drawer {
+    position: fixed;
+    top: 0; right: -460px;
+    width: 460px; height: 100%;
+    background: #fff;
+    z-index: 50001;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -4px 0 40px rgba(0,0,0,0.2);
+}
+.cart-drawer.open { right: 0; }
+.cart-header {
+    background: linear-gradient(160deg, var(--leather-deeper) 0%, #3D1E0A 100%);
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+.cart-header h3 {
+    font-size: 22px;
+    color: #fff;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.cart-header h3 i { color: var(--gold); font-size: 18px; }
+.cart-header-close {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: rgba(255,255,255,0.7);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s;
+}
+.cart-header-close:hover { background: rgba(255,255,255,0.2); color: #fff; }
+.cart-items { flex: 1; overflow-y: auto; padding: 20px; }
+.cart-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #999;
+    gap: 12px;
+    padding: 40px;
+    text-align: center;
+}
+.cart-empty i { font-size: 40px; color: rgba(123,68,34,0.2); }
+.cart-empty p { font-size: 14px; line-height: 1.6; color: #aaa; }
+.cart-item {
+    display: flex;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(123,68,34,0.1);
+    align-items: flex-start;
+}
+.cart-item-img { width: 72px; height: 72px; border-radius: 8px; object-fit: cover; flex-shrink: 0; border: 1px solid rgba(123,68,34,0.15); background: #f5edd6; }
+.cart-item-info { flex: 1; min-width: 0; }
+.cart-item-name { font-size: 14px; font-weight: 600; color: #2A1005; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cart-item-size { font-size: 11px; color: #999; margin-bottom: 10px; }
+.cart-item-qty {
+    display: flex; align-items: center;
+    background: #F5EDD6;
+    border: 1px solid rgba(123,68,34,0.2);
+    border-radius: 6px;
+    overflow: hidden;
+    width: fit-content;
+}
+.qty-btn { background: none; border: none; color: #7B4422; width: 28px; height: 28px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; transition: background 0.2s; font-family: 'Inter', sans-serif; }
+.qty-btn:hover { background: rgba(123,68,34,0.1); }
+.qty-val { font-size: 13px; font-weight: 600; color: #2A1005; padding: 0 8px; min-width: 24px; text-align: center; }
+.cart-item-right { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; flex-shrink: 0; }
+.cart-item-price { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #2A1005; }
+.cart-remove { background: none; border: none; color: #bbb; cursor: pointer; font-size: 12px; transition: color 0.2s; font-family: 'Inter', sans-serif; }
+.cart-remove:hover { color: #c0392b; }
+.cart-footer { border-top: 2px solid #7B4422; padding: 20px; background: #F5EDD6; flex-shrink: 0; }
+.cart-summary { margin-bottom: 16px; }
+.cart-subtotal { display: flex; justify-content: space-between; font-size: 13px; color: #666; margin-bottom: 6px; font-family: 'Inter', sans-serif; }
+.cart-total { display: flex; justify-content: space-between; font-size: 16px; font-weight: 700; color: #2A1005; padding-top: 10px; border-top: 1px solid rgba(123,68,34,0.15); font-family: 'Inter', sans-serif; }
+.btn-checkout {
+    width: 100%;
+    background: #2A1005;
+    color: #fff;
+    border: none;
+    padding: 16px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.btn-checkout:hover { background: #7B4422; }
+
+/* ── CHECKOUT MODAL ── */
+@keyframes jwm-slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.checkout-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 99999;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+.checkout-overlay.active { display: flex; }
+.checkout-box {
+    background: #fff;
+    border-radius: 16px;
+    max-width: 680px;
+    width: 100%;
+    overflow: hidden;
+    animation: jwm-slideUp 0.4s ease;
+    margin: auto;
+}
+.checkout-header {
+    background: linear-gradient(160deg, #2A1005 0%, #3D1E0A 100%);
+    padding: 32px 40px;
+    position: relative;
+}
+.checkout-header h2 { font-size: 26px; color: #fff; margin-bottom: 20px; font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-style: italic; }
+.checkout-progress { display: flex; align-items: center; }
+.prog-step { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.prog-circle {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+    transition: all 0.4s;
+    background: transparent;
+    font-family: 'Inter', sans-serif;
+}
+.prog-label { font-size: 10px; color: rgba(255,255,255,0.4); font-weight: 600; letter-spacing: 0.5px; white-space: nowrap; font-family: 'Inter', sans-serif; }
+.prog-step.active .prog-circle { background: #f4c87e; border-color: #f4c87e; color: #000; }
+.prog-step.active .prog-label { color: #f4c87e; }
+.prog-step.done .prog-circle { background: rgba(244,200,126,0.2); border-color: #f4c87e; color: #f4c87e; }
+.prog-step.done .prog-label { color: rgba(255,255,255,0.6); }
+.prog-line { flex: 1; height: 1px; background: rgba(255,255,255,0.15); margin: 0 8px; transition: background 0.4s; }
+.prog-line.done { background: rgba(244,200,126,0.4); }
+.checkout-body { padding: 32px 40px 40px; }
+.checkout-step { display: none; }
+.checkout-step.active { display: block; }
+.checkout-step-title { font-size: 22px; color: #2A1005; margin-bottom: 6px; font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-style: italic; }
+.checkout-step-sub { font-size: 13px; color: #999; margin-bottom: 24px; font-family: 'Inter', sans-serif; }
+.checkout-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.checkout-form-full { margin-bottom: 16px; }
+.co-form-group { display: flex; flex-direction: column; gap: 6px; }
+.co-form-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #7B4422; font-family: 'Inter', sans-serif; }
+.co-form-input {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    border: 1.5px solid rgba(123,68,34,0.25);
+    border-radius: 8px;
+    background: #F5EDD6;
+    color: #2A1005;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+}
+.co-form-input:focus { border-color: #7B4422; background: #fff; box-shadow: 0 0 0 3px rgba(123,68,34,0.1); }
+.co-form-input::placeholder { color: rgba(92,48,24,0.35); }
+select.co-form-input { cursor: pointer; }
+.shipping-options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.shipping-option {
+    border: 1.5px solid rgba(123,68,34,0.2);
+    border-radius: 10px;
+    padding: 18px 20px;
+    display: flex;
+    gap: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    align-items: flex-start;
+    font-family: 'Inter', sans-serif;
+}
+.shipping-option.selected { border-color: #7B4422; background: #faf8f4; }
+.shipping-radio { width: 18px; height: 18px; border: 2px solid rgba(123,68,34,0.35); border-radius: 50%; flex-shrink: 0; margin-top: 2px; transition: all 0.2s; position: relative; }
+.shipping-option.selected .shipping-radio { border-color: #7B4422; }
+.shipping-option.selected .shipping-radio::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 8px; height: 8px; background: #7B4422; border-radius: 50%; }
+.shipping-info { flex: 1; }
+.shipping-name { font-size: 14px; font-weight: 700; color: #2A1005; margin-bottom: 4px; }
+.shipping-desc { font-size: 12px; color: #999; line-height: 1.5; }
+.shipping-price { font-size: 14px; font-weight: 700; color: #7B4422; white-space: nowrap; }
+.size-select-group { margin-bottom: 20px; }
+.size-select-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #7B4422; margin-bottom: 10px; display: block; font-family: 'Inter', sans-serif; }
+.size-options { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.size-option { background: #F5EDD6; border: 1.5px solid rgba(123,68,34,0.2); color: #2A1005; padding: 8px 16px; font-size: 12px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+.size-option:hover { border-color: #7B4422; }
+.size-option.selected { border-color: #7B4422; background: #7B4422; color: #fff; }
+.order-review-items { margin-bottom: 20px; }
+.review-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(123,68,34,0.08); align-items: center; font-family: 'Inter', sans-serif; }
+.review-item-img { width: 56px; height: 56px; border-radius: 6px; object-fit: cover; border: 1px solid rgba(123,68,34,0.12); flex-shrink: 0; background: #f5edd6; }
+.review-item-name { font-size: 14px; font-weight: 600; color: #2A1005; }
+.review-item-detail { font-size: 11px; color: #999; margin-top: 2px; }
+.review-item-price { margin-left: auto; font-size: 15px; font-weight: 700; color: #2A1005; white-space: nowrap; }
+.order-totals { background: #F5EDD6; border-radius: 10px; padding: 16px 20px; border: 1px solid rgba(123,68,34,0.12); }
+.co-total-line { display: flex; justify-content: space-between; font-size: 13px; color: #666; padding: 5px 0; font-family: 'Inter', sans-serif; }
+.co-total-line.grand { font-size: 17px; font-weight: 700; color: #2A1005; padding-top: 12px; border-top: 1px solid rgba(123,68,34,0.15); margin-top: 6px; }
+.checkout-nav { display: flex; gap: 12px; margin-top: 28px; }
+.btn-co-back { flex: 1; background: transparent; border: 1px solid rgba(123,68,34,0.3); color: #7B4422; padding: 14px; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; border-radius: 8px; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+.btn-co-back:hover { background: #F5EDD6; }
+.btn-co-next { flex: 2; background: #2A1005; color: #fff; border: none; padding: 14px; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; border-radius: 8px; font-family: 'Inter', sans-serif; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.btn-co-next:hover { background: #7B4422; }
+.btn-co-next.gold { background: #f4c87e; color: #000; }
+.btn-co-next.gold:hover { background: #e6b86b; }
+.co-card-field { border: 1px solid rgba(123,68,34,0.25); border-radius: 8px; padding: 14px 16px; font-size: 14px; color: #666; background: #F5EDD6; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; font-family: 'Inter', sans-serif; }
+.co-card-field i { color: #9B6040; font-size: 18px; }
+.co-card-placeholder { color: #999; font-size: 13px; }
+.co-stripe-note { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #999; margin-top: 12px; font-family: 'Inter', sans-serif; }
+.co-stripe-note i { color: #9B6040; }
+.co-success { text-align: center; padding: 24px 0; }
+.co-success-icon { width: 80px; height: 80px; background: #f4c87e; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+.co-success-icon i { font-size: 32px; color: #000; }
+.co-success h3 { font-size: 26px; color: #2A1005; margin-bottom: 10px; font-family: 'Playfair Display', Georgia, serif; font-weight: 700; }
+.co-success p { font-size: 14px; color: #666; line-height: 1.7; max-width: 400px; margin: 0 auto 28px; font-family: 'Inter', sans-serif; }
+.co-confirm-box { background: #F5EDD6; border: 1px solid rgba(123,68,34,0.15); border-radius: 10px; padding: 20px; margin-bottom: 24px; text-align: left; }
+.co-conf-row { display: flex; justify-content: space-between; font-size: 13px; padding: 6px 0; border-bottom: 1px solid rgba(123,68,34,0.08); font-family: 'Inter', sans-serif; }
+.co-conf-row:last-child { border-bottom: none; }
+.co-conf-label { color: #666; font-weight: 500; }
+.co-conf-value { color: #2A1005; font-weight: 700; }
+.btn-co-done { width: 100%; background: #2A1005; color: #fff; border: none; padding: 14px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border-radius: 8px; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+.btn-co-done:hover { background: #7B4422; }
+@media (max-width: 500px) {
+    .cart-drawer { width: 100%; right: -100%; }
+    .checkout-body { padding: 24px 20px 32px; }
+    .checkout-form-grid { grid-template-columns: 1fr; }
+    .checkout-header { padding: 24px 20px; }
+}
+</style>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+        <h3><i class="fa-solid fa-bag-shopping"></i> Your Cart</h3>
+        <button class="cart-header-close" onclick="closeCart()">&#x2715;</button>
+    </div>
+    <div class="cart-items" id="cartItemsList">
+        <div class="cart-empty" id="cartEmpty">
+            <i class="fa-regular fa-image"></i>
+            <p>Your cart is empty.<br>Browse our fine art prints and add something you love.</p>
+        </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+        <div class="cart-summary">
+            <div class="cart-subtotal"><span>Subtotal</span><span id="cartSubtotalAmt">$0.00</span></div>
+            <div class="cart-subtotal"><span>Tax &amp; Stripe fee</span><span>Calculated at checkout</span></div>
+            <div class="cart-total"><span>Est. Total</span><span id="cartTotalAmt">$0.00</span></div>
+        </div>
+        <button class="btn-checkout" onclick="openCheckout()">
+            <i class="fa-solid fa-lock"></i> Proceed to Checkout
+        </button>
+    </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="checkout-overlay" id="checkoutOverlay">
+    <div class="checkout-box">
+        <div class="checkout-header">
+            <button onclick="closeCheckout()" style="position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.15);border:none;color:rgba(255,255,255,0.7);width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;font-family:'Inter',sans-serif;line-height:1;">&#x2715;</button>
+            <h2>Secure Checkout</h2>
+            <div class="checkout-progress" id="checkoutProgress">
+                <div class="prog-step active" id="progStep1"><div class="prog-circle">1</div><div class="prog-label">Info</div></div>
+                <div class="prog-line" id="progLine1"></div>
+                <div class="prog-step" id="progStep2"><div class="prog-circle">2</div><div class="prog-label">Payment</div></div>
+                <div class="prog-line" id="progLine2"></div>
+                <div class="prog-step" id="progStep3"><div class="prog-circle">3</div><div class="prog-label">Shipping</div></div>
+                <div class="prog-line" id="progLine3"></div>
+                <div class="prog-step" id="progStep4"><div class="prog-circle">4</div><div class="prog-label">Review</div></div>
+            </div>
+        </div>
+        <div class="checkout-body">
+            <!-- Step 1: Info -->
+            <div class="checkout-step active" id="coStep1">
+                <div class="checkout-step-title">Your Information</div>
+                <div class="checkout-step-sub">Contact details for your order confirmation.</div>
+                <div class="checkout-form-grid">
+                    <div class="co-form-group"><label class="co-form-label">First Name</label><input type="text" class="co-form-input" id="coFirstName" placeholder="Jane"></div>
+                    <div class="co-form-group"><label class="co-form-label">Last Name</label><input type="text" class="co-form-input" id="coLastName" placeholder="Smith"></div>
+                </div>
+                <div class="checkout-form-full">
+                    <div class="co-form-group"><label class="co-form-label">Email Address</label><input type="email" class="co-form-input" id="coEmail" placeholder="jane@email.com"></div>
+                </div>
+                <div class="checkout-form-grid">
+                    <div class="co-form-group"><label class="co-form-label">Phone</label><input type="tel" class="co-form-input" id="coPhone" placeholder="(555) 000-0000"></div>
+                    <div class="co-form-group"><label class="co-form-label">City</label><input type="text" class="co-form-input" id="coCity" placeholder="Dallas"></div>
+                </div>
+                <div class="checkout-nav">
+                    <button class="btn-co-next" style="flex:1;" onclick="coNext(1)">Continue to Payment <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+            <!-- Step 2: Payment -->
+            <div class="checkout-step" id="coStep2">
+                <div class="checkout-step-title">Payment Details</div>
+                <div class="checkout-step-sub">Secured and processed through Stripe. We never store card information.</div>
+                <div class="checkout-form-full"><div class="co-form-group"><label class="co-form-label">Name on Card</label><input type="text" class="co-form-input" id="coCardName" placeholder="Jane Smith"></div></div>
+                <div class="co-card-field"><i class="fa-regular fa-credit-card"></i><span class="co-card-placeholder">Card number — Stripe integration ready</span></div>
+                <div class="checkout-form-grid">
+                    <div class="co-card-field" style="margin:0;"><i class="fa-regular fa-calendar"></i><span class="co-card-placeholder">MM / YY</span></div>
+                    <div class="co-card-field" style="margin:0;"><i class="fa-solid fa-lock"></i><span class="co-card-placeholder">CVC</span></div>
+                </div>
+                <div class="co-stripe-note" style="margin-top:16px;"><i class="fa-brands fa-stripe"></i> Secured by Stripe — PCI DSS compliant</div>
+                <div class="checkout-nav">
+                    <button class="btn-co-back" onclick="coBack(2)">Back</button>
+                    <button class="btn-co-next" onclick="coNext(2)">Continue to Shipping <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+            <!-- Step 3: Shipping -->
+            <div class="checkout-step" id="coStep3">
+                <div class="checkout-step-title">Delivery Options</div>
+                <div class="checkout-step-sub">Digital download is always included. Choose whether to also receive a physical print.</div>
+                <div class="shipping-options" id="shippingOptions">
+                    <div class="shipping-option selected" onclick="selectShipping(this,'digital')">
+                        <div class="shipping-radio"></div>
+                        <div class="shipping-info"><div class="shipping-name">Digital Download Only</div><div class="shipping-desc">High-resolution file delivered to your client portal immediately after payment.</div></div>
+                        <div class="shipping-price">Free</div>
+                    </div>
+                    <div class="shipping-option" onclick="selectShipping(this,'mail')">
+                        <div class="shipping-radio"></div>
+                        <div class="shipping-info"><div class="shipping-name">Mail Physical Print (+$18)</div><div class="shipping-desc">Professional archival print mailed to your address. Est. 5–7 business days.</div></div>
+                        <div class="shipping-price">+$18</div>
+                    </div>
+                </div>
+                <div class="size-select-group" id="sizeSelectGroup" style="display:none;">
+                    <label class="size-select-label">Print Size</label>
+                    <div class="size-options">
+                        <button type="button" class="size-option selected" onclick="selectSize(this,'4x6')">4&times;6"</button>
+                        <button type="button" class="size-option" onclick="selectSize(this,'5x7')">5&times;7"</button>
+                        <button type="button" class="size-option" onclick="selectSize(this,'8x10')">8&times;10"</button>
+                        <button type="button" class="size-option" onclick="selectSize(this,'11x14')">11&times;14"</button>
+                        <button type="button" class="size-option" onclick="selectSize(this,'16x20')">16&times;20"</button>
+                        <button type="button" class="size-option" onclick="selectSize(this,'24x36')">24&times;36"</button>
+                    </div>
+                    <div class="checkout-form-full">
+                        <div class="co-form-group"><label class="co-form-label">Street Address</label><input type="text" class="co-form-input" id="coAddress" placeholder="123 Main Street"></div>
+                    </div>
+                    <div class="checkout-form-full">
+                        <div class="co-form-group"><label class="co-form-label">Address Line 2 (Apt, Suite — Optional)</label><input type="text" class="co-form-input" id="coAddress2" placeholder="Apt 4B"></div>
+                    </div>
+                    <div class="checkout-form-grid">
+                        <div class="co-form-group"><label class="co-form-label">City</label><input type="text" class="co-form-input" id="coMailCity" placeholder="Dallas"></div>
+                        <div class="co-form-group"><label class="co-form-label">State</label><select class="co-form-input" id="coState"><option value="">Select State</option><option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option><option>CO</option><option>CT</option><option>DE</option><option>FL</option><option>GA</option><option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option><option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option><option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option><option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option><option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option><option>SD</option><option selected>TX</option><option>UT</option><option>VT</option><option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option></select></div>
+                    </div>
+                    <div class="checkout-form-full">
+                        <div class="co-form-group"><label class="co-form-label">ZIP Code</label><input type="text" class="co-form-input" id="coZip" placeholder="75001" maxlength="10"></div>
+                    </div>
+                </div>
+                <div class="checkout-nav">
+                    <button class="btn-co-back" onclick="coBack(3)">Back</button>
+                    <button class="btn-co-next" onclick="coNext(3)">Review Order <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+            <!-- Step 4: Review -->
+            <div class="checkout-step" id="coStep4">
+                <div class="checkout-step-title">Review &amp; Submit</div>
+                <div class="checkout-step-sub">Confirm your order details before completing payment.</div>
+                <div class="order-review-items" id="orderReviewItems"></div>
+                <div class="order-totals" id="orderTotals"></div>
+                <div class="checkout-nav">
+                    <button class="btn-co-back" onclick="coBack(4)">Back</button>
+                    <button class="btn-co-next gold" onclick="submitCheckout()"><i class="fa-solid fa-lock"></i> Complete Purchase</button>
+                </div>
+            </div>
+            <!-- Step 5: Success -->
+            <div class="checkout-step" id="coStep5">
+                <div class="co-success">
+                    <div class="co-success-icon"><i class="fa-solid fa-check"></i></div>
+                    <h3>Order Complete!</h3>
+                    <p>Your purchase is confirmed. Check your email for your client portal credentials where you can access your full-resolution print downloads.</p>
+                    <div class="co-confirm-box" id="checkoutConfBox">
+                        <div class="co-conf-row"><span class="co-conf-label">Confirmation Code</span><span class="co-conf-value" id="confCode">—</span></div>
+                        <div class="co-conf-row"><span class="co-conf-label">Estimated Mail Delivery</span><span class="co-conf-value" id="confDelivery">—</span></div>
+                        <div class="co-conf-row"><span class="co-conf-label">Digital Download</span><span class="co-conf-value">Available in Client Portal</span></div>
+                        <div class="co-conf-row"><span class="co-conf-label">Portal Credentials</span><span class="co-conf-value">Sent to your email</span></div>
+                    </div>
+                    <button class="btn-co-done" onclick="closeCheckout(); clearCart();">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   SHARED CART + CHECKOUT — index.html
+   Uses identical 'jwm_cart' localStorage key as pricing.html.
+   Cart state persists seamlessly between both pages.
+───────────────────────────────────────────────────────────── */
+(function() {
+    const CART_KEY = 'jwm_cart';
+    let cart = [];
+
+    function loadCart() {
+        try { const s = localStorage.getItem(CART_KEY); if (s) cart = JSON.parse(s); } catch(e) { cart = []; }
+    }
+    function saveCart() {
+        try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch(e) {}
+    }
+    function getTotal() { return cart.reduce(function(s,i){ return s + i.price * i.qty; }, 0); }
+    function getCount() { return cart.reduce(function(s,i){ return s + i.qty; }, 0); }
+
+    function updateBadge() {
+        loadCart();
+        var badge = document.getElementById('navCartBadge');
+        var count = getCount();
+        if (!badge) return;
+        if (count > 0) { badge.textContent = count > 99 ? '99+' : count; badge.classList.add('visible'); }
+        else           { badge.textContent = ''; badge.classList.remove('visible'); }
+    }
+
+    function updateCartUI() {
+        var total   = getTotal();
+        var subEl   = document.getElementById('cartSubtotalAmt');
+        var totEl   = document.getElementById('cartTotalAmt');
+        var footer  = document.getElementById('cartFooter');
+        var empty   = document.getElementById('cartEmpty');
+        if (subEl) subEl.textContent = '$' + total.toFixed(2);
+        if (totEl) totEl.textContent = '$' + total.toFixed(2);
+        if (footer && empty) {
+            footer.style.display = cart.length > 0 ? 'block' : 'none';
+            empty.style.display  = cart.length > 0 ? 'none'  : 'flex';
+        }
+        updateBadge();
+    }
+
+    function renderCartItems() {
+        var list  = document.getElementById('cartItemsList');
+        var empty = document.getElementById('cartEmpty');
+        if (!list) return;
+        list.querySelectorAll('.cart-item').forEach(function(el){ el.remove(); });
+        if (cart.length === 0) { if (empty) empty.style.display = 'flex'; return; }
+        if (empty) empty.style.display = 'none';
+        cart.forEach(function(item) {
+            var el = document.createElement('div');
+            el.className = 'cart-item';
+            el.innerHTML =
+                '<img class="cart-item-img" src="' + item.img + '" alt="' + item.title + '" onerror="this.style.display=\'none\'">' +
+                '<div class="cart-item-info">' +
+                    '<div class="cart-item-name">' + item.title + '</div>' +
+                    '<div class="cart-item-size">Digital + Optional Physical Print</div>' +
+                    '<div class="cart-item-qty">' +
+                        '<button class="qty-btn" onclick="jwmChangeQty(\'' + item.id + '\',-1)">&#8722;</button>' +
+                        '<span class="qty-val">' + item.qty + '</span>' +
+                        '<button class="qty-btn" onclick="jwmChangeQty(\'' + item.id + '\',1)">+</button>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="cart-item-right">' +
+                    '<div class="cart-item-price">$' + (item.price * item.qty).toFixed(2) + '</div>' +
+                    '<button class="cart-remove" onclick="jwmRemoveItem(\'' + item.id + '\')">Remove</button>' +
+                '</div>';
+            list.appendChild(el);
+        });
+    }
+
+    window.jwmChangeQty = function(id, delta) {
+        loadCart();
+        var idx = cart.findIndex(function(i){ return i.id === id; });
+        if (idx === -1) return;
+        cart[idx].qty = Math.max(1, cart[idx].qty + delta);
+        saveCart(); updateCartUI(); renderCartItems();
+    };
+    window.jwmRemoveItem = function(id) {
+        loadCart();
+        cart = cart.filter(function(i){ return i.id !== id; });
+        saveCart(); updateCartUI(); renderCartItems();
+    };
+    window.clearCart = function() {
+        cart = []; saveCart(); updateCartUI(); renderCartItems();
+    };
+
+    window.openCart = window.openIndexCart = function() {
+        loadCart(); renderCartItems(); updateCartUI();
+        document.getElementById('cartOverlay').classList.add('active');
+        document.getElementById('cartDrawer').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    };
+    window.closeCart = window.closeIndexCart = function() {
+        document.getElementById('cartOverlay').classList.remove('active');
+        document.getElementById('cartDrawer').classList.remove('open');
+        document.body.style.overflow = '';
+    };
+
+    /* ── CHECKOUT ── */
+    var currentStep   = 1;
+    var shippingMode  = 'digital';
+    var selectedSize  = '4x6';
+
+    window.openCheckout = function() {
+        closeCart();
+        loadCart();
+        currentStep  = 1;
+        shippingMode = 'digital';
+        renderCheckoutProgress(1);
+        document.querySelectorAll('.checkout-step').forEach(function(s){ s.classList.remove('active'); });
+        document.getElementById('coStep1').classList.add('active');
+        document.getElementById('checkoutOverlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+    window.closeCheckout = function() {
+        document.getElementById('checkoutOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+        currentStep = 1;
+    };
+
+    function renderCheckoutProgress(step) {
+        for (var i = 1; i <= 4; i++) {
+            var el   = document.getElementById('progStep' + i);
+            var line = document.getElementById('progLine' + i);
+            if (!el) continue;
+            el.classList.remove('active','done');
+            if (i < step) el.classList.add('done');
+            else if (i === step) el.classList.add('active');
+            if (line) line.classList.toggle('done', i < step);
+        }
+    }
+
+    window.coNext = function(step) {
+        if (step === 4) { submitCheckout(); return; }
+        currentStep = step + 1;
+        document.querySelectorAll('.checkout-step').forEach(function(s){ s.classList.remove('active'); });
+        document.getElementById('coStep' + currentStep).classList.add('active');
+        renderCheckoutProgress(currentStep);
+        if (currentStep === 4) buildOrderReview();
+    };
+    window.coBack = function(step) {
+        currentStep = step - 1;
+        document.querySelectorAll('.checkout-step').forEach(function(s){ s.classList.remove('active'); });
+        document.getElementById('coStep' + currentStep).classList.add('active');
+        renderCheckoutProgress(currentStep);
+    };
+    window.selectShipping = function(el, mode) {
+        shippingMode = mode;
+        document.querySelectorAll('.shipping-option').forEach(function(o){ o.classList.remove('selected'); });
+        el.classList.add('selected');
+        document.getElementById('sizeSelectGroup').style.display = mode === 'mail' ? 'block' : 'none';
+    };
+    window.selectSize = function(el, size) {
+        selectedSize = size;
+        document.querySelectorAll('.size-option').forEach(function(o){ o.classList.remove('selected'); });
+        el.classList.add('selected');
+    };
+
+    function buildOrderReview() {
+        loadCart();
+        var shipping   = shippingMode === 'mail' ? 18 : 0;
+        var subtotal   = getTotal() + shipping;
+        var taxAmount  = subtotal * 0.0825;
+        var stripeFee  = (subtotal + taxAmount) * 0.029 + 0.30;
+        var total      = subtotal + taxAmount + stripeFee;
+
+        document.getElementById('orderReviewItems').innerHTML = cart.map(function(item) {
+            return '<div class="review-item">' +
+                '<img class="review-item-img" src="' + item.img + '" alt="' + item.title + '" onerror="this.style.display=\'none\'">' +
+                '<div><div class="review-item-name">' + item.title + '</div>' +
+                '<div class="review-item-detail">Qty: ' + item.qty + ' &middot; Digital' + (shippingMode === 'mail' ? ' + ' + selectedSize + '" Print' : '') + '</div></div>' +
+                '<div class="review-item-price">$' + (item.price * item.qty).toFixed(2) + '</div>' +
+                '</div>';
+        }).join('');
+
+        document.getElementById('orderTotals').innerHTML =
+            '<div class="co-total-line"><span>Subtotal</span><span>$' + getTotal().toFixed(2) + '</span></div>' +
+            '<div class="co-total-line"><span>Shipping</span><span>' + (shipping > 0 ? '$' + shipping.toFixed(2) : 'Free') + '</span></div>' +
+            '<div class="co-total-line"><span>Texas State Sales Tax (8.25%)</span><span>$' + taxAmount.toFixed(2) + '</span></div>' +
+            '<div class="co-total-line"><span>Stripe\'s Processing Fee (2.9% + $0.30)</span><span>$' + stripeFee.toFixed(2) + '</span></div>' +
+            '<div class="co-total-line grand"><span>Total</span><span>$' + total.toFixed(2) + '</span></div>';
+    }
+
+    async function submitCheckout() {
+        loadCart();
+        var firstName = (document.getElementById('coFirstName') || {}).value || '';
+        var lastName  = (document.getElementById('coLastName')  || {}).value || '';
+        var email     = (document.getElementById('coEmail')     || {}).value || '';
+        var orderData = {
+            customerName: (firstName + ' ' + lastName).trim() || 'Guest',
+            email,
+            phone:     (document.getElementById('coPhone')    || {}).value || '',
+            address:   (document.getElementById('coAddress')  || {}).value || '',
+            address2:  (document.getElementById('coAddress2') || {}).value || '',
+            city:      (document.getElementById('coMailCity') || {}).value || '',
+            state:     (document.getElementById('coState')    || {}).value || '',
+            zip:       (document.getElementById('coZip')      || {}).value || '',
+            shippingMode, selectedSize,
+            items: cart.map(function(i){ return { id:i.id, title:i.title, price:i.price, qty:i.qty }; })
+        };
+        try {
+            var res  = await fetch('/api/order', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(orderData) });
+            var data = await res.json();
+            document.getElementById('confCode').textContent = data.confirmCode || ('JWM-' + Math.random().toString(36).substring(2,8).toUpperCase());
+        } catch(e) {
+            document.getElementById('confCode').textContent = 'JWM-' + Math.random().toString(36).substring(2,8).toUpperCase();
+        }
+        document.getElementById('confDelivery').textContent = shippingMode === 'mail' ? '5–7 Business Days' : 'N/A — Digital Only';
+        currentStep = 5;
+        document.querySelectorAll('.checkout-step').forEach(function(s){ s.classList.remove('active'); });
+        document.getElementById('coStep5').classList.add('active');
+        clearCart();
+    }
+    window.submitCheckout = submitCheckout;
+
+    /* ── INIT ── */
+    loadCart(); updateBadge();
+
+    /* Close on Escape */
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') { closeCart(); closeCheckout(); }
+    });
+
+    /* Keep badge fresh when returning from pricing.html */
+    window.addEventListener('storage', function(e) {
+        if (e.key === CART_KEY) { loadCart(); updateBadge(); }
+    });
+    window.addEventListener('focus', function() { loadCart(); updateBadge(); });
 })();
 </script>
 

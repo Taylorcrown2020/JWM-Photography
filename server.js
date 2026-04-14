@@ -165,38 +165,74 @@ app.post('/api/order', async (req, res) => {
         customerName = '', email = '',
         items = [], shippingMode = 'digital',
         selectedSize = '', address = '',
-        city = '', state = '', zip = ''
+        address2 = '', city = '', state = '', zip = ''
     } = req.body;
 
     if (!customerName || !email || !items.length) {
         return res.status(400).json({ ok: false, message: 'Missing required order fields.' });
     }
 
-    const subtotal = items.reduce((sum, i) => sum + (i.price * i.qty), 0);
-    const shipping = shippingMode === 'mail' ? 18 : 0;
-    const total    = subtotal + shipping;
+    const subtotal      = items.reduce((sum, i) => sum + (i.price * i.qty), 0);
+    const shipping      = shippingMode === 'mail' ? 18 : 0;
+    const preTax        = subtotal + shipping;
+    const TX_TAX_RATE   = 0.0825;                          // Texas state sales tax
+    const taxAmount     = preTax * TX_TAX_RATE;
+    const stripeFee     = (preTax + taxAmount) * 0.029 + 0.30;  // Stripe 2.9% + $0.30
+    const total         = preTax + taxAmount + stripeFee;
+
+    // Build ship-to string from separate fields
+    const shipParts = [address, address2, city, state ? `${state}${zip ? ' ' + zip : ''}` : zip].filter(Boolean);
+    const shipTo    = shipParts.join(', ');
 
     const itemRows = items.map(i =>
-        `<tr><td style="padding:6px;">${i.title}</td><td style="padding:6px;text-align:center;">${i.qty}</td><td style="padding:6px;text-align:right;">$${(i.price * i.qty).toFixed(2)}</td></tr>`
+        `<tr>
+            <td style="padding:8px;border-bottom:1px solid #f0e8d8;">${i.title}</td>
+            <td style="padding:8px;text-align:center;border-bottom:1px solid #f0e8d8;">${i.qty}</td>
+            <td style="padding:8px;text-align:right;border-bottom:1px solid #f0e8d8;">$${(i.price * i.qty).toFixed(2)}</td>
+        </tr>`
     ).join('');
 
     const confirmCode = 'JWM-' + Math.random().toString(36).substring(2, 8).toUpperCase();
 
     const html = `
-        <h2 style="font-family:sans-serif;color:#2A1005;">New Print Order — JWM Photography</h2>
-        <p style="font-family:sans-serif;font-size:14px;"><strong>Order Code:</strong> ${confirmCode}</p>
-        <p style="font-family:sans-serif;font-size:14px;"><strong>Customer:</strong> ${customerName} &lt;${email}&gt;</p>
-        <p style="font-family:sans-serif;font-size:14px;"><strong>Delivery:</strong> ${shippingMode === 'mail' ? `Physical Mail — ${selectedSize}" print` : 'Digital Download Only'}</p>
-        ${shippingMode === 'mail' ? `<p style="font-family:sans-serif;font-size:14px;"><strong>Ship To:</strong> ${address}, ${city}, ${state} ${zip}</p>` : ''}
-        <table style="font-family:sans-serif;font-size:14px;border-collapse:collapse;width:100%;max-width:500px;margin-top:12px;">
-            <thead><tr style="background:#f9f5ee;"><th style="padding:8px;text-align:left;">Item</th><th style="padding:8px;text-align:center;">Qty</th><th style="padding:8px;text-align:right;">Price</th></tr></thead>
-            <tbody>${itemRows}</tbody>
-            <tfoot>
-                <tr><td colspan="2" style="padding:8px;text-align:right;">Subtotal</td><td style="padding:8px;text-align:right;">$${subtotal.toFixed(2)}</td></tr>
-                <tr><td colspan="2" style="padding:8px;text-align:right;">Shipping</td><td style="padding:8px;text-align:right;">${shipping > 0 ? '$' + shipping.toFixed(2) : 'Free'}</td></tr>
-                <tr style="font-weight:700;"><td colspan="2" style="padding:8px;text-align:right;border-top:1px solid #ddd;">Total</td><td style="padding:8px;text-align:right;border-top:1px solid #ddd;">$${total.toFixed(2)}</td></tr>
-            </tfoot>
-        </table>
+        <div style="font-family:'Helvetica Neue',Arial,sans-serif;max-width:620px;margin:0 auto;background:#fff;border:1px solid #e8d4b0;border-radius:8px;overflow:hidden;">
+            <div style="background:linear-gradient(135deg,#2A1005,#4A2510);padding:32px 36px;">
+                <h1 style="margin:0;font-size:22px;color:#fff;font-weight:700;letter-spacing:-0.3px;">New Print Order</h1>
+                <p style="margin:6px 0 0;font-size:13px;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;">JWM Photography</p>
+            </div>
+            <div style="padding:32px 36px;">
+                <table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:24px;">
+                    <tr><td style="padding:7px 0;color:#888;width:140px;">Order Code</td><td style="padding:7px 0;font-weight:700;color:#2A1005;font-size:15px;">${confirmCode}</td></tr>
+                    <tr><td style="padding:7px 0;color:#888;">Customer</td><td style="padding:7px 0;font-weight:600;color:#333;">${customerName}</td></tr>
+                    <tr><td style="padding:7px 0;color:#888;">Email</td><td style="padding:7px 0;"><a href="mailto:${email}" style="color:#7B4422;">${email}</a></td></tr>
+                    <tr><td style="padding:7px 0;color:#888;">Delivery</td><td style="padding:7px 0;color:#333;">${shippingMode === 'mail' ? `Physical Mail — ${selectedSize}" archival print` : 'Digital Download Only'}</td></tr>
+                    ${shippingMode === 'mail' ? `<tr><td style="padding:7px 0;color:#888;">Ship To</td><td style="padding:7px 0;color:#333;">${shipTo || '—'}</td></tr>` : ''}
+                </table>
+                <table style="width:100%;border-collapse:collapse;font-size:14px;">
+                    <thead>
+                        <tr style="background:#f9f5ee;">
+                            <th style="padding:10px 8px;text-align:left;color:#7B4422;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Item</th>
+                            <th style="padding:10px 8px;text-align:center;color:#7B4422;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Qty</th>
+                            <th style="padding:10px 8px;text-align:right;color:#7B4422;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>${itemRows}</tbody>
+                    <tfoot style="background:#f9f5ee;">
+                        <tr><td colspan="2" style="padding:8px;text-align:right;color:#777;">Subtotal</td><td style="padding:8px;text-align:right;">$${subtotal.toFixed(2)}</td></tr>
+                        <tr><td colspan="2" style="padding:8px;text-align:right;color:#777;">Shipping</td><td style="padding:8px;text-align:right;">${shipping > 0 ? '$' + shipping.toFixed(2) : 'Free'}</td></tr>
+                        <tr><td colspan="2" style="padding:8px;text-align:right;color:#777;">Texas Sales Tax (8.25%)</td><td style="padding:8px;text-align:right;">$${taxAmount.toFixed(2)}</td></tr>
+                        <tr><td colspan="2" style="padding:8px;text-align:right;color:#777;">Stripe Processing Fee (2.9% + $0.30)</td><td style="padding:8px;text-align:right;">$${stripeFee.toFixed(2)}</td></tr>
+                        <tr style="font-weight:700;font-size:15px;">
+                            <td colspan="2" style="padding:12px 8px;text-align:right;border-top:2px solid #7B4422;color:#2A1005;">Total Charged</td>
+                            <td style="padding:12px 8px;text-align:right;border-top:2px solid #7B4422;color:#2A1005;">$${total.toFixed(2)}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div style="background:#f9f5ee;padding:20px 36px;font-size:12px;color:#aaa;text-align:center;border-top:1px solid #e8d4b0;">
+                JWM Photography &bull; (512) 980-0393 &bull; hello@jwmphoto.com
+            </div>
+        </div>
     `;
 
     try {
@@ -204,7 +240,7 @@ app.post('/api/order', async (req, res) => {
         return res.json({ ok: true, confirmCode, message: 'Order received.' });
     } catch (err) {
         console.error('[order] email error:', err.message);
-        // Still return the confirm code so the client UX doesn't break
+        // Still return the confirm code so the client UX does not break
         return res.json({ ok: true, confirmCode, message: 'Order received (email notification failed).' });
     }
 });

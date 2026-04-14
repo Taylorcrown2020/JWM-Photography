@@ -6,7 +6,6 @@
 <title>Services &amp; Fine Art Prints | JWM Photography</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<!-- EXACT same fonts as index.html -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pacifico&family=Rye&family=Dancing+Script:wght@700&display=swap">
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
@@ -14,7 +13,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-/* ── ROOT VARIABLES — identical to index.html ── */
+/* ── ROOT VARIABLES ── */
 :root {
     --black: #000;
     --white: #ffffff;
@@ -35,6 +34,7 @@
     --parchment-dark: #E8D4B0;
     --gold-dark:      #d4a85e;
     --text:           #1a0a02;
+    --cta-bg-image:   url('pexels-jorge-perez-640507153-17582341.jpg');
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -51,32 +51,31 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--leather-light); border-radius: 4px; }
 ::selection { background: var(--leather); color: #fff; }
 
-/* ── ANNOUNCEMENT BANNER — exact copy from index.html ── */
+/* ── ANNOUNCEMENT BANNER ── */
 .announcement-banner {
-    margin-top: 0;
-    background: #2A1005;
-    color: rgba(255,255,255,0.85);
-    padding: 10px 20px;
-    text-align: center;
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    background: #2A1005 !important;
+    border-bottom: 2px solid #7B4422 !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    color: rgba(255,255,255,0.75) !important;
+    padding: 10px 20px !important;
+    min-height: 40px !important;
+    height: auto !important;
+    line-height: 1.4 !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+    text-align: center !important;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1001;
-    border-bottom: 2px solid #7B4422;
-    min-height: 40px;
-    height: auto;
-    line-height: 1.4;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 4px;
 }
 .announcement-banner::before {
     content: '✦';
@@ -91,18 +90,17 @@ body {
     font-size: 10px;
 }
 .announcement-banner a {
-    color: #f4c87e;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(244,200,126,0.4);
-    padding-bottom: 1px;
-    margin-left: 5px;
+    color: #f4c87e !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+    text-decoration: none !important;
+    border-bottom: 1px solid rgba(244,200,126,0.4) !important;
+    padding-bottom: 1px !important;
 }
 
-/* ── NAV — exact copy from index.html ── */
+/* ── NAV — Exact match to index.html ── */
 nav {
-    background: #3D1E0A;
+    background: #3D1E0A !important;
     padding: 20px 60px;
     display: flex;
     justify-content: space-between;
@@ -111,18 +109,14 @@ nav {
     top: 40px;
     width: 100%;
     z-index: 10000;
-    pointer-events: auto !important;
+    border-bottom: 1px solid rgba(0,0,0,0.4) !important;
+    box-shadow: 0 1px 0 rgba(244,200,126,0.15), 0 4px 24px rgba(0,0,0,0.5) !important;
     transition: background 0.4s ease, box-shadow 0.4s ease;
-    border-bottom: 1px solid rgba(244,200,126,0.08);
-    box-shadow: 0 1px 0 rgba(244,200,126,0.15), 0 4px 24px rgba(0,0,0,0.5);
 }
 nav.nav-solid {
-    background: #311608;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.65);
-    border-bottom: 1px solid rgba(244,200,126,0.12);
+    background: #311608 !important;
+    box-shadow: 0 1px 0 rgba(244,200,126,0.2), 0 8px 32px rgba(0,0,0,0.7) !important;
 }
-nav * { pointer-events: auto !important; }
-
 .nav-container {
     display: flex;
     justify-content: space-between;
@@ -132,25 +126,42 @@ nav * { pointer-events: auto !important; }
     margin: 0 auto;
 }
 .nav-logo {
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--white);
     text-decoration: none;
     display: flex;
     align-items: center;
     gap: 10px;
+    position: relative;
 }
-.jwm-logo-lockup { display: flex; align-items: center; gap: 12px; }
+.nav-logo::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, rgba(244,200,126,0.6), transparent);
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.nav-logo:hover::after { opacity: 1; }
+.jwm-logo-lockup {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
 .jwm-logo-mark { flex-shrink: 0; }
-.jwm-logo-text { display: flex; flex-direction: column; gap: 2px; }
+.jwm-logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
 .jwm-logo-jwm {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 22px;
     font-weight: 700;
     font-style: italic;
-    color: #fff;
+    color: #ffffff;
     letter-spacing: 3px;
     line-height: 1;
     text-transform: uppercase;
@@ -183,6 +194,7 @@ nav * { pointer-events: auto !important; }
     align-items: center;
     gap: 6px;
     position: relative;
+    font-family: 'Inter', sans-serif;
 }
 .nav-links a::after {
     content: '';
@@ -204,7 +216,8 @@ nav * { pointer-events: auto !important; }
     top: calc(100% + 20px);
     left: 50%;
     transform: translateX(-50%);
-    background: var(--leather-mid);
+    background: var(--leather-dark) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
     min-width: 220px;
     padding: 12px 0;
     border-radius: 8px;
@@ -220,19 +233,18 @@ nav * { pointer-events: auto !important; }
     visibility: visible;
     top: calc(100% + 10px);
 }
-.dropdown-menu li { padding: 0; }
 .dropdown-menu a {
     padding: 12px 24px;
     display: block;
-    color: rgba(255,255,255,0.8);
-    font-size: 13px;
+    color: rgba(255,255,255,0.8) !important;
+    font-size: 13px !important;
     text-transform: none;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.3px !important;
     transition: all 0.2s ease;
 }
 .dropdown-menu a:hover {
-    background: rgba(255,255,255,0.1);
-    color: white;
+    background: rgba(0,0,0,0.3) !important;
+    color: white !important;
     padding-left: 28px;
 }
 .dropdown-divider {
@@ -254,7 +266,8 @@ nav * { pointer-events: auto !important; }
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
-/* CART ICON — exact from index.html */
+
+/* CART ICON — styled to match the new nav */
 .nav-cart-icon {
     position: relative;
     background: transparent;
@@ -293,10 +306,11 @@ nav * { pointer-events: auto !important; }
     line-height: 1;
 }
 .nav-cart-badge.visible { display: flex; }
-/* NAV CTA — exact from index.html */
+
+/* NAV CTA — Exact match to index.html */
 .nav-cta-btn {
-    background: #000;
-    color: #fff;
+    background: transparent;
+    color: #f4c87e;
     padding: 11px 28px;
     font-size: 11px;
     font-weight: 700;
@@ -305,13 +319,16 @@ nav * { pointer-events: auto !important; }
     border: 1px solid rgba(244,200,126,0.4);
     cursor: pointer;
     border-radius: 6px;
-    font-family: 'Inter', sans-serif;
     transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
 }
 .nav-cta-btn:hover {
-    background: var(--leather-deeper);
-    border-color: var(--leather-deeper);
+    background: #f4c87e;
+    color: #000;
+    border-color: #f4c87e;
+    box-shadow: 0 0 20px rgba(244,200,126,0.25);
 }
+
 .mobile-menu-btn {
     display: none;
     background: none;
@@ -328,6 +345,21 @@ nav * { pointer-events: auto !important; }
     transition: all 0.3s ease;
 }
 
+/* ── UNIVERSAL PLAYFAIR ITALIC OVERRIDES ── */
+h1, h2, h3,
+.section-title,
+.section-subtitle,
+.section-heading,
+.card-title,
+.print-title,
+.filter-sidebar-title,
+.modal-title,
+[class*="-title"]:not(.nav-wordmark-sub):not(.card-desc):not(.print-desc) {
+    font-family: 'Playfair Display', Georgia, serif !important;
+    font-style: italic !important;
+    font-weight: 700 !important;
+}
+
 /* ── PAGE HERO — VIDEO BACKGROUND ── */
 .page-hero {
     position: relative;
@@ -338,8 +370,8 @@ nav * { pointer-events: auto !important; }
     overflow: hidden;
     margin-top: 113px;
     padding: 0;
+    border-bottom: 3px solid #7B4422 !important;
 }
-/* Video background layer */
 .page-hero-video-bg {
     position: absolute;
     inset: 0;
@@ -352,30 +384,13 @@ nav * { pointer-events: auto !important; }
     width: 100%; height: 100%;
     object-fit: cover;
     pointer-events: none;
+    opacity: 0;
+    transition: opacity 1s ease;
 }
-.page-hero-video-bg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        160deg,
-        rgba(20,8,2,0.82) 0%,
-        rgba(42,16,5,0.70) 40%,
-        rgba(30,12,4,0.78) 100%
-    );
-    z-index: 1;
+.page-hero-video-bg video.hero-vid-active {
+    opacity: 1;
 }
-.page-hero-video-bg::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(244,200,126,0.025) 60px, rgba(244,200,126,0.025) 61px),
-        repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(244,200,126,0.015) 80px, rgba(244,200,126,0.015) 81px);
-    z-index: 2;
-    pointer-events: none;
-}
-/* Content positioned above video layers */
+
 .page-hero-content {
     position: relative;
     z-index: 10;
@@ -423,6 +438,7 @@ nav * { pointer-events: auto !important; }
     max-width: 560px;
     margin: 0 auto;
     line-height: 1.7;
+    font-style: normal;
 }
 .page-hero-cta {
     display: flex;
@@ -431,64 +447,6 @@ nav * { pointer-events: auto !important; }
     margin-top: 36px;
     flex-wrap: wrap;
 }
-.hero-trust-strip {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 48px;
-    padding-top: 32px;
-    border-top: 1px solid rgba(244,200,126,0.18);
-    flex-wrap: wrap;
-}
-.trust-stat { text-align: center; }
-.trust-stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 700;
-    font-style: italic;
-    color: var(--gold);
-}
-.trust-stat-label {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
-    margin-top: 4px;
-}
-.trust-divider { width: 1px; background: rgba(244,200,126,0.18); }
-.btn-primary {
-    background: var(--gold);
-    color: #000;
-    padding: 16px 40px;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border: 2px solid var(--gold);
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.3s;
-    font-family: 'Inter', sans-serif;
-}
-.btn-primary:hover { background: #e6b86b; border-color: #e6b86b; }
-.btn-secondary {
-    background: transparent;
-    color: rgba(255,255,255,0.85);
-    padding: 16px 40px;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border: 2px solid rgba(255,255,255,0.3);
-    border-radius: 8px;
-    transition: all 0.3s;
-    cursor: pointer;
-    font-family: 'Inter', sans-serif;
-}
-.btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
 .hero-trust-strip {
     display: flex;
     justify-content: center;
@@ -513,8 +471,45 @@ nav * { pointer-events: auto !important; }
     text-transform: uppercase;
     color: rgba(255,255,255,0.35);
     margin-top: 4px;
+    font-style: normal;
 }
 .trust-divider { width: 1px; background: rgba(244,200,126,0.12); }
+.btn-primary {
+    background: #7B4422 !important;
+    color: #FAF4EA !important;
+    border: 2px solid #7B4422 !important;
+    border-radius: 8px !important;
+    letter-spacing: 3px !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    padding: 16px 36px !important;
+    transition: all 0.25s !important;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+}
+.btn-primary:hover {
+    background: #2A1005 !important;
+    border-color: #2A1005 !important;
+    color: #FAF4EA !important;
+}
+.btn-secondary {
+    border: 2px solid rgba(123,68,34,0.55) !important;
+    border-radius: 8px !important;
+    letter-spacing: 3px !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    padding: 16px 36px !important;
+    color: #7B4422 !important;
+    background: transparent !important;
+    transition: all 0.25s !important;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+}
+.btn-secondary:hover {
+    border-color: #2A1005 !important;
+    color: #FAF4EA !important;
+    background: #2A1005 !important;
+}
 
 /* ── TAB SELECTOR ── */
 .tab-selector-section {
@@ -592,9 +587,7 @@ nav * { pointer-events: auto !important; }
     padding: 28px 24px;
 }
 .filter-sidebar-title {
-    font-family: 'Playfair Display', serif;
     font-size: 16px;
-    font-weight: 700;
     color: var(--leather-deeper);
     margin-bottom: 6px;
     padding-bottom: 14px;
@@ -626,9 +619,7 @@ nav * { pointer-events: auto !important; }
     font-family: 'Inter', sans-serif;
 }
 .filter-option:hover { background: rgba(123,68,34,0.07); }
-.filter-option.active {
-    background: rgba(123,68,34,0.12);
-}
+.filter-option.active { background: rgba(123,68,34,0.12); }
 .filter-check {
     width: 16px;
     height: 16px;
@@ -704,9 +695,7 @@ nav * { pointer-events: auto !important; }
     color: var(--leather);
 }
 .section-heading {
-    font-family: 'Playfair Display', Georgia, serif;
     font-size: 36px;
-    font-weight: 700;
     color: var(--leather-deeper);
     margin-bottom: 8px;
 }
@@ -716,6 +705,7 @@ nav * { pointer-events: auto !important; }
     margin-bottom: 36px;
     max-width: 560px;
     line-height: 1.7;
+    font-style: normal;
 }
 
 /* ── SERVICES GRID ── */
@@ -747,7 +737,7 @@ nav * { pointer-events: auto !important; }
     gap: 24px;
 }
 
-/* ── SERVICE CARDS — clean, legit, country modern ── */
+/* ── SERVICE CARDS ── */
 .service-card {
     background: var(--white);
     border: 1px solid rgba(123,68,34,0.15);
@@ -821,9 +811,7 @@ nav * { pointer-events: auto !important; }
     opacity: 0.7;
 }
 .card-title {
-    font-family: 'Playfair Display', Georgia, serif;
     font-size: 21px;
-    font-weight: 700;
     color: var(--leather-deeper);
     margin-bottom: 10px;
     line-height: 1.2;
@@ -834,6 +822,7 @@ nav * { pointer-events: auto !important; }
     line-height: 1.7;
     margin-bottom: 18px;
     flex: 1;
+    font-style: normal;
 }
 .card-features {
     list-style: none;
@@ -911,7 +900,7 @@ nav * { pointer-events: auto !important; }
 }
 .card-detail-link:hover { color: var(--leather); }
 
-/* ── HOW IT WORKS — FULL SECTION (not a box) ── */
+/* ── HOW IT WORKS ── */
 .how-it-works-section {
     padding: 100px 0 80px;
     background: var(--parchment);
@@ -940,9 +929,7 @@ nav * { pointer-events: auto !important; }
     opacity: 0.5;
 }
 .hiw-header h2 {
-    font-family: 'Playfair Display', Georgia, serif;
     font-size: 42px;
-    font-weight: 700;
     color: var(--leather-deeper);
     margin-bottom: 12px;
 }
@@ -952,6 +939,7 @@ nav * { pointer-events: auto !important; }
     max-width: 520px;
     margin: 0 auto;
     line-height: 1.7;
+    font-style: normal;
 }
 .hiw-steps-row {
     display: grid;
@@ -995,6 +983,7 @@ nav * { pointer-events: auto !important; }
 }
 .hiw-step-title {
     font-family: 'Playfair Display', serif;
+    font-style: italic;
     font-size: 17px;
     font-weight: 700;
     color: var(--leather-deeper);
@@ -1006,27 +995,179 @@ nav * { pointer-events: auto !important; }
     line-height: 1.7;
 }
 
-/* HOW PRINTS WORK section — dark version */
+/* HOW PRINTS WORK section — full-width dark redesign */
 .how-prints-section {
     background: var(--leather-deeper);
+    width: 100%;
     margin: 72px -60px 0;
-    padding: 100px 60px 80px;
-    border-top: 3px solid rgba(244,200,126,0.25);
-    border-bottom: 3px solid rgba(244,200,126,0.25);
+    padding: 0;
+    border-top: 3px solid rgba(244,200,126,0.3);
+    border-bottom: 3px solid rgba(244,200,126,0.3);
+    box-sizing: content-box;
 }
-.how-prints-section .hiw-header h2 { color: #fff; }
-.how-prints-section .hiw-header p { color: rgba(255,255,255,0.55); }
-.how-prints-section .hiw-header .section-label span { color: var(--gold); }
-.how-prints-section .hiw-header .section-label::after { background: var(--gold); }
-.how-prints-section .hiw-num { background: rgba(244,200,126,0.12); border-color: rgba(244,200,126,0.3); }
-.how-prints-section .hiw-step-title { color: #fff; }
-.how-prints-section .hiw-step-desc { color: rgba(255,255,255,0.5); }
-.how-prints-section .hiw-steps-row::before { background: linear-gradient(to right, rgba(244,200,126,0.1), rgba(244,200,126,0.3), rgba(244,200,126,0.1)); }
+.how-prints-inner {
+    max-width: 100%;
+    padding: 100px 80px 80px;
+    margin: 0 auto;
+}
+.how-prints-header {
+    text-align: center;
+    margin-bottom: 72px;
+}
+.how-prints-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+.how-prints-eyebrow::before,
+.how-prints-eyebrow::after {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.4;
+    display: block;
+}
+.how-prints-eyebrow span {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+.how-prints-title {
+    font-family: 'Playfair Display', Georgia, serif !important;
+    font-size: 52px !important;
+    font-style: italic !important;
+    font-weight: 700 !important;
+    color: #fff !important;
+    line-height: 1.15 !important;
+    margin-bottom: 20px !important;
+    letter-spacing: -0.5px !important;
+}
+.how-prints-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.5);
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.75;
+    font-style: normal;
+}
+.how-prints-steps {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    position: relative;
+    margin-bottom: 64px;
+}
+.how-prints-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 32px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(244,200,126,0.08);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+.how-prints-step:hover {
+    background: rgba(244,200,126,0.05);
+    border-color: rgba(244,200,126,0.2);
+    transform: translateY(-4px);
+}
+.how-prints-step-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    color: rgba(244,200,126,0.3);
+    flex-shrink: 0;
+    margin-top: 60px;
+}
+.how-prints-step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.6;
+    margin-bottom: 16px;
+}
+.how-prints-step-icon {
+    width: 64px;
+    height: 64px;
+    background: rgba(244,200,126,0.1);
+    border: 1px solid rgba(244,200,126,0.2);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    margin-bottom: 20px;
+    transition: all 0.3s;
+}
+.how-prints-step:hover .how-prints-step-icon {
+    background: rgba(244,200,126,0.18);
+    border-color: rgba(244,200,126,0.4);
+}
+.how-prints-step-title {
+    font-family: 'Playfair Display', Georgia, serif !important;
+    font-size: 18px !important;
+    font-style: italic !important;
+    font-weight: 700 !important;
+    color: #fff !important;
+    margin-bottom: 12px !important;
+    line-height: 1.3 !important;
+}
+.how-prints-step-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.8;
+    font-style: normal;
+}
+.how-prints-badges {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding-top: 48px;
+    border-top: 1px solid rgba(244,200,126,0.1);
+}
+.how-prints-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.45);
+    padding: 10px 20px;
+    border: 1px solid rgba(244,200,126,0.12);
+    border-radius: 30px;
+    background: rgba(255,255,255,0.03);
+    transition: all 0.2s;
+}
+.how-prints-badge svg { color: var(--gold); flex-shrink: 0; opacity: 0.7; }
+.how-prints-badge:hover { border-color: rgba(244,200,126,0.3); color: rgba(255,255,255,0.7); background: rgba(244,200,126,0.05); }
+@media (max-width: 1024px) {
+    .how-prints-steps { flex-direction: column; gap: 16px; }
+    .how-prints-step-arrow { transform: rotate(90deg); padding: 8px 0; margin-top: 0; }
+    .how-prints-title { font-size: 38px !important; }
+    .how-prints-inner { padding: 72px 40px 60px; }
+}
+@media (max-width: 640px) {
+    .how-prints-inner { padding: 56px 24px 48px; }
+    .how-prints-title { font-size: 30px !important; }
+    .how-prints-badges { gap: 10px; }
+}
 
-/* ── PRINT CARDS — legit and clean ── */
-.prints-header-row {
-    margin-bottom: 36px;
-}
+/* ── PRINT CARDS ── */
+.prints-header-row { margin-bottom: 36px; }
 .prints-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -1124,9 +1265,7 @@ nav * { pointer-events: auto !important; }
     flex-direction: column;
 }
 .print-title {
-    font-family: 'Playfair Display', serif;
     font-size: 18px;
-    font-weight: 700;
     color: var(--leather-deeper);
     margin-bottom: 4px;
 }
@@ -1284,9 +1423,7 @@ nav * { pointer-events: auto !important; }
     width: fit-content;
 }
 .item-detail-title {
-    font-family: 'Playfair Display', serif;
     font-size: 30px;
-    font-weight: 700;
     color: #fff;
     margin-bottom: 8px;
     line-height: 1.2;
@@ -1337,6 +1474,7 @@ nav * { pointer-events: auto !important; }
 }
 .item-detail-actions .btn-primary { flex: 1; padding: 14px 20px; font-size: 11px; text-align: center; }
 .item-detail-actions .btn-secondary { padding: 14px 20px; font-size: 11px; }
+
 /* Recommended prints section inside detail */
 .item-detail-recs {
     padding: 40px;
@@ -1344,11 +1482,15 @@ nav * { pointer-events: auto !important; }
     border-top: 1px solid rgba(123,68,34,0.15);
 }
 .item-recs-title {
-    font-family: 'Playfair Display', serif;
     font-size: 22px;
-    font-weight: 700;
     color: var(--leather-deeper);
-    margin-bottom: 24px;
+    margin-bottom: 8px;
+}
+.item-recs-sub {
+    font-size: 13px;
+    color: var(--grey-600);
+    margin-bottom: 28px;
+    font-style: normal;
 }
 .recs-grid {
     display: grid;
@@ -1356,18 +1498,117 @@ nav * { pointer-events: auto !important; }
     gap: 20px;
 }
 .rec-card {
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
-    border: 1px solid rgba(123,68,34,0.15);
+    border: 1px solid rgba(123,68,34,0.12);
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.35s;
     background: #fff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(42,16,5,0.05);
 }
-.rec-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(42,16,5,0.1); border-color: rgba(123,68,34,0.35); }
-.rec-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; filter: sepia(0.06); }
-.rec-card-info { padding: 12px 14px; }
-.rec-card-title { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; color: var(--leather-deeper); margin-bottom: 2px; }
-.rec-card-price { font-size: 13px; color: var(--leather); font-weight: 600; }
+.rec-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(42,16,5,0.14);
+    border-color: rgba(123,68,34,0.35);
+}
+.rec-card-img-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: var(--parchment-dark);
+}
+.rec-card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(0.06) contrast(1.03);
+    transition: transform 0.5s ease;
+}
+.rec-card:hover .rec-card-img-wrap img { transform: scale(1.07); }
+.rec-card-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(42,16,5,0.85);
+    color: var(--gold);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 20px;
+    border: 1px solid rgba(244,200,126,0.25);
+}
+.rec-card-hover-btn {
+    position: absolute;
+    inset: 0;
+    background: rgba(42,16,5,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.rec-card:hover .rec-card-hover-btn { opacity: 1; }
+.rec-card-hover-btn span {
+    background: var(--gold);
+    color: #000;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 9px 18px;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+}
+.rec-card-info {
+    padding: 14px 16px 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.rec-card-location {
+    font-size: 10px;
+    color: var(--grey-600);
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.rec-card-title {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 15px !important;
+    font-style: italic !important;
+    color: var(--leather-deeper) !important;
+    margin-top: 2px;
+    line-height: 1.3;
+}
+.rec-card-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(123,68,34,0.08);
+}
+.rec-card-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--leather-deeper);
+}
+.rec-card-cta {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--leather);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
 
 /* Service detail overlay */
 .service-detail-overlay {
@@ -1458,21 +1699,62 @@ nav * { pointer-events: auto !important; }
 .service-detail-booking-note { font-size: 13px; color: var(--grey-700); line-height: 1.6; margin-bottom: 20px; }
 .service-detail-actions { display: flex; gap: 12px; }
 .service-detail-actions .btn-book-now { flex: 1; }
-/* Recommended services inside detail */
 .service-recs { padding: 32px 48px 40px; background: #faf8f4; border-top: 1px solid rgba(123,68,34,0.1); }
-.service-recs h4 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--leather-deeper); margin-bottom: 20px; }
+.service-recs h4 { font-size: 20px; color: var(--leather-deeper); margin-bottom: 6px; }
+.service-recs-sub { font-size: 13px; color: var(--grey-600); margin-bottom: 24px; font-style: normal; }
 .service-recs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .srv-rec-card {
-    border: 1px solid rgba(123,68,34,0.15);
-    border-radius: 8px;
-    padding: 18px;
+    border: 1px solid rgba(123,68,34,0.12);
+    border-radius: 12px;
+    padding: 20px;
     cursor: pointer;
-    transition: all 0.25s;
+    transition: all 0.3s;
     background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 2px 6px rgba(42,16,5,0.04);
+    position: relative;
+    overflow: hidden;
 }
-.srv-rec-card:hover { border-color: rgba(123,68,34,0.4); box-shadow: 0 4px 20px rgba(42,16,5,0.08); transform: translateY(-2px); }
-.srv-rec-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: var(--leather-deeper); margin-bottom: 4px; }
-.srv-rec-price { font-size: 13px; color: var(--leather); font-weight: 600; }
+.srv-rec-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--leather-light), var(--gold));
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.srv-rec-card:hover { border-color: rgba(123,68,34,0.35); box-shadow: 0 10px 32px rgba(42,16,5,0.1); transform: translateY(-3px); }
+.srv-rec-card:hover::before { opacity: 1; }
+.srv-rec-icon {
+    width: 38px; height: 38px;
+    background: var(--parchment);
+    border: 1px solid rgba(123,68,34,0.18);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--leather); font-size: 15px;
+}
+.srv-rec-category {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--leather);
+    opacity: 0.7;
+}
+.srv-rec-title { font-size: 15px; color: var(--leather-deeper); font-weight: 600; line-height: 1.3; }
+.srv-rec-desc { font-size: 12px; color: var(--grey-700); line-height: 1.6; flex: 1; }
+.srv-rec-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    border-top: 1px solid rgba(123,68,34,0.08);
+}
+.srv-rec-price { font-size: 16px; font-weight: 700; color: var(--leather-deeper); font-family: 'Playfair Display', serif; }
+.srv-rec-link { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--leather-light); }
 
 /* ── FAQ SECTION ── */
 .faq-section {
@@ -1526,234 +1808,6 @@ nav * { pointer-events: auto !important; }
 .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
 .faq-answer-inner { font-size: 14px; color: var(--grey-700); line-height: 1.8; padding-bottom: 22px; padding-right: 52px; }
 
-/* ── FOOTER — exact match to index.html ── */
-#site-footer {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    box-sizing: border-box !important;
-    background: #1C0D06 !important;
-}
-.ft-columns {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-    background: linear-gradient(160deg, #2A1005 0%, #1A0C05 50%, #120805 100%) !important;
-    border-top: 3px solid #7B4422 !important;
-    padding: 64px 80px;
-    display: grid;
-    grid-template-columns: 1.8fr 1fr 1fr 1fr 1.1fr;
-    gap: 48px;
-}
-.ft-col-heading {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 20px;
-    font-family: 'Rye', serif;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(244,200,126,0.2);
-}
-.ft-col-desc { font-size: 13px; line-height: 1.9; color: rgba(212,178,140,0.7); max-width: 240px; margin-bottom: 28px; }
-.ft-socials { display: flex; gap: 10px; }
-.ft-social {
-    width: 32px; height: 32px;
-    display: flex; align-items: center; justify-content: center;
-    border: 1px solid rgba(123,68,34,0.4);
-    border-radius: 3px;
-    color: rgba(212,178,140,0.5);
-    text-decoration: none;
-    transition: all 0.2s;
-    background: rgba(123,68,34,0.08);
-    font-size: 13px;
-}
-.ft-social:hover { background: var(--leather); border-color: var(--leather); color: #fff; }
-.ft-col-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
-.ft-col-link { font-size: 13px; color: rgba(212,178,140,0.65); text-decoration: none; transition: color 0.2s; display: block; }
-.ft-col-link:hover { color: var(--gold); }
-.ft-contact-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
-.ft-contact-label { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(244,200,126,0.45); margin-bottom: 3px; }
-.ft-contact-val { font-size: 13px; color: rgba(212,178,140,0.75); text-decoration: none; transition: color 0.2s; display: block; }
-.ft-contact-val:hover { color: var(--gold); }
-.ft-payment {
-    width: 100%;
-    box-sizing: border-box;
-    background: #0F0704;
-    padding: 18px 80px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    border-top: 1px solid rgba(123,68,34,0.25);
-}
-.ft-payment-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(212,178,140,0.4); white-space: nowrap; }
-.ft-payment-badges { display: flex; gap: 14px; align-items: center; }
-.ft-pay-badge { display: flex; align-items: center; gap: 4px; }
-.ft-bottom {
-    width: 100%;
-    box-sizing: border-box;
-    background: #0A0502;
-    border-top: 1px solid rgba(123,68,34,0.4);
-    padding: 22px 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-}
-.ft-copy { font-size: 12px; color: rgba(212,178,140,0.4); }
-.ft-legal { display: flex; gap: 24px; align-items: center; }
-.ft-legal-link { font-size: 12px; color: rgba(212,178,140,0.4); text-decoration: none; transition: color 0.2s; }
-.ft-legal-link:hover { color: var(--gold); }
-.ft-built {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    text-decoration: none;
-    color: rgba(212,178,140,0.4);
-    font-size: 12px;
-    transition: color 0.2s;
-}
-.ft-built:hover { color: var(--gold); }
-
-/* ── BACK TO TOP — matches index.html (up arrow SVG) ── */
-.btt-btn {
-    position: fixed;
-    bottom: 96px;
-    left: 24px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: #2A1005;
-    border: 1px solid rgba(244,200,126,0.35);
-    color: #f4c87e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 199998;
-    opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 0.3s ease, transform 0.3s ease, background 0.25s;
-    box-shadow: 0 4px 16px rgba(42,16,5,0.35);
-}
-.btt-btn.visible { opacity: 1; transform: translateY(0); }
-.btt-btn:hover { background: #7B4422; border-color: rgba(244,200,126,0.7); }
-
-/* ── BOOKING MODAL ── */
-.modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.88);
-    z-index: 99999;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    backdrop-filter: blur(4px);
-}
-.modal-overlay.active { display: flex; animation: fadeIn 0.3s ease; }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-.modal-box {
-    background: #fff;
-    border-radius: 16px;
-    max-width: 640px;
-    width: 100%;
-    overflow: hidden;
-    animation: slideUp 0.4s ease;
-    max-height: 90vh;
-    overflow-y: auto;
-}
-.modal-header {
-    background: linear-gradient(160deg, var(--leather-deeper) 0%, #3D1E0A 100%);
-    padding: 36px 40px 32px;
-    position: relative;
-}
-.modal-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: rgba(255,255,255,0.1);
-    border: none;
-    color: rgba(255,255,255,0.7);
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1;
-    font-family: 'Inter', sans-serif;
-    transition: all 0.2s;
-}
-.modal-close:hover { background: rgba(255,255,255,0.25); color: #fff; }
-.modal-eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 12px;
-}
-.modal-eyebrow span {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--gold);
-}
-.modal-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 6px;
-}
-.modal-sub { font-size: 14px; color: rgba(255,255,255,0.5); }
-.modal-body { padding: 32px 40px 40px; }
-.modal-form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 16px;
-}
-.form-group { display: flex; flex-direction: column; gap: 6px; }
-.form-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--leather); }
-.form-input {
-    border: 1px solid rgba(123,68,34,0.25);
-    border-radius: 8px;
-    padding: 12px 14px;
-    font-size: 14px;
-    font-family: 'Inter', sans-serif;
-    color: var(--leather-deeper);
-    background: #faf8f4;
-    transition: border-color 0.2s;
-    outline: none;
-}
-.form-input:focus { border-color: var(--leather); background: #fff; }
-.form-full { margin-bottom: 16px; }
-.btn-submit {
-    width: 100%;
-    background: var(--leather-deeper);
-    color: #fff;
-    border: none;
-    padding: 16px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
-    border-radius: 8px;
-    font-family: 'Inter', sans-serif;
-    transition: all 0.3s;
-    margin-top: 8px;
-}
-.btn-submit:hover { background: var(--leather); }
-
 /* ── CART DRAWER ── */
 .cart-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 50000; }
 .cart-overlay.active { display: block; }
@@ -1778,10 +1832,7 @@ nav * { pointer-events: auto !important; }
     flex-shrink: 0;
 }
 .cart-header h3 {
-    font-family: 'Playfair Display', serif;
     font-size: 22px;
-    font-weight: 700;
-    font-style: italic;
     color: #fff;
     display: flex;
     align-items: center;
@@ -1898,10 +1949,7 @@ nav * { pointer-events: auto !important; }
     position: relative;
 }
 .checkout-header h2 {
-    font-family: 'Playfair Display', serif;
     font-size: 26px;
-    font-weight: 700;
-    font-style: italic;
     color: #fff;
     margin-bottom: 20px;
 }
@@ -1927,7 +1975,7 @@ nav * { pointer-events: auto !important; }
 .checkout-body { padding: 32px 40px 40px; }
 .checkout-step { display: none; }
 .checkout-step.active { display: block; }
-.checkout-step-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--leather-deeper); margin-bottom: 6px; }
+.checkout-step-title { font-size: 22px; color: var(--leather-deeper); margin-bottom: 6px; }
 .checkout-step-sub { font-size: 13px; color: var(--grey-600); margin-bottom: 24px; }
 .checkout-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
 .checkout-form-full { margin-bottom: 16px; }
@@ -2050,7 +2098,7 @@ nav * { pointer-events: auto !important; }
 .checkout-success { text-align: center; padding: 24px 0; }
 .checkout-success-icon { width: 80px; height: 80px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
 .checkout-success-icon i { font-size: 32px; color: #000; }
-.checkout-success h3 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; font-style: italic; color: var(--leather-deeper); margin-bottom: 10px; }
+.checkout-success h3 { font-size: 26px; color: var(--leather-deeper); margin-bottom: 10px; }
 .checkout-success p { font-size: 14px; color: var(--grey-700); line-height: 1.7; max-width: 400px; margin: 0 auto 28px; }
 .confirmation-box { background: var(--parchment); border: 1px solid rgba(123,68,34,0.15); border-radius: 10px; padding: 20px; margin-bottom: 24px; text-align: left; }
 .conf-row { display: flex; justify-content: space-between; font-size: 13px; padding: 6px 0; border-bottom: 1px solid rgba(123,68,34,0.08); }
@@ -2074,102 +2122,818 @@ nav * { pointer-events: auto !important; }
 }
 .btn-success-close:hover { background: var(--leather); }
 
-/* ── ENTRANCE ANIMATIONS ── */
-@keyframes fadeUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform:translateY(0); } }
-.page-hero-eyebrow { animation: fadeUp 0.7s ease both; animation-delay: 0.1s; }
-.page-hero h1 { animation: fadeUp 0.7s ease both; animation-delay: 0.22s; }
-.page-hero p { animation: fadeUp 0.7s ease both; animation-delay: 0.34s; }
-.page-hero-cta { animation: fadeUp 0.7s ease both; animation-delay: 0.46s; }
-.hero-trust-strip { animation: fadeUp 0.7s ease both; animation-delay: 0.58s; }
-.service-card, .print-card {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, box-shadow 0.3s;
+/* ── MISSING FORM CSS (checkout + booking modal) ── */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
-.service-card.revealed, .print-card.revealed { opacity: 1; transform: translateY(0); }
+.form-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--leather);
+    font-family: 'Inter', sans-serif;
+}
+.form-input {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    border: 1.5px solid rgba(123,68,34,0.25);
+    border-radius: 8px;
+    background: var(--parchment);
+    color: var(--leather-deeper);
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+.form-input:focus {
+    border-color: var(--leather);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(123,68,34,0.1);
+}
+.form-input::placeholder { color: rgba(92,48,24,0.35); }
+.form-input[type="textarea"],
+textarea.form-input {
+    resize: vertical;
+    min-height: 90px;
+    padding-top: 12px;
+}
+select.form-input { cursor: pointer; }
+.btn-submit {
+    width: 100%;
+    padding: 16px;
+    background: var(--leather-deeper);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.15s;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Inter', sans-serif;
+}
+.btn-submit:hover { background: var(--leather); transform: translateY(-1px); }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 1100px) {
-    .content-with-sidebar { grid-template-columns: 200px 1fr; gap: 32px; }
+/* ── CONTACT/BOOKING MODAL (MODERN REDESIGN FROM INDEX.HTML) ──
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 999999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.modal-overlay.active { display: flex; }
+
+.modal-content {
+    background: #fff;
+    width: 100%;
+    max-width: 960px;
+    max-height: 94vh;
+    border-radius: 20px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    position: relative;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+    animation: modalSlideIn 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+@keyframes modalSlideIn {
+    from { opacity:0; transform: translateY(24px) scale(0.97); }
+    to   { opacity:1; transform: translateY(0) scale(1); }
+}
+
+.modal-left {
+    background: linear-gradient(160deg, var(--leather) 0%, var(--leather-dark) 100%) !important;
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+.modal-left::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 60% at 50% 100%, rgba(244,200,126,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 0%, rgba(244,200,126,0.06) 0%, transparent 60%);
+    pointer-events: none;
+}
+.modal-left-deco {
+    position: absolute;
+    right: -60px;
+    bottom: -60px;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    border: 1px solid rgba(244,200,126,0.07);
+    pointer-events: none;
+}
+.modal-left-deco::before {
+    content: '';
+    position: absolute;
+    inset: 30px;
+    border-radius: 50%;
+    border: 1px solid rgba(244,200,126,0.05);
+}
+.modal-left-deco::after {
+    content: '';
+    position: absolute;
+    inset: 60px;
+    border-radius: 50%;
+    border: 1px solid rgba(244,200,126,0.04);
+}
+.modal-eyebrow {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3.5px;
+    color: #f4c87e;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    position: relative;
+}
+.modal-left-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 34px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    position: relative;
+}
+.modal-left-title em { color: #f4c87e; font-style: italic; }
+.modal-left-sub {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 36px;
+    position: relative;
+}
+
+/* Trust badges */
+.modal-trust-row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 36px;
+    position: relative;
+}
+.modal-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.modal-trust-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(244,200,126,0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #f4c87e;
+}
+.modal-trust-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #ccc;
+}
+.modal-trust-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 1px;
+}
+
+/* Contact links */
+.modal-contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: auto;
+    position: relative;
+}
+.modal-contact-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #ccc;
+    font-size: 13px;
+    transition: color 0.2s;
+}
+.modal-contact-link:hover { color: #f4c87e; }
+.modal-contact-link svg { flex-shrink: 0; }
+
+/* ── RIGHT PANEL ────────────────────── */
+.modal-right {
+    padding: 48px 44px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+.modal-right-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+.modal-right-title {
+    font-size: 26px;
+    color: #0a0a0a;
+    line-height: 1.2;
+}
+.modal-right-title span { color: #f4c87e; }
+.modal-close-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: #f5f5f5;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.15s;
+    flex-shrink: 0;
+    margin-left: 16px;
+    color: #666;
+}
+.modal-close-btn:hover { background: #e8e8e8; transform: scale(1.05); color: #000; }
+
+/* Service chips */
+.modal-service-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 10px;
+}
+.modal-service-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+}
+.modal-chip {
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1.5px solid #e5e5e5;
+    background: #fafafa;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+    line-height: 1;
+}
+.modal-chip:hover { border-color: #f4c87e; color: #0a0a0a; background: rgba(244,200,126,0.06); }
+.modal-chip.selected { border-color: #f4c87e; background: rgba(244,200,126,0.1); color: #0a0a0a; font-weight: 700; }
+
+/* Floating label fields */
+.modal-field {
+    position: relative;
+    margin-bottom: 20px;
+}
+.modal-field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+.modal-field input,
+.modal-field textarea {
+    width: 100%;
+    padding: 22px 16px 10px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    border: 1.5px solid #e5e5e5;
+    border-radius: 10px;
+    background: #fafafa;
+    color: #0a0a0a;
+    transition: border-color 0.2s, background 0.2s;
+    outline: none;
+    resize: none;
+}
+.modal-field input:focus,
+.modal-field textarea:focus {
+    border-color: #f4c87e;
+    background: #fff;
+}
+.modal-field label {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-size: 13px;
+    color: #aaa;
+    pointer-events: none;
+    transition: all 0.18s cubic-bezier(0.4,0,0.2,1);
+    font-weight: 500;
+}
+.modal-field input:focus ~ label,
+.modal-field input:not(:placeholder-shown) ~ label,
+.modal-field textarea:focus ~ label,
+.modal-field textarea:not(:placeholder-shown) ~ label {
+    top: 7px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #f4c87e;
+}
+.modal-field textarea { min-height: 100px; padding-top: 24px; }
+
+/* Submit button */
+.modal-submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: #0a0a0a;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.15s;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.modal-submit-btn:hover { background: #222; transform: translateY(-1px); }
+.modal-submit-btn:active { transform: translateY(0); }
+.modal-submit-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+.modal-submit-btn .btn-arrow {
+    width: 28px;
+    height: 28px;
+    background: #f4c87e;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+.modal-submit-btn:hover .btn-arrow { transform: translateX(3px); }
+.modal-submit-note {
+    text-align: center;
+    font-size: 11px;
+    color: #bbb;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        grid-template-columns: 1fr;
+        max-height: 96vh;
+        border-radius: 16px;
+    }
+    .modal-left { display: none; }
+    .modal-right { padding: 36px 24px; }
+    .modal-field-row { grid-template-columns: 1fr; }
+}
+
+/* ── FOOTER CSS MATCHING INDEX.HTML ── */
+#site-footer {
+    background: #1C0D06 !important;
+    font-family: 'Inter', sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+}
+
+.ft-columns {
+    padding: 64px 80px;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr 1fr 1.1fr;
+    gap: 48px;
+    background: linear-gradient(135deg, #2A1005 0%, #1C0D06 40%, #150A04 100%);
+    border-top: 3px solid #7B4422;
+    border-bottom: 1px solid rgba(123,68,34,0.3);
+}
+
+.ft-col-desc {
+    font-size: 13px;
+    line-height: 1.9;
+    color: rgba(212,178,140,0.7);
+    max-width: 240px;
+    margin-bottom: 28px;
+}
+.ft-socials {
+    display: flex;
+    gap: 10px;
+}
+.ft-social {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(123,68,34,0.4);
+    border-radius: 3px;
+    color: rgba(212,178,140,0.5);
+    text-decoration: none;
+    transition: all 0.2s;
+    background: rgba(123,68,34,0.08);
+}
+.ft-social:hover {
+    background: #7B4422;
+    border-color: #7B4422;
+    color: #fff;
+}
+
+.ft-col-heading {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #f4c87e;
+    margin-bottom: 20px;
+    font-family: 'Rye', serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(244,200,126,0.2);
+}
+.ft-col-heading::after {
+    display: none;
+}
+
+.ft-col-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+.ft-col-link {
+    font-size: 13px;
+    color: rgba(212,178,140,0.65);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: block;
+}
+.ft-col-link:hover { color: #f4c87e; }
+
+.ft-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+.ft-contact-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(244,200,126,0.45);
+    margin-bottom: 3px;
+}
+.ft-contact-val {
+    font-size: 13px;
+    color: rgba(212,178,140,0.75);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.ft-contact-val:hover { color: #f4c87e; }
+
+.ft-payment {
+    background: #150A04;
+    padding: 28px 80px 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.ft-payment-label {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(244,200,126,0.3);
+    white-space: nowrap;
+}
+.ft-payment-badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.ft-pay-badge {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(123,68,34,0.25);
+    border-radius: 3px;
+    padding: 6px 12px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ft-bottom {
+    background: #0D0602;
+    border-top: 2px solid #7B4422;
+    padding: 22px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.ft-copy {
+    font-size: 12px;
+    color: rgba(212,178,140,0.4);
+    margin: 0;
+}
+.ft-legal {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+.ft-legal-link {
+    font-size: 12px;
+    color: rgba(212,178,140,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.ft-legal-link:hover { color: #f4c87e; }
+.ft-built {
+    font-size: 11px;
+    color: rgba(212,178,140,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.ft-built:hover { color: rgba(244,200,126,0.7); }
+.ft-built strong { font-weight: 600; }
+
+@media (max-width: 1200px) {
+    .ft-columns { grid-template-columns: 1.5fr 1fr 1fr 1fr; }
 }
 @media (max-width: 900px) {
-    nav { padding: 12px 20px; }
-    .nav-links {
-        position: fixed;
-        top: 90px; right: -100%;
-        width: 80%; max-width: 300px;
-        height: calc(100vh - 90px);
-        background: var(--leather-deeper);
-        display: flex !important;
-        flex-direction: column;
-        padding: 40px 24px;
-        gap: 24px;
-        transition: right 0.3s ease;
-        box-shadow: -4px 0 12px rgba(0,0,0,0.3);
-        z-index: 999;
-    }
-    .nav-links.active { right: 0; }
-    .nav-links li { width: 100%; }
-    .nav-links a { display: block; padding: 12px 0; font-size: 16px; }
-    .dropdown-menu {
-        position: static; transform: none;
-        background: rgba(255,255,255,0.05);
-        margin-top: 8px; border-radius: 8px;
-        max-height: 0; overflow: hidden;
-        transition: max-height 0.3s ease;
-        opacity: 1; visibility: visible; box-shadow: none;
-    }
-    .has-dropdown:hover .dropdown-menu,
-    .has-dropdown.active .dropdown-menu { max-height: 300px; }
-    .dropdown-menu a { padding: 10px 16px; font-size: 14px; }
-    .contact-info { gap: 10px; }
-    .contact-info .phone, .login-link { display: none; }
-    .mobile-menu-btn { display: block; }
-    .nav-cta-btn { padding: 10px 18px; font-size: 11px; }
-    .page-hero { min-height: 70vh; }
-    .page-hero-content { padding: 100px 24px 60px; }
-    .page-hero h1 { font-size: 40px; }
-    .tab-selector-section { padding: 32px 24px 0; top: 90px; }
-    .pricing-main { padding: 40px 24px 60px; }
-    .content-with-sidebar { grid-template-columns: 1fr; }
-    .filter-sidebar { position: static; }
-    .services-grid { grid-template-columns: 1fr; }
-    .prints-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
-    .how-it-works-section, .how-prints-section { margin: 40px -24px 0; padding: 60px 24px; }
-    .hiw-steps-row { grid-template-columns: 1fr 1fr; }
-    .hiw-steps-row::before { display: none; }
-    .item-detail-top { grid-template-columns: 1fr; }
-    .item-detail-img { aspect-ratio: 16/9; }
-    .service-detail-grid { grid-template-columns: 1fr; }
-    .recs-grid { grid-template-columns: 1fr 1fr; }
-    .service-recs-grid { grid-template-columns: 1fr 1fr; }
-    .ft-columns { grid-template-columns: 1fr 1fr; padding: 48px 24px !important; }
-    .ft-bottom { padding: 20px 24px !important; flex-direction: column; align-items: flex-start; }
-    .ft-payment { padding: 16px 24px; }
-    .faq-section { padding: 60px 24px; }
-    .cart-drawer { width: 100%; }
-    .checkout-overlay { padding: 0; }
-    .checkout-box { border-radius: 0; min-height: 100vh; margin: 0; }
-    .checkout-header { padding: 24px; }
-    .modal-form-grid, .checkout-form-grid { grid-template-columns: 1fr; }
-    .modal-body, .checkout-body { padding: 24px; }
-    .modal-header { padding: 28px 24px 24px; }
-    .service-detail-header { padding: 36px 28px; }
-    .service-detail-body { padding: 28px; }
-    .service-recs { padding: 24px 28px 32px; }
-    .item-detail-info { padding: 28px; }
-    .item-detail-recs { padding: 28px; }
+    .ft-columns { grid-template-columns: 1fr 1fr 1fr; padding: 48px 24px !important; }
+    .ft-bottom { padding: 20px 24px !important; }
+    .ft-payment { padding: 24px 24px !important; }
 }
-@media (max-width: 600px) {
-    .tab-btn { padding: 12px 28px; font-size: 13px; }
-    .hiw-steps-row { grid-template-columns: 1fr; }
-    .ft-columns { grid-template-columns: 1fr; }
-    .prog-label { display: none; }
-    .recs-grid, .service-recs-grid { grid-template-columns: 1fr; }
-    .hero-trust-strip { gap: 20px; }
-    .trust-divider { display: none; }
+@media (max-width: 640px) {
+    .ft-columns { grid-template-columns: 1fr 1fr; padding: 40px 20px !important; gap: 32px; }
+    .ft-bottom { flex-direction: column; align-items: flex-start; padding: 20px 20px !important; }
+    .ft-payment { padding: 20px 20px !important; flex-wrap: wrap; }
+    .ft-payment-badges { flex-wrap: wrap; gap: 6px; }
+}
+@media (max-width: 420px) {
+    .ft-columns { grid-template-columns: 1fr; padding: 32px 16px !important; }
+    .ft-legal { flex-wrap: wrap; gap: 12px; }
+}
+
+/* ─── BACK TO TOP ─── */
+.btt-btn {
+    position: fixed;
+    bottom: 96px;
+    left: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #2A1005;
+    border: 1px solid rgba(244,200,126,0.35);
+    color: #f4c87e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 199998;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.25s;
+    box-shadow: 0 4px 16px rgba(42,16,5,0.35);
+}
+.btt-btn.visible { opacity: 1; transform: translateY(0); }
+.btt-btn:hover { background: #7B4422; border-color: rgba(244,200,126,0.7); }
+
+/* ─── CHATBOT ─── */
+.chatbot-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #7B4422 0%, #2A1005 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(42,16,5,0.45), 0 0 0 2px rgba(244,200,126,0.4);
+    z-index: 200000;
+    transition: all 0.3s ease;
+    border: none;
+}
+.chatbot-toggle:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(42,16,5,0.55), 0 0 0 2px rgba(244,200,126,0.7); }
+.chatbot-toggle .close-icon { display: none; }
+.chatbot-toggle .chat-icon { display: block; }
+.chatbot-toggle.active { background: linear-gradient(135deg, #1A0C05 0%, #0F0804 100%); }
+.chatbot-toggle.active .chat-icon { display: none; }
+.chatbot-toggle.active .close-icon { display: block; }
+.chatbot-toggle.active svg { stroke: #f4c87e; }
+.chatbot-toggle svg { width: 22px; height: 22px; stroke: #F5EDD6; stroke-width: 2; }
+.chatbot-badge {
+    position: absolute;
+    top: -3px; right: -3px;
+    background: #c0392b;
+    color: white;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+    border: 2px solid #fff;
+}
+.chatbot-window {
+    position: fixed;
+    bottom: 100px; right: 24px;
+    top: auto !important;
+    width: 380px;
+    height: auto;
+    max-height: calc(100vh - 160px);
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2), 0 0 0 1px rgba(123,68,34,0.12);
+    display: none;
+    flex-direction: column;
+    z-index: 199999;
+    overflow: hidden;
+}
+.chatbot-window.active { display: flex; }
+.chatbot-header {
+    background: linear-gradient(135deg, #2A1005 0%, #4A2510 100%);
+    color: #F5EDD6;
+    padding: 18px 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-shrink: 0;
+}
+.chatbot-header-info { display: flex; align-items: center; gap: 12px; }
+.chatbot-avatar {
+    width: 38px; height: 38px;
+    background: rgba(244,200,126,0.15);
+    border: 1.5px solid rgba(244,200,126,0.4);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.chatbot-avatar svg { width: 18px; height: 18px; stroke: #f4c87e; stroke-width: 2; }
+.chatbot-title { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: 2px; color: #F5EDD6; }
+.chatbot-status { font-size: 11px; color: rgba(212,178,140,0.7); display: flex; align-items: center; gap: 5px; }
+.status-dot { width: 6px; height: 6px; background: #f4c87e; border-radius: 50%; display: inline-block; animation: pulse-dot 2.4s ease-in-out infinite; }
+@keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.35} }
+.chatbot-close {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px; cursor: pointer;
+    width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0; transition: background 0.2s;
+}
+.chatbot-close:hover { background: rgba(255,255,255,0.15); }
+.chatbot-close svg { width: 15px; height: 15px; stroke: #D4B28C; stroke-width: 2; }
+.chatbot-messages { flex: 1; overflow-y: auto; padding: 18px 16px; background: #f9f7f4; }
+.message { display: flex; gap: 10px; margin-bottom: 14px; }
+.message-avatar { width: 32px; height: 32px; background: #e8e0d8; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.message-avatar svg { width: 16px; height: 16px; stroke: #7B4422; stroke-width: 2; }
+.bot-message .message-avatar { background: linear-gradient(135deg,#7B4422,#4A2510); }
+.bot-message .message-avatar svg { stroke: #f4c87e; }
+.message-content { flex: 1; }
+.message-content p { background: #fff; padding: 10px 14px; border-radius: 4px 12px 12px 12px; font-size: 13.5px; line-height: 1.55; margin: 0 0 3px 0; white-space: pre-line; color: #1a0a05; font-family: 'Inter', sans-serif; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.user-message .message-content p { background: linear-gradient(135deg,#7B4422,#4A2510); color: #F5EDD6; border-radius: 12px 4px 12px 12px; }
+.message-time { font-size: 10px; color: rgba(92,48,24,0.35); padding: 0 3px; }
+.chatbot-quick-actions { padding: 12px 14px; display: flex; gap: 6px; flex-wrap: wrap; border-top: 1px solid rgba(123,68,34,0.1); background: #fff; flex-shrink: 0; }
+.quick-action-btn { background: #faf6f0; border: 1.5px solid rgba(123,68,34,0.2); padding: 7px 12px; font-size: 12px; border-radius: 20px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px; font-weight: 600; font-family: 'Inter', sans-serif; color: #5C3018; }
+.quick-action-btn svg { width: 13px; height: 13px; stroke: #7B4422; flex-shrink: 0; stroke-width: 2; }
+.quick-action-btn:hover { background: #7B4422; border-color: #7B4422; color: #F5EDD6; }
+.quick-action-btn:hover svg { stroke: #f4c87e; }
+.chatbot-input-container { padding: 12px 14px; border-top: 1px solid rgba(123,68,34,0.1); display: flex; gap: 8px; background: #fff; flex-shrink: 0; }
+.chatbot-input { flex: 1; padding: 10px 14px; border: 1.5px solid rgba(123,68,34,0.2); border-radius: 24px; font-size: 13px; outline: none; font-family: 'Inter', sans-serif; background: #faf6f0; color: #1a0a05; }
+.chatbot-input::placeholder { color: rgba(92,48,24,0.4); }
+.chatbot-input:focus { border-color: #7B4422; background: #fff; box-shadow: 0 0 0 3px rgba(123,68,34,0.08); }
+.chatbot-send { width: 40px; height: 40px; background: linear-gradient(135deg,#7B4422,#4A2510); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+.chatbot-send:hover { transform: scale(1.08); box-shadow: 0 4px 12px rgba(42,16,5,0.35); }
+.chatbot-send svg { width: 17px; height: 17px; stroke: #F5EDD6; stroke-width: 2; }
+@media (max-width: 768px) {
+    .chatbot-window { width: calc(100% - 32px); right: 16px; left: 16px; bottom: 90px; top: auto !important; height: auto; max-height: calc(100vh - 160px); border-radius: 16px; }
+}
+
+/* ─── CONTACT CTA SECTION ─── */
+.footer-cta-section {
+    padding: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.80) 100%),
+                var(--cta-bg-image) center/cover;
+    background-attachment: fixed;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+.footer-cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1;
+}
+.footer-cta-wrapper { position: relative; z-index: 2; }
+.footer-cta-hero {
+    padding: 120px 80px;
+    max-width: 1600px;
+    margin: 96px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+    background: rgba(60,60,60,0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+}
+.footer-cta-text { flex: 1; }
+.footer-cta-text h2 {
+    font-size: 56px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -1.2px;
+    margin-bottom: 0;
+    color: var(--white);
+}
+.footer-cta-actions { display: flex; gap: 20px; align-items: center; flex-shrink: 0; }
+.footer-cta-btn-primary {
+    background: var(--gold);
+    color: #000;
+    padding: 18px 48px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: 2px solid var(--gold);
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 8px;
+}
+.footer-cta-btn-primary:hover { background: #e6b86b; transform: translateY(-2px); }
+.footer-cta-contact {
+    padding: 80px 60px;
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer-cta-call-info { display: flex; flex-direction: column; gap: 8px; }
+.footer-cta-call-label { font-size: 13px; color: rgba(255,255,255,0.6); letter-spacing: 0.5px; }
+.footer-cta-phone { font-size: 28px; font-weight: 500; color: var(--white); text-decoration: none; transition: color 0.3s; }
+.footer-cta-phone:hover { color: var(--gold); }
+.footer-cta-btn-outline {
+    background: transparent;
+    color: var(--white);
+    padding: 16px 40px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: 2px solid var(--white);
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 8px;
+}
+.footer-cta-btn-outline:hover { background: var(--white); color: #000; }
+@media (max-width: 900px) {
+    .footer-cta-hero { flex-direction: column; padding: 64px 32px; margin: 40px 20px; gap: 32px; }
+    .footer-cta-text h2 { font-size: 36px; }
+    .footer-cta-contact { flex-direction: column; gap: 24px; padding: 48px 32px; text-align: center; }
 }
 </style>
+
 </head>
 <body>
 
@@ -2263,13 +3027,20 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </nav>
 
-<!-- PAGE HERO — Video Background -->
+<!-- PAGE HERO — Multi-Video Background -->
 <div class="page-hero">
-    <!-- Background video layer — reuses the same video assets as index.html -->
+    <!-- Background video layer — multiple videos cycling in a loop -->
     <div class="page-hero-video-bg">
-        <video autoplay muted playsinline loop preload="auto" webkit-playsinline>
-            <source src="11977490_2160_3840_24fps.mp4" type="video/mp4">
-            <source src="9316884-uhd_3840_2160_24fps.mp4" type="video/mp4">
+        <video class="hero-vid hero-vid-active" id="heroVid0" autoplay muted playsinline preload="auto" webkit-playsinline>
+            <source src="13590170_3840_2160_60fps.mp4" type="video/mp4">
+        </video>
+        <video class="hero-vid" id="heroVid1" muted playsinline preload="auto" webkit-playsinline>
+            <source src="pexels-jorge-perez-640507153-17582341.mp4" type="video/mp4">
+            <source src="13590170_3840_2160_60fps.mp4" type="video/mp4">
+        </video>
+        <video class="hero-vid" id="heroVid2" muted playsinline preload="auto" webkit-playsinline>
+            <source src="hero-video-2.mp4" type="video/mp4">
+            <source src="13590170_3840_2160_60fps.mp4" type="video/mp4">
         </video>
     </div>
 
@@ -2292,21 +3063,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="trust-stat"><div class="trust-stat-num">Nationwide</div><div class="trust-stat-label">Coverage</div></div>
         </div>
     </div><!-- end page-hero-content -->
-
-    <!-- Scroll indicator — matches index.html -->
-    <div style="position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:10;">
-        <div style="width:1.5px;height:56px;background:rgba(255,255,255,0.15);border-radius:2px;overflow:hidden;position:relative;">
-            <div style="width:100%;height:40%;background:linear-gradient(to bottom,#f4c87e,rgba(244,200,126,0.3));border-radius:2px;animation:hsiScroll 2s ease infinite;"></div>
-        </div>
-        <span style="font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.3);font-weight:700;writing-mode:vertical-rl;transform:rotate(180deg);">Scroll</span>
     </div>
-    <style>
-    @keyframes hsiScroll {
-        0%{ transform: translateY(-100%); }
-        100%{ transform: translateY(350%); }
-    }
-    </style>
-</div><!-- end page-hero -->
 
 <!-- TAB SELECTOR -->
 <div class="tab-selector-section">
@@ -2762,32 +3519,71 @@ document.addEventListener('DOMContentLoaded', function() {
 
         <!-- HOW PRINTS WORK — FULL WIDTH SECTION -->
         <div class="how-prints-section">
-            <div class="how-it-works-inner">
-                <div class="hiw-header">
-                    <div class="section-label"><span>How It Works</span></div>
-                    <h2>Add to cart, pay once, receive it two ways.</h2>
-                    <p>Every print purchase grants you a high-resolution digital download plus optional physical mail delivery in your chosen size.</p>
+            <div class="how-prints-inner">
+                <div class="how-prints-header">
+                    <div class="how-prints-eyebrow"><span>How It Works</span></div>
+                    <h2 class="how-prints-title">Add to cart, pay once, receive it two ways.</h2>
+                    <p class="how-prints-sub">Every print purchase grants you a high-resolution digital download plus optional physical delivery in your chosen size — both included in a single transaction.</p>
                 </div>
-                <div class="hiw-steps-row">
-                    <div class="hiw-step">
-                        <div class="hiw-num">01</div>
-                        <div class="hiw-step-title">Browse &amp; Add to Cart</div>
-                        <div class="hiw-step-desc">Choose your favorite images and add them to your cart. Click any print to view full details and similar work.</div>
+                <div class="how-prints-steps">
+                    <div class="how-prints-step">
+                        <div class="how-prints-step-num">01</div>
+                        <div class="how-prints-step-icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h7"/><circle cx="17" cy="17" r="3"/><path d="M15 17h4"/></svg>
+                        </div>
+                        <div class="how-prints-step-title">Browse &amp; Add to Cart</div>
+                        <div class="how-prints-step-desc">Choose your favorite images and add them to your cart. Click any print to view full details, available sizes, and similar work from the collection.</div>
                     </div>
-                    <div class="hiw-step">
-                        <div class="hiw-num">02</div>
-                        <div class="hiw-step-title">Choose Delivery</div>
-                        <div class="hiw-step-desc">Opt for digital-only or add physical mail delivery in your chosen print size at an additional cost.</div>
+                    <div class="how-prints-step-arrow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                     </div>
-                    <div class="hiw-step">
-                        <div class="hiw-num">03</div>
-                        <div class="hiw-step-title">Secure Checkout</div>
-                        <div class="hiw-step-desc">Complete payment securely via Stripe. Your order is confirmed instantly with a unique confirmation code.</div>
+                    <div class="how-prints-step">
+                        <div class="how-prints-step-num">02</div>
+                        <div class="how-prints-step-icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div class="how-prints-step-title">Choose Delivery</div>
+                        <div class="how-prints-step-desc">Opt for digital-only or add physical mail delivery in your chosen print size — 4x6 up to 24x36 — at an additional cost.</div>
                     </div>
-                    <div class="hiw-step">
-                        <div class="hiw-num">04</div>
-                        <div class="hiw-step-title">Receive &amp; Download</div>
-                        <div class="hiw-step-desc">Check your email for portal credentials. Download your high-res print there, and watch your mailbox for physical orders.</div>
+                    <div class="how-prints-step-arrow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </div>
+                    <div class="how-prints-step">
+                        <div class="how-prints-step-num">03</div>
+                        <div class="how-prints-step-icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        </div>
+                        <div class="how-prints-step-title">Secure Checkout</div>
+                        <div class="how-prints-step-desc">Complete payment securely via Stripe. Your order is confirmed instantly with a unique code. Texas sales tax and Stripe's processing fee are itemized at checkout.</div>
+                    </div>
+                    <div class="how-prints-step-arrow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </div>
+                    <div class="how-prints-step">
+                        <div class="how-prints-step-num">04</div>
+                        <div class="how-prints-step-icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        </div>
+                        <div class="how-prints-step-title">Receive &amp; Download</div>
+                        <div class="how-prints-step-desc">Your client portal delivers the full-resolution file immediately. Physical prints are professionally packaged and shipped within 5–7 business days.</div>
+                    </div>
+                </div>
+                <div class="how-prints-badges">
+                    <div class="how-prints-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Stripe Secured Checkout
+                    </div>
+                    <div class="how-prints-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Instant Digital Delivery
+                    </div>
+                    <div class="how-prints-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                        Physical Print Options
+                    </div>
+                    <div class="how-prints-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        Archival-Grade Paper
                     </div>
                 </div>
             </div>
@@ -2807,21 +3603,68 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </div>
 
-<!-- FOOTER — identical structure and Diamondback Coding credit as index.html -->
-<footer id="site-footer">
-    <div class="ft-columns">
-        <!-- Brand col -->
-        <div>
-            <div class="ft-col-heading">JWM Photography</div>
-            <p class="ft-col-desc">Professional photography and videography capturing life's most important moments — portraits, events, commercials, and fine art prints across the nation.</p>
-            <div class="ft-socials">
-                <a href="#" class="ft-social"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="ft-social"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" class="ft-social"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="#" class="ft-social"><i class="fa-brands fa-youtube"></i></a>
+<!-- CONTACT CTA SECTION -->
+<section class="footer-cta-section">
+    <div class="footer-cta-wrapper">
+        <div class="footer-cta-hero">
+            <div class="footer-cta-text">
+                <h2>Ready to capture something extraordinary?</h2>
+            </div>
+            <div class="footer-cta-actions">
+                <button class="footer-cta-btn-primary" onclick="openBookingModal()">BOOK YOUR SESSION</button>
             </div>
         </div>
-        <!-- Services -->
+        <div class="footer-cta-contact">
+            <div class="footer-cta-call-info">
+                <div class="footer-cta-call-label">Call us:</div>
+                <a href="tel:+15129800393" class="footer-cta-phone">(512) 980-0393</a>
+            </div>
+            <button class="footer-cta-btn-outline" onclick="openBookingModal()">VIEW PACKAGES</button>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER — identical structure and Diamondback Coding credit as index.html -->
+<footer id="site-footer">
+
+
+        <!-- Main Columns -->
+        <div class="ft-columns">
+
+            <!-- Brand -->
+            <div>
+                <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;margin-bottom:20px;">
+                    <!-- Diamond mark — matches nav logo -->
+                    <svg width="20" height="34" viewBox="0 0 22 38" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+                        <line x1="11" y1="0" x2="11" y2="38" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                        <path d="M11 10 L17 19 L11 28 L5 19 Z" fill="none" stroke="#f4c87e" stroke-width="1.2" opacity="0.8"/>
+                        <circle cx="11" cy="19" r="1.8" fill="#f4c87e" opacity="0.8"/>
+                        <line x1="11" y1="0" x2="11" y2="8" stroke="#f4c87e" stroke-width="1.2" opacity="0.8"/>
+                        <line x1="11" y1="30" x2="11" y2="38" stroke="#f4c87e" stroke-width="1.2" opacity="0.8"/>
+                    </svg>
+                    <div style="display:flex;flex-direction:column;gap:3px;line-height:1;">
+                        <span style="font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:700;font-style:italic;color:#fff;letter-spacing:3px;">JWM</span>
+                        <span style="font-family:'Inter',sans-serif;font-size:7px;letter-spacing:4.5px;text-transform:uppercase;color:rgba(255,255,255,0.35);font-weight:600;">Photography</span>
+                    </div>
+                </a>
+                <p class="ft-col-desc">Professional photography &amp; video production delivered coast to coast. Capturing stories worth telling since 2018.</p>
+                <div class="ft-socials">
+                    <a href="#" class="ft-social" aria-label="Instagram">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="#" class="ft-social" aria-label="Facebook">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="#" class="ft-social" aria-label="Pinterest">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 12a4 4 0 1 0 8 0 4 4 0 0 0-8 0"/><path d="M8.8 19.2 10 12"/><path d="M17.3 6.8C16 5.5 14.1 4.7 12 4.7a7.3 7.3 0 0 0-7.3 7.3c0 2.5 1.3 4.7 3.2 6l.3-1.8"/></svg>
+                    </a>
+                    <a href="#" class="ft-social" aria-label="YouTube">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.47a2.78 2.78 0 0 0-1.95 1.95A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.5C5.12 20 12 20 12 20s6.88 0 8.59-.5a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Services -->
         <div>
             <div class="ft-col-heading">Services</div>
             <ul class="ft-col-links">
@@ -2919,51 +3762,112 @@ document.addEventListener('DOMContentLoaded', function() {
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
 
-<!-- BOOKING MODAL -->
+<!-- BOOKING MODAL — Two-column layout matching index.html -->
 <div class="modal-overlay" id="bookingModal">
-    <div class="modal-box">
-        <div class="modal-header">
-            <button class="modal-close" onclick="closeBookingModal()">&#x2715;</button>
-            <div class="modal-eyebrow"><span>Book a Session</span></div>
-            <div class="modal-title">Let's make something unforgettable.</div>
-            <div class="modal-sub">Fill out the form below and we'll be in touch within 24 hours.</div>
+    <div class="modal-content">
+        <!-- LEFT PANEL -->
+        <div class="modal-left">
+            <div class="modal-left-deco"></div>
+            <div class="modal-eyebrow">JWM Photography</div>
+            <div class="modal-left-title">Let's make something <em>unforgettable.</em></div>
+            <div class="modal-left-sub">Fill out the form and we'll be in touch within 24 hours to discuss your project.</div>
+            <div class="modal-trust-row">
+                <div class="modal-trust-item">
+                    <div class="modal-trust-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.31 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.2 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <div>
+                        <div class="modal-trust-label">Response Within 24 Hours</div>
+                        <div class="modal-trust-sub">We personally review every request</div>
+                    </div>
+                </div>
+                <div class="modal-trust-item">
+                    <div class="modal-trust-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <div>
+                        <div class="modal-trust-label">No Commitment Required</div>
+                        <div class="modal-trust-sub">Free consultation, no obligation</div>
+                    </div>
+                </div>
+                <div class="modal-trust-item">
+                    <div class="modal-trust-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <div>
+                        <div class="modal-trust-label">Nationwide Coverage</div>
+                        <div class="modal-trust-sub">Texas based, available everywhere</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-contact-links">
+                <a href="tel:+15129800393" class="modal-contact-link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.31 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.2 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    (512) 980-0393
+                </a>
+                <a href="/cdn-cgi/l/email-protection#fd9598919192bd978a908d95928992d39e9290" class="modal-contact-link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <span class="__cf_email__" data-cfemail="5b333e3737341b312c362b33342f3475383436">[email&#160;protected]</span>
+                </a>
+            </div>
         </div>
-        <div class="modal-body">
-            <div class="modal-form-grid">
-                <div class="form-group">
-                    <label class="form-label">First Name</label>
-                    <input type="text" class="form-input" id="bkFirstName" placeholder="Jane">
+        <!-- RIGHT PANEL -->
+        <div class="modal-right">
+            <div class="modal-right-header">
+                <div class="modal-right-title">Book a <span>Session</span></div>
+                <button class="modal-close-btn" onclick="closeBookingModal()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="modal-service-label">What are you interested in?</div>
+            <div class="modal-service-chips" id="bkServiceChips">
+                <div class="modal-chip" onclick="selectBkChip(this,'Portrait &amp; Headshot')">Portrait</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Commercial &amp; Brand')">Commercial</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Event &amp; Wedding')">Events / Wedding</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Aerial &amp; Drone')">Aerial / Drone</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Cinematic Video Production')">Video</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Real Estate Photography')">Real Estate</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Wildlife &amp; Western')">Western / Ranch</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Other')">Other</div>
+            </div>
+            <div class="modal-field-row">
+                <div class="modal-field">
+                    <input type="text" id="bkFirstName" placeholder=" ">
+                    <label>First Name</label>
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Last Name</label>
-                    <input type="text" class="form-input" id="bkLastName" placeholder="Smith">
+                <div class="modal-field">
+                    <input type="text" id="bkLastName" placeholder=" ">
+                    <label>Last Name</label>
                 </div>
             </div>
-            <div class="form-full">
-                <div class="form-group">
-                    <label class="form-label">Email Address</label>
-                    <input type="email" class="form-input" id="bkEmail" placeholder="jane@email.com">
+            <div class="modal-field">
+                <input type="email" id="bkEmail" placeholder=" ">
+                <label>Email Address</label>
+            </div>
+            <div class="modal-field-row">
+                <div class="modal-field">
+                    <input type="tel" id="bkPhone" placeholder=" ">
+                    <label>Phone Number</label>
+                </div>
+                <div class="modal-field">
+                    <input type="text" id="bkService" placeholder=" ">
+                    <label>Preferred Date / Timeframe</label>
                 </div>
             </div>
-            <div class="modal-form-grid" style="margin-bottom:16px;">
-                <div class="form-group">
-                    <label class="form-label">Phone</label>
-                    <input type="tel" class="form-input" id="bkPhone" placeholder="(512) 555-0000">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Service</label>
-                    <input type="text" class="form-input" id="bkService" placeholder="Portrait, Wedding...">
-                </div>
+            <div class="modal-field">
+                <textarea id="bkNotes" placeholder=" "></textarea>
+                <label>Tell us about your project</label>
             </div>
-            <div class="form-full">
-                <div class="form-group">
-                    <label class="form-label">Tell Us About Your Project</label>
-                    <textarea class="form-input" id="bkNotes" rows="3" placeholder="Dates, location, vision..." style="resize:vertical;"></textarea>
+            <button class="modal-submit-btn" onclick="submitBooking()">
+                Send Booking Request
+                <div class="btn-arrow">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </div>
-            </div>
-            <button class="btn-submit" onclick="submitBooking()">
-                <i class="fa-solid fa-paper-plane" style="margin-right:8px;"></i> Send Booking Request
             </button>
+            <div class="modal-submit-note">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Your information is kept private and never shared.
+            </div>
         </div>
     </div>
 </div>
@@ -3068,7 +3972,19 @@ document.addEventListener('DOMContentLoaded', function() {
                         <button type="button" class="size-option" onclick="selectSize(this,'16x20')">16&times;20"</button>
                         <button type="button" class="size-option" onclick="selectSize(this,'24x36')">24&times;36"</button>
                     </div>
-                    <div class="checkout-form-full"><div class="form-group"><label class="form-label">Mailing Address</label><input type="text" class="form-input" id="coAddress" placeholder="123 Main St, Dallas, TX 75001"></div></div>
+                    <div class="checkout-form-full">
+                        <div class="form-group"><label class="form-label">Street Address</label><input type="text" class="form-input" id="coAddress" placeholder="123 Main Street"></div>
+                    </div>
+                    <div class="checkout-form-full">
+                        <div class="form-group"><label class="form-label">Address Line 2 (Apt, Suite, Unit — Optional)</label><input type="text" class="form-input" id="coAddress2" placeholder="Apt 4B"></div>
+                    </div>
+                    <div class="checkout-form-grid">
+                        <div class="form-group"><label class="form-label">City</label><input type="text" class="form-input" id="coMailCity" placeholder="Dallas"></div>
+                        <div class="form-group"><label class="form-label">State</label><select class="form-input" id="coState"><option value="">Select State</option><option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option><option>CO</option><option>CT</option><option>DE</option><option>FL</option><option>GA</option><option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option><option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option><option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option><option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option><option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option><option>SD</option><option selected>TX</option><option>UT</option><option>VT</option><option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option></select></div>
+                    </div>
+                    <div class="checkout-form-full">
+                        <div class="form-group"><label class="form-label">ZIP Code</label><input type="text" class="form-input" id="coZip" placeholder="75001" maxlength="10"></div>
+                    </div>
                 </div>
                 <div class="checkout-nav">
                     <button class="btn-checkout-back" onclick="coBack(3)">Back</button>
@@ -3134,6 +4050,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <div class="item-detail-recs">
             <div class="item-recs-title">You Might Also Like</div>
+            <div class="item-recs-sub">Other prints from the JWM collection — each one captured in the American West.</div>
             <div class="recs-grid" id="itemDetailRecs"></div>
         </div>
     </div>
@@ -3168,24 +4085,25 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <div class="service-recs">
             <h4>Other Services You Might Need</h4>
+            <p class="service-recs-sub">Explore what else JWM Photography has to offer — every service is built around the same standard of craft and intention.</p>
             <div class="service-recs-grid" id="sdRecs"></div>
         </div>
     </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js" defer></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ═══════════════════════════════════════════
 // PRINTS DATA
 // ═══════════════════════════════════════════
 const printsData = [
-    { id: 'p1', title: 'Golden Hour Mesa',    location: 'Texas Hill Country', price: 49, badge: 'Bestseller', tags: ['landscape','bestseller'],   img: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&q=85&fit=crop', desc: 'Warm amber light floods across the mesa as the Texas sun dips below the limestone ridges. A timeless landscape shot during the golden hour that makes every wall come alive.' },
-    { id: 'p2', title: 'Lone Rider at Dusk',  location: 'West Texas',         price: 59, badge: 'Limited',   tags: ['western','limited'],           img: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&q=85&fit=crop', desc: 'A solitary horseman silhouetted against a blazing West Texas sky. This image captures the soul of the American frontier in a single frame.' },
-    { id: 'p3', title: 'Storm Over the Plains', location: 'Panhandle, TX',    price: 65, badge: 'New',       tags: ['storm','landscape'],           img: 'https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=600&q=85&fit=crop', desc: 'A dramatic supercell builds over the flat Panhandle plains, casting an electric green and purple glow across the endless Texas sky.' },
-    { id: 'p4', title: 'Morning Mist, Palo Duro', location: 'Palo Duro Canyon', price: 55, badge: null,    tags: ['landscape'],                   img: 'https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=600&q=85&fit=crop', desc: 'Dawn mist rolls through the canyon walls of Palo Duro — the "Grand Canyon of Texas" — softening the rust-red stone into something almost dreamlike.' },
-    { id: 'p5', title: 'The Wrangler',         location: 'Lubbock, TX',       price: 75, badge: 'Featured', tags: ['western','wildlife','featured'], img: 'https://images.unsplash.com/photo-1580706483913-b6ea7db483a0?w=600&q=85&fit=crop', desc: 'Caught mid-motion on a working cattle ranch outside Lubbock, this portrait of a seasoned wrangler is one of our most requested prints for its raw authenticity.' },
+    { id: 'p1', title: 'Golden Hour Mesa',    location: 'Texas Hill Country', price: 49, badge: 'Bestseller', tags: ['landscape','bestseller'],   img: 'MesaImage.jpg', desc: 'Warm amber light floods across the mesa as the Texas sun dips below the limestone ridges. A timeless landscape shot during the golden hour that makes every wall come alive.' },
+    { id: 'p2', title: 'Lone Rider at Dusk',  location: 'West Texas',         price: 59, badge: 'Limited',   tags: ['western','limited'],           img: 'Ride.jpg', desc: 'A solitary horseman silhouetted against a blazing West Texas sky. This image captures the soul of the American frontier in a single frame.' },
+    { id: 'p3', title: 'Storm Over the Plains', location: 'Panhandle, TX',    price: 65, badge: 'New',       tags: ['storm','landscape'],           img: 'Storming.jpg', desc: 'A dramatic supercell builds over the flat Panhandle plains, casting an electric green and purple glow across the endless Texas sky.' },
+    { id: 'p4', title: 'Morning Mist, Palo Duro', location: 'Palo Duro Canyon', price: 55, badge: null,    tags: ['landscape'],                   img: 'Palo Duro.jpg', desc: 'Dawn mist rolls through the canyon walls of Palo Duro — the "Grand Canyon of Texas" — softening the rust-red stone into something almost dreamlike.' },
+    { id: 'p5', title: 'The Wrangler',         location: 'Lubbock, TX',       price: 75, badge: 'Featured', tags: ['western','wildlife','featured'], img: 'Bull.jpg', desc: 'Caught mid-motion on a working cattle ranch outside Lubbock, this portrait of a seasoned wrangler is one of our most requested prints for its raw authenticity.' },
     { id: 'p6', title: 'Blue Norther Rising',  location: 'Oklahoma Border',   price: 52, badge: null,       tags: ['storm','landscape'],           img: 'https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=600&q=85&fit=crop', desc: 'The legendary Blue Norther — a fast-moving cold front that barrels across the Southern Plains. Captured just as the wall of clouds crosses the Red River.' },
-    { id: 'p7', title: 'Wildflower Horizon',   location: 'Fredericksburg, TX', price: 48, badge: null,     tags: ['floral','landscape'],          img: 'https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=600&q=85&fit=crop', desc: 'An ocean of bluebonnets and Indian paintbrush stretches to the horizon in the Texas Hill Country during peak spring bloom season.' },
-    { id: 'p8', title: 'Iron Horse at Sunrise', location: 'Big Bend, TX',     price: 69, badge: 'Limited',  tags: ['landscape','western','limited'], img: 'https://images.unsplash.com/photo-1465447142348-e9952c393450?w=600&q=85&fit=crop', desc: 'The iconic steam train route near Big Bend National Park, photographed at first light when the desert turns gold and purple. A limited edition of 50 prints.' },
+    { id: 'p7', title: 'Wildflower Horizon',   location: 'Fredericksburg, TX', price: 48, badge: null,     tags: ['floral','landscape'],          img: 'Wildfowers.jpg', desc: 'An ocean of bluebonnets and Indian paintbrush stretches to the horizon in the Texas Hill Country during peak spring bloom season.' },
+    { id: 'p8', title: 'Iron Horse at Sunrise', location: 'Big Bend, TX',     price: 69, badge: 'Limited',  tags: ['landscape','western','limited'], img: 'Bigbend.jpg', desc: 'The iconic steam train route near Big Bend National Park, photographed at first light when the desert turns gold and purple. A limited edition of 50 prints.' },
 ];
 
 // SERVICES DATA (for detail views)
@@ -3271,13 +4189,23 @@ function openItemDetail(id) {
     document.getElementById('itemDetailDesc').textContent = p.desc;
     document.getElementById('itemDetailPrice').textContent = `$${p.price}`;
     // Recommendations — 3 others that share tags or are random
-    const recs = printsData.filter(x => x.id !== id).sort(() => Math.random() - 0.5).slice(0, 3);
+    const tagMatches = printsData.filter(x => x.id !== id && x.tags.some(t => p.tags.includes(t)));
+    const others = printsData.filter(x => x.id !== id && !tagMatches.includes(x));
+    const recs = [...tagMatches, ...others].slice(0, 3);
     document.getElementById('itemDetailRecs').innerHTML = recs.map(r => `
         <div class="rec-card" onclick="openItemDetail('${r.id}')">
-            <img src="${r.img}" alt="${r.title}">
+            <div class="rec-card-img-wrap">
+                <img src="${r.img}" alt="${r.title}">
+                ${r.badge ? `<div class="rec-card-badge">${r.badge}</div>` : ''}
+                <div class="rec-card-hover-btn"><span>View Details</span></div>
+            </div>
             <div class="rec-card-info">
+                <div class="rec-card-location"><i class="fa-solid fa-location-dot" style="font-size:9px;color:var(--leather-light);"></i> ${r.location}</div>
                 <div class="rec-card-title">${r.title}</div>
-                <div class="rec-card-price">From $${r.price}</div>
+                <div class="rec-card-price-row">
+                    <div class="rec-card-price">$${r.price}</div>
+                    <div class="rec-card-cta" onclick="event.stopPropagation(); addToCart('${r.id}');">Add to Cart</div>
+                </div>
             </div>
         </div>
     `).join('');
@@ -3315,12 +4243,21 @@ function openServiceDetail(key) {
     document.getElementById('sdFeatures').innerHTML = s.features.map(f => `<li><i class="fa-solid fa-check"></i>${f}</li>`).join('');
     // Related services
     const otherKeys = Object.keys(servicesData).filter(k => k !== key).sort(() => Math.random() - 0.5).slice(0, 3);
-    document.getElementById('sdRecs').innerHTML = otherKeys.map(k => `
-        <div class="srv-rec-card" onclick="closeServiceDetail(); setTimeout(()=>openServiceDetail('${k}'),200);">
-            <div class="srv-rec-title">${servicesData[k].title}</div>
-            <div class="srv-rec-price">From ${servicesData[k].price}</div>
-        </div>
-    `).join('');
+    const srvIcons = { portrait:'fa-user', commercial:'fa-briefcase', events:'fa-rings-wedding', aerial:'fa-plane', realestate:'fa-house', western:'fa-horse', cinematic:'fa-film', brandfilm:'fa-clapperboard', eventsvideo:'fa-video', postprod:'fa-sliders' };
+    document.getElementById('sdRecs').innerHTML = otherKeys.map(k => {
+        const rec = servicesData[k];
+        const shortDesc = rec.desc.split('.')[0] + '.';
+        return `<div class="srv-rec-card" onclick="closeServiceDetail(); setTimeout(()=>openServiceDetail('${k}'),200);">
+            <div class="srv-rec-icon"><i class="fa-solid ${srvIcons[k] || 'fa-camera'}"></i></div>
+            <div class="srv-rec-category">${rec.category}</div>
+            <div class="srv-rec-title">${rec.title}</div>
+            <div class="srv-rec-desc">${shortDesc}</div>
+            <div class="srv-rec-price-row">
+                <div class="srv-rec-price">${rec.price}</div>
+                <div class="srv-rec-link">View Details</div>
+            </div>
+        </div>`;
+    }).join('');
     document.getElementById('serviceDetailOverlay').classList.add('active');
     document.body.style.overflow = 'hidden';
 }
@@ -3342,6 +4279,7 @@ function openBookingFromDetail() {
 function addToCart(id) {
     const print = printsData.find(p => p.id === id);
     if (!print) return;
+    loadCart();
     const existing = cart.find(i => i.id === id);
     if (existing) { existing.qty++; }
     else { cart.push({ ...print, qty: 1 }); }
@@ -3478,8 +4416,11 @@ function selectSize(el, size) {
 }
 function buildOrderReview() {
     const shipping = shippingMode === 'mail' ? 18 : 0;
-    const subtotal = getCartTotal();
-    const total = subtotal + shipping;
+    const subtotal = getCartTotal() + shipping;
+    const TX_TAX_RATE = 0.0825;
+    const taxAmount = subtotal * TX_TAX_RATE;
+    const stripeFee = ((subtotal + taxAmount) * 0.029) + 0.30;
+    const total = subtotal + taxAmount + stripeFee;
     document.getElementById('orderReviewItems').innerHTML = cart.map(item => `
         <div class="review-item">
             <img class="review-item-img" src="${item.img}" alt="${item.title}">
@@ -3488,8 +4429,10 @@ function buildOrderReview() {
         </div>
     `).join('');
     document.getElementById('orderTotals').innerHTML = `
-        <div class="total-line"><span>Subtotal</span><span>$${subtotal.toFixed(2)}</span></div>
+        <div class="total-line"><span>Subtotal</span><span>$${(getCartTotal()).toFixed(2)}</span></div>
         <div class="total-line"><span>Shipping</span><span>${shipping > 0 ? '$' + shipping.toFixed(2) : 'Free'}</span></div>
+        <div class="total-line"><span>Texas State Sales Tax (8.25%)</span><span>$${taxAmount.toFixed(2)}</span></div>
+        <div class="total-line"><span style="display:flex;align-items:center;gap:6px;">Stripe Processing Fee <small style="font-size:10px;color:#aaa;">(2.9% + $0.30)</small></span><span>$${stripeFee.toFixed(2)}</span></div>
         <div class="total-line grand"><span>Total</span><span>$${total.toFixed(2)}</span></div>
     `;
 }
@@ -3502,6 +4445,10 @@ async function submitCheckout() {
         customerName, email,
         phone: document.getElementById('coPhone').value,
         address: document.getElementById('coAddress') ? document.getElementById('coAddress').value : '',
+        address2: document.getElementById('coAddress2') ? document.getElementById('coAddress2').value : '',
+        city: document.getElementById('coMailCity') ? document.getElementById('coMailCity').value : '',
+        state: document.getElementById('coState') ? document.getElementById('coState').value : '',
+        zip: document.getElementById('coZip') ? document.getElementById('coZip').value : '',
         shippingMode, selectedSize,
         items: cart.map(i => ({ id: i.id, title: i.title, price: i.price, qty: i.qty }))
     };
@@ -3516,13 +4463,30 @@ async function submitCheckout() {
     currentStep = 5;
     document.querySelectorAll('.checkout-step').forEach(s => s.classList.remove('active'));
     document.getElementById('coStep5').classList.add('active');
+    // Clear the cart now that purchase is confirmed
+    clearCart();
 }
 
 // ═══════════════════════════════════════════
 // BOOKING MODAL
 // ═══════════════════════════════════════════
+function selectBkChip(el, service) {
+    document.querySelectorAll('#bkServiceChips .modal-chip').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    const svcInput = document.getElementById('bkService');
+    if (svcInput) svcInput.value = service;
+}
 function openBookingModal(service) {
-    if (service) document.getElementById('bkService').value = service;
+    if (service) {
+        // Pre-select matching chip
+        document.querySelectorAll('#bkServiceChips .modal-chip').forEach(c => {
+            if (c.textContent.trim().toLowerCase().includes(service.toLowerCase().split(' ')[0]) || service.toLowerCase().includes(c.getAttribute('onclick').split("'")[1].toLowerCase().split(' ')[0])) {
+                c.classList.add('selected');
+            }
+        });
+        const svcInput = document.getElementById('bkService');
+        if (svcInput) svcInput.value = service;
+    }
     document.getElementById('bookingModal').classList.add('active');
     document.body.style.overflow = 'hidden';
 }
@@ -3577,6 +4541,11 @@ function switchTab(tab) {
 // FILTER — SERVICES
 // ═══════════════════════════════════════════
 function filterServices(cat, btn) {
+    // Toggle: if already active, deselect back to 'all'
+    if (btn.classList.contains('active') && cat !== 'all') {
+        clearServiceFilters();
+        return;
+    }
     document.querySelectorAll('#servicesSidebar .filter-option').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const cards = document.querySelectorAll('#servicesContent .service-card');
@@ -3593,6 +4562,11 @@ function filterServices(cat, btn) {
     document.getElementById('servicesFilterCount').textContent = `Showing ${count} service${count !== 1 ? 's' : ''}`;
 }
 function filterServicesByPrice(min, max, btn) {
+    // Toggle: if already active, clear
+    if (btn.classList.contains('active')) {
+        clearServiceFilters();
+        return;
+    }
     document.querySelectorAll('#servicesSidebar .filter-option').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const cards = document.querySelectorAll('#servicesContent .service-card');
@@ -3622,12 +4596,28 @@ let currentPrintFilter = 'all';
 let currentPrintPriceMin = 0, currentPrintPriceMax = 99999;
 
 function filterPrints(tag, btn) {
+    // Toggle: if already active and not 'all', deselect
+    if (btn.classList.contains('active') && tag !== 'all') {
+        document.querySelectorAll('#printsSidebar .filter-group:nth-child(2) .filter-option, #printsSidebar .filter-group:nth-child(4) .filter-option').forEach(b => b.classList.remove('active'));
+        document.querySelector('#printsSidebar .filter-option').classList.add('active');
+        currentPrintFilter = 'all';
+        applyPrintFilters();
+        return;
+    }
     document.querySelectorAll('#printsSidebar .filter-group:nth-child(2) .filter-option, #printsSidebar .filter-group:nth-child(4) .filter-option').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     currentPrintFilter = tag;
     applyPrintFilters();
 }
 function filterPrintsByPrice(min, max, btn) {
+    // Toggle: if already active, clear price filter
+    if (btn.classList.contains('active')) {
+        document.querySelectorAll('#printsSidebar .filter-group:nth-child(3) .filter-option').forEach(b => b.classList.remove('active'));
+        currentPrintPriceMin = 0;
+        currentPrintPriceMax = 99999;
+        applyPrintFilters();
+        return;
+    }
     document.querySelectorAll('#printsSidebar .filter-group:nth-child(3) .filter-option').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     currentPrintPriceMin = min;
@@ -3761,9 +4751,201 @@ function observeCards() {
     }, { threshold: 0.08 });
     document.querySelectorAll('.service-card:not(.revealed), .print-card:not(.revealed)').forEach(function(c) { io.observe(c); });
 }
-
 // ═══════════════════════════════════════════
-// INIT
+// INIT - Fixed Truncated Script
 // ═══════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', function() {
-    lo
+    // ── Multi-video hero cycle ──
+    const heroVids = Array.from(document.querySelectorAll('.hero-vid'));
+    if (heroVids.length > 1) {
+        let currentVid = 0;
+        heroVids[0].play().catch(() => {});
+        heroVids.forEach(function(vid, i) {
+            vid.addEventListener('ended', function() {
+                heroVids[currentVid].classList.remove('hero-vid-active');
+                currentVid = (currentVid + 1) % heroVids.length;
+                const next = heroVids[currentVid];
+                next.currentTime = 0;
+                next.classList.add('hero-vid-active');
+                next.play().catch(function() {
+                    // If next video source not found, restart from video 0
+                    currentVid = 0;
+                    heroVids[0].classList.add('hero-vid-active');
+                    heroVids[0].currentTime = 0;
+                    heroVids[0].play().catch(() => {});
+                });
+            });
+        });
+    } else if (heroVids.length === 1) {
+        heroVids[0].loop = true;
+        heroVids[0].play().catch(() => {});
+    }
+    loadCart();
+    updateCartUI();
+
+    // 2. Initialize Prints Data
+    renderPrints(printsData);
+    updatePrintsCount(printsData.length);
+
+    // 3. Initialize FAQ Data
+    renderFAQ();
+
+    // 4. Tab Switching logic from URL hash
+    const hash = window.location.hash.replace('#', '');
+    if (hash === 'prints') {
+        switchTab('prints');
+    } else {
+        // Assume default is services, but check if a specific service hash exists to scroll to it
+        if (hash && ['portrait', 'commercial', 'events', 'video', 'aerial', 'retouching'].includes(hash)) {
+            switchTab('services');
+            // Allow layout to settle before scrolling
+            setTimeout(() => {
+                const target = document.querySelector(`[data-category*="${hash}"]`);
+                if(target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 150, 
+                        behavior: 'smooth'
+                    });
+                }
+            }, 300);
+        }
+    }
+});
+</script>
+
+<!-- CHATBOT -->
+<div class="chatbot-container">
+    <button class="chatbot-toggle" id="chatbotToggle" onclick="toggleChatbot()">
+        <svg class="chat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+        <span class="chatbot-badge" id="chatbotBadge">1</span>
+    </button>
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <div class="chatbot-header-info">
+                <div class="chatbot-avatar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                        <circle cx="12" cy="13" r="4"></circle>
+                    </svg>
+                </div>
+                <div>
+                    <div class="chatbot-title">JWM Photography</div>
+                    <div class="chatbot-status"><span class="status-dot"></span> We're here to help</div>
+                </div>
+            </div>
+            <button class="chatbot-close" onclick="toggleChatbot()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot-message">
+                <div class="message-avatar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                        <circle cx="12" cy="13" r="4"></circle>
+                    </svg>
+                </div>
+                <div class="message-content">
+                    <p>Hey there! 👋 Welcome to JWM Photography. Ask me about our sessions, pricing, booking, or anything else — we'd love to help tell your story.</p>
+                    <div class="message-time">Just now</div>
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-quick-actions">
+            <button class="quick-action-btn" data-action="pricing">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                Packages
+            </button>
+            <button class="quick-action-btn" data-action="booking">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Book a Session
+            </button>
+            <button class="quick-action-btn" data-action="services">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"></path></svg>
+                Our Work
+            </button>
+            <button class="quick-action-btn" data-action="contact">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                Contact
+            </button>
+        </div>
+        <div class="chatbot-input-container">
+            <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your question..." />
+            <button class="chatbot-send" id="chatbotSendBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+/* CHATBOT */
+function toggleChatbot() {
+    const toggle = document.getElementById('chatbotToggle');
+    const windowEl = document.getElementById('chatbotWindow');
+    const badge = document.getElementById('chatbotBadge');
+    toggle.classList.toggle('active');
+    windowEl.classList.toggle('active');
+    if (toggle.classList.contains('active') && badge) badge.style.display = 'none';
+}
+function addUserMessage(text) {
+    const c = document.getElementById('chatbotMessages');
+    const d = document.createElement('div');
+    d.className = 'message user-message';
+    d.innerHTML = `<div class="message-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div><div class="message-content"><p>${text}</p><div class="message-time">Just now</div></div>`;
+    c.appendChild(d); c.scrollTop = c.scrollHeight;
+}
+function addBotMessage(text) {
+    const c = document.getElementById('chatbotMessages');
+    const d = document.createElement('div');
+    d.className = 'message bot-message';
+    d.innerHTML = `<div class="message-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div><div class="message-content"><p>${text}</p><div class="message-time">Just now</div></div>`;
+    c.appendChild(d); c.scrollTop = c.scrollHeight;
+}
+const quickResponses = {
+    'pricing': "Our photography packages:\n\nPortrait Session — from $299\nCommercial Day Rate — from $799\nWedding Coverage — from $1,499\nVideo Production — custom quote\n\nVisit our Packages page for full details, or call us at (512) 980-0393!",
+    'booking': "Ready to book? Here's how:\n\n1. Pick your session type\n2. Choose a date & time\n3. Pay a small deposit to confirm\n\nCall us at (512) 980-0393 or click 'Book Your Session' to get started. We typically book 2–4 weeks out!",
+    'services': "We offer:\n\nPortrait & Headshot Photography\nCommercial & Brand Photography\nEvents & Wedding Coverage\nVideo Production & Editing\nAerial & Drone Photography\nPhoto Retouching & Delivery\n\nWhat can we help you with?",
+    'contact': "Reach us anytime:\n\nPhone: (512) 980-0393\nEmail: hello@jwmphoto.com\nHours: Mon–Sat 8AM–6PM CST\nBased in Texas · Nationwide Travel\n\nWe'd love to hear about your project!"
+};
+document.querySelectorAll('.quick-action-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const action = this.getAttribute('data-action');
+        addUserMessage(this.textContent.trim());
+        setTimeout(() => addBotMessage(quickResponses[action]), 500);
+    });
+});
+document.getElementById('chatbotSendBtn').addEventListener('click', function() {
+    const input = document.getElementById('chatbotInput');
+    const message = input.value.trim();
+    if (message) {
+        addUserMessage(message);
+        input.value = '';
+        setTimeout(() => addBotMessage("Great question! For the fastest answer, call us at (512) 980-0393 or email hello@jwmphoto.com — we'd love to chat about your photography needs!"), 1000);
+    }
+});
+document.getElementById('chatbotInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') document.getElementById('chatbotSendBtn').click();
+});
+
+/* BACK TO TOP */
+(function(){
+    var btn = document.getElementById('bttBtn');
+    if (!btn) return;
+    window.addEventListener('scroll', function(){ btn.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
+})();
+</script>
+</body>
+</html>
