@@ -2237,22 +2237,18 @@ select.form-input { cursor: pointer; }
 }
 .btn-submit:hover { background: var(--leather); transform: translateY(-1px); }
 
-/* ── CONTACT/BOOKING MODAL (MODERN REDESIGN FROM INDEX.HTML) ──
+/* ── CONTACT/BOOKING MODAL — copied exactly from index.html ── */
 .modal-overlay {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: rgba(0,0,0,0.75);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    z-index: 2147483647;
+    z-index: 999999;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    box-sizing: border-box;
 }
 .modal-overlay.active { display: flex; }
 
@@ -2260,7 +2256,7 @@ select.form-input { cursor: pointer; }
     background: #fff;
     width: 100%;
     max-width: 960px;
-    max-height: 88vh;
+    max-height: 94vh;
     border-radius: 20px;
     overflow: hidden;
     display: grid;
@@ -2268,7 +2264,6 @@ select.form-input { cursor: pointer; }
     position: relative;
     box-shadow: 0 40px 100px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
     animation: modalSlideIn 0.35s cubic-bezier(0.22,1,0.36,1);
-    flex-shrink: 0;
 }
 @keyframes modalSlideIn {
     from { opacity:0; transform: translateY(24px) scale(0.97); }
@@ -2342,8 +2337,6 @@ select.form-input { cursor: pointer; }
     margin-bottom: 36px;
     position: relative;
 }
-
-/* Trust badges */
 .modal-trust-row {
     display: flex;
     flex-direction: column;
@@ -2377,8 +2370,6 @@ select.form-input { cursor: pointer; }
     color: rgba(255,255,255,0.5);
     margin-top: 1px;
 }
-
-/* Contact links */
 .modal-contact-links {
     display: flex;
     flex-direction: column;
@@ -2391,14 +2382,13 @@ select.form-input { cursor: pointer; }
     align-items: center;
     gap: 10px;
     text-decoration: none;
-    color: #ccc;
+    color: #888;
     font-size: 13px;
     transition: color 0.2s;
 }
 .modal-contact-link:hover { color: #f4c87e; }
 .modal-contact-link svg { flex-shrink: 0; }
 
-/* ── RIGHT PANEL ────────────────────── */
 .modal-right {
     padding: 48px 44px;
     overflow-y: auto;
@@ -2412,7 +2402,9 @@ select.form-input { cursor: pointer; }
     margin-bottom: 32px;
 }
 .modal-right-title {
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 26px;
+    font-weight: 700;
     color: #0a0a0a;
     line-height: 1.2;
 }
@@ -2433,8 +2425,6 @@ select.form-input { cursor: pointer; }
     color: #666;
 }
 .modal-close-btn:hover { background: #e8e8e8; transform: scale(1.05); color: #000; }
-
-/* Service chips */
 .modal-service-label {
     font-size: 11px;
     font-weight: 700;
@@ -2464,8 +2454,6 @@ select.form-input { cursor: pointer; }
 }
 .modal-chip:hover { border-color: #f4c87e; color: #0a0a0a; background: rgba(244,200,126,0.06); }
 .modal-chip.selected { border-color: #f4c87e; background: rgba(244,200,126,0.1); color: #0a0a0a; font-weight: 700; }
-
-/* Floating label fields */
 .modal-field {
     position: relative;
     margin-bottom: 20px;
@@ -2516,8 +2504,6 @@ select.form-input { cursor: pointer; }
     color: #f4c87e;
 }
 .modal-field textarea { min-height: 100px; padding-top: 24px; }
-
-/* Submit button */
 .modal-submit-btn {
     width: 100%;
     padding: 16px;
@@ -2561,7 +2547,6 @@ select.form-input { cursor: pointer; }
     justify-content: center;
     gap: 5px;
 }
-
 @media (max-width: 768px) {
     .modal-content {
         grid-template-columns: 1fr;
@@ -2572,8 +2557,6 @@ select.form-input { cursor: pointer; }
     .modal-right { padding: 36px 24px; }
     .modal-field-row { grid-template-columns: 1fr; }
 }
-
-/* ── FOOTER CSS MATCHING INDEX.HTML ── */
 /* Element-level overrides — same as index.html western leather theme */
 footer { background: var(--leather-deeper) !important; color: #c4a882 !important; }
 footer h3, footer h4 { color: rgba(255,255,255,0.9) !important; }
@@ -2935,14 +2918,19 @@ footer ul a:hover, footer p a:hover { color: #f4c87e !important; }
 .footer-cta-hero {
     padding: 120px 80px;
     max-width: 1600px;
-    margin: 96px 40px;
+    margin: 0 auto;
+    margin-top: 96px;
+    margin-bottom: 96px;
+    margin-left: 40px;
+    margin-right: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 60px;
-    background: rgba(60,60,60,0.3);
+    background: linear-gradient(135deg, var(--leather) 0%, var(--leather-dark) 100%);
     backdrop-filter: blur(10px);
-    border-radius: 16px;
+    border-radius: 12px;
+    border: none;
 }
 .footer-cta-text { flex: 1; }
 .footer-cta-text h2 {
@@ -2955,19 +2943,19 @@ footer ul a:hover, footer p a:hover { color: #f4c87e !important; }
 }
 .footer-cta-actions { display: flex; gap: 20px; align-items: center; flex-shrink: 0; }
 .footer-cta-btn-primary {
-    background: var(--gold);
+    background: #fff;
     color: #000;
     padding: 18px 48px;
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    border: 2px solid var(--gold);
+    border: 2px solid #fff;
     cursor: pointer;
     transition: all 0.3s;
     border-radius: 8px;
 }
-.footer-cta-btn-primary:hover { background: #e6b86b; transform: translateY(-2px); }
+.footer-cta-btn-primary:hover { background: var(--parchment); color: #000; transform: translateY(-2px); }
 .footer-cta-contact {
     padding: 80px 60px;
     max-width: 1600px;
@@ -2975,25 +2963,27 @@ footer ul a:hover, footer p a:hover { color: #f4c87e !important; }
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: transparent;
+    border-top: none;
 }
 .footer-cta-call-info { display: flex; flex-direction: column; gap: 8px; }
-.footer-cta-call-label { font-size: 13px; color: rgba(255,255,255,0.6); letter-spacing: 0.5px; }
+.footer-cta-call-label { font-size: 13px; color: rgba(255,255,255,0.4); letter-spacing: 0.5px; }
 .footer-cta-phone { font-size: 28px; font-weight: 500; color: var(--white); text-decoration: none; transition: color 0.3s; }
 .footer-cta-phone:hover { color: var(--gold); }
 .footer-cta-btn-outline {
     background: transparent;
-    color: var(--white);
+    color: rgba(255,255,255,0.8);
     padding: 16px 40px;
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    border: 2px solid var(--white);
+    border: 2px solid rgba(255,255,255,0.35);
     cursor: pointer;
     transition: all 0.3s;
     border-radius: 8px;
 }
-.footer-cta-btn-outline:hover { background: var(--white); color: #000; }
+.footer-cta-btn-outline:hover { background: #fff; color: #000; border-color: #fff; }
 @media (max-width: 900px) {
     .footer-cta-hero { flex-direction: column; padding: 64px 32px; margin: 40px 20px; gap: 32px; }
     .footer-cta-text h2 { font-size: 36px; }
@@ -5275,71 +5265,92 @@ document.getElementById('chatbotInput').addEventListener('keypress', function(e)
 <!-- BOOKING MODAL -->
 <div class="modal-overlay" id="bookingModal">
     <div class="modal-content">
-        <!-- LEFT PANEL -->
+
+        <!-- LEFT INFO PANEL -->
         <div class="modal-left">
             <div class="modal-left-deco"></div>
             <div class="modal-eyebrow">JWM Photography</div>
-            <div class="modal-left-title">Let's make something <em>unforgettable.</em></div>
-            <div class="modal-left-sub">Fill out the form and we'll be in touch within 24 hours to discuss your project.</div>
+            <h2 class="modal-left-title">Let's make something<br><em>unforgettable.</em></h2>
+            <p class="modal-left-sub">Tell us about your vision and we'll craft the perfect session for you — from concept to final gallery.</p>
+
             <div class="modal-trust-row">
                 <div class="modal-trust-item">
                     <div class="modal-trust-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.31 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.2 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                     </div>
                     <div>
-                        <div class="modal-trust-label">Response Within 24 Hours</div>
-                        <div class="modal-trust-sub">We personally review every request</div>
+                        <div class="modal-trust-label">24-Hour Response</div>
+                        <div class="modal-trust-sub">We reply to every inquiry, same day</div>
                     </div>
                 </div>
                 <div class="modal-trust-item">
                     <div class="modal-trust-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                     </div>
                     <div>
-                        <div class="modal-trust-label">No Commitment Required</div>
-                        <div class="modal-trust-sub">Free consultation, no obligation</div>
+                        <div class="modal-trust-label">4.9★ Average Rating</div>
+                        <div class="modal-trust-sub">Across 2,400+ delivered sessions</div>
                     </div>
                 </div>
                 <div class="modal-trust-item">
                     <div class="modal-trust-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
                     </div>
                     <div>
                         <div class="modal-trust-label">Nationwide Coverage</div>
-                        <div class="modal-trust-sub">Texas based, available everywhere</div>
+                        <div class="modal-trust-sub">Available in all 50 states</div>
+                    </div>
+                </div>
+                <div class="modal-trust-item">
+                    <div class="modal-trust-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <div>
+                        <div class="modal-trust-label">100% Licensed</div>
+                        <div class="modal-trust-sub">Full commercial rights on every image</div>
                     </div>
                 </div>
             </div>
+
             <div class="modal-contact-links">
                 <a href="tel:+15129800393" class="modal-contact-link">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.31 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.2 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.31 12a19.79 19.79 0 0 1-3.08-8.63A2 2 0 0 1 3.2 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                     (512) 980-0393
                 </a>
-                <a href="/cdn-cgi/l/email-protection#fd9598919192bd978a908d95928992d39e9290" class="modal-contact-link">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    <span class="__cf_email__" data-cfemail="5b333e3737341b312c362b33342f3475383436">[email&#160;protected]</span>
+                <a href="mailto:hello@jwmphoto.com" class="modal-contact-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    hello@jwmphoto.com
                 </a>
+                <span class="modal-contact-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Texas, USA · Nationwide Travel
+                </span>
             </div>
         </div>
-        <!-- RIGHT PANEL -->
+
+        <!-- RIGHT FORM PANEL -->
         <div class="modal-right">
             <div class="modal-right-header">
-                <div class="modal-right-title">Book a <span>Session</span></div>
-                <button class="modal-close-btn" onclick="closeBookingModal()">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <div>
+                    <div class="modal-right-title">Book Your <span>Session</span></div>
+                </div>
+                <button class="modal-close-btn" onclick="closeBookingModal()" aria-label="Close">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="16" height="16"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                 </button>
             </div>
-            <div class="modal-service-label">What are you interested in?</div>
+
+            <div class="modal-service-label">I'm interested in</div>
             <div class="modal-service-chips" id="bkServiceChips">
-                <div class="modal-chip" onclick="selectBkChip(this,'Portrait &amp; Headshot')">Portrait</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Commercial &amp; Brand')">Commercial</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Event &amp; Wedding')">Events / Wedding</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Aerial &amp; Drone')">Aerial / Drone</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Cinematic Video Production')">Video</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Portrait &amp; Headshot')">Portrait &amp; Headshot</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Commercial &amp; Brand')">Commercial &amp; Brand</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Events &amp; Weddings')">Events &amp; Weddings</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Video Production')">Video Production</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Aerial &amp; Drone')">Aerial &amp; Drone</div>
                 <div class="modal-chip" onclick="selectBkChip(this,'Real Estate Photography')">Real Estate</div>
                 <div class="modal-chip" onclick="selectBkChip(this,'Wildlife &amp; Western')">Western / Ranch</div>
                 <div class="modal-chip" onclick="selectBkChip(this,'Other')">Other</div>
             </div>
+
             <div class="modal-field-row">
                 <div class="modal-field">
                     <input type="text" id="bkFirstName" placeholder=" ">
@@ -5351,34 +5362,30 @@ document.getElementById('chatbotInput').addEventListener('keypress', function(e)
                 </div>
             </div>
             <div class="modal-field">
+                <input type="tel" id="bkPhone" placeholder=" ">
+                <label>Phone Number</label>
+            </div>
+            <div class="modal-field">
                 <input type="email" id="bkEmail" placeholder=" ">
                 <label>Email Address</label>
             </div>
-            <div class="modal-field-row">
-                <div class="modal-field">
-                    <input type="tel" id="bkPhone" placeholder=" ">
-                    <label>Phone Number</label>
-                </div>
-                <div class="modal-field">
-                    <input type="text" id="bkService" placeholder=" ">
-                    <label>Preferred Date / Timeframe</label>
-                </div>
-            </div>
             <div class="modal-field">
-                <textarea id="bkNotes" placeholder=" "></textarea>
+                <textarea id="bkNotes" placeholder=" " rows="4"></textarea>
                 <label>Tell us about your project</label>
             </div>
+
             <button class="modal-submit-btn" onclick="submitBooking()">
-                Send Booking Request
-                <div class="btn-arrow">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </div>
+                <span>Send Your Inquiry</span>
+                <span class="btn-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </span>
             </button>
             <div class="modal-submit-note">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                Your information is kept private and never shared.
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Your info is private &amp; never shared
             </div>
         </div>
+
     </div>
 </div>
 </body>
