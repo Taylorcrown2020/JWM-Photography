@@ -38,7 +38,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { overflow-x: hidden; scroll-behavior: smooth; }
+html { scroll-behavior: smooth; }
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--white);
@@ -185,11 +185,11 @@ nav.nav-solid {
 .nav-links a {
     color: var(--white);
     text-decoration: none;
-    font-size: 13px;
-    font-weight: 400;
+    font-size: 11px;
+    font-weight: 600;
     transition: opacity 0.2s;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1.5px;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -236,16 +236,63 @@ nav.nav-solid {
 .dropdown-menu a {
     padding: 12px 24px;
     display: block;
-    color: rgba(255,255,255,0.8) !important;
-    font-size: 13px !important;
+    color: rgba(255,255,255,0.8);
+    font-size: 13px;
+    font-weight: 400;
     text-transform: none;
-    letter-spacing: 0.3px !important;
+    letter-spacing: 0.3px;
+    font-family: 'Inter', sans-serif;
     transition: all 0.2s ease;
 }
 .dropdown-menu a:hover {
-    background: rgba(0,0,0,0.3) !important;
-    color: white !important;
+    background: rgba(255,255,255,0.1);
+    color: white;
     padding-left: 28px;
+}
+
+/* ── NAV overrides matching index.html western theme ── */
+nav {
+    background: #3D1E0A !important;
+    border-bottom: 1px solid rgba(0,0,0,0.4) !important;
+    box-shadow: 0 1px 0 rgba(244,200,126,0.15), 0 4px 24px rgba(0,0,0,0.5) !important;
+}
+nav.nav-solid {
+    background: #311608 !important;
+    box-shadow: 0 1px 0 rgba(244,200,126,0.2), 0 8px 32px rgba(0,0,0,0.7) !important;
+    border-bottom: 1px solid rgba(244,200,126,0.12) !important;
+}
+.dropdown-menu {
+    background: var(--leather-dark) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+}
+.dropdown-menu a { color: rgba(255,255,255,0.8) !important; font-family: 'Inter', sans-serif !important; font-size: 13px !important; font-weight: 400 !important; font-style: normal !important; }
+.dropdown-menu a:hover {
+    background: rgba(0,0,0,0.3) !important;
+    color: #fff !important;
+    padding-left: 28px;
+}
+.nav-links a {
+    letter-spacing: 1.5px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    font-family: 'Inter', sans-serif !important;
+    font-style: normal !important;
+}
+.nav-cta-btn {
+    background: #000 !important;
+    color: #fff !important;
+    border: 1px solid #000 !important;
+    padding: 11px 28px !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1.5px !important;
+    border-radius: 6px !important;
+    font-family: 'Inter', sans-serif !important;
+}
+.nav-cta-btn:hover {
+    background: var(--leather-deeper) !important;
+    border-color: var(--leather-deeper) !important;
+    color: #fff !important;
 }
 .dropdown-divider {
     height: 1px;
@@ -309,24 +356,23 @@ nav.nav-solid {
 
 /* NAV CTA — Exact match to index.html */
 .nav-cta-btn {
-    background: transparent;
-    color: #f4c87e;
+    background: #000;
+    color: #fff;
     padding: 11px 28px;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    border: 1px solid rgba(244,200,126,0.4);
+    border: 1px solid #000;
     cursor: pointer;
     border-radius: 6px;
     transition: all 0.3s;
     font-family: 'Inter', sans-serif;
 }
 .nav-cta-btn:hover {
-    background: #f4c87e;
-    color: #000;
-    border-color: #f4c87e;
-    box-shadow: 0 0 20px rgba(244,200,126,0.25);
+    background: var(--leather-deeper);
+    border-color: var(--leather-deeper);
+    color: #fff;
 }
 
 .mobile-menu-btn {
@@ -354,7 +400,14 @@ h1, h2, h3,
 .print-title,
 .filter-sidebar-title,
 .modal-title,
-[class*="-title"]:not(.nav-wordmark-sub):not(.card-desc):not(.print-desc) {
+[class*="-title"]:not(.nav-wordmark-sub):not(.card-desc):not(.print-desc),
+[class*="-heading"]:not(.ft-col-heading) {
+    font-family: 'Playfair Display', Georgia, serif !important;
+    font-style: italic !important;
+    font-weight: 700 !important;
+}
+/* Footer column headings match index exactly — Playfair italic like index */
+.ft-col-heading {
     font-family: 'Playfair Display', Georgia, serif !important;
     font-style: italic !important;
     font-weight: 700 !important;
@@ -711,6 +764,7 @@ h1, h2, h3,
 /* ── SERVICES GRID ── */
 .services-section { display: block; }
 .prints-section   { display: none; }
+#howPrintsSection { display: none; }
 .services-block   { margin-bottom: 72px; }
 .services-divider {
     display: flex;
@@ -902,14 +956,13 @@ h1, h2, h3,
 
 /* ── HOW IT WORKS ── */
 .how-it-works-section {
-    padding: 100px 0 80px;
+    padding: 100px 60px 80px;
     background: var(--parchment);
-    margin: 72px -60px 0;
-    padding-left: 60px;
-    padding-right: 60px;
     border-top: 3px solid var(--leather);
     border-bottom: 3px solid var(--leather);
     position: relative;
+    width: 100%;
+    box-sizing: border-box;
 }
 .how-it-works-inner {
     max-width: 1300px;
@@ -999,11 +1052,10 @@ h1, h2, h3,
 .how-prints-section {
     background: var(--leather-deeper);
     width: 100%;
-    margin: 72px -60px 0;
     padding: 0;
     border-top: 3px solid rgba(244,200,126,0.3);
     border-bottom: 3px solid rgba(244,200,126,0.3);
-    box-sizing: content-box;
+    box-sizing: border-box;
 }
 .how-prints-inner {
     max-width: 100%;
@@ -2189,14 +2241,18 @@ select.form-input { cursor: pointer; }
 .modal-overlay {
     display: none;
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0,0,0,0.75);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    z-index: 999999;
+    z-index: 2147483647;
     align-items: center;
     justify-content: center;
     padding: 20px;
+    box-sizing: border-box;
 }
 .modal-overlay.active { display: flex; }
 
@@ -2204,7 +2260,7 @@ select.form-input { cursor: pointer; }
     background: #fff;
     width: 100%;
     max-width: 960px;
-    max-height: 94vh;
+    max-height: 88vh;
     border-radius: 20px;
     overflow: hidden;
     display: grid;
@@ -2212,6 +2268,7 @@ select.form-input { cursor: pointer; }
     position: relative;
     box-shadow: 0 40px 100px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
     animation: modalSlideIn 0.35s cubic-bezier(0.22,1,0.36,1);
+    flex-shrink: 0;
 }
 @keyframes modalSlideIn {
     from { opacity:0; transform: translateY(24px) scale(0.97); }
@@ -2517,12 +2574,22 @@ select.form-input { cursor: pointer; }
 }
 
 /* ── FOOTER CSS MATCHING INDEX.HTML ── */
+/* Element-level overrides — same as index.html western leather theme */
+footer { background: var(--leather-deeper) !important; color: #c4a882 !important; }
+footer h3, footer h4 { color: rgba(255,255,255,0.9) !important; }
+footer ul a, footer p a { color: #a07855 !important; }
+footer ul a:hover, footer p a:hover { color: #f4c87e !important; }
+
 #site-footer {
     background: #1C0D06 !important;
     font-family: 'Inter', sans-serif;
-    width: 100%;
-    box-sizing: border-box;
-    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    position: static !important;
+    display: block !important;
 }
 
 .ft-columns {
@@ -2934,6 +3001,295 @@ select.form-input { cursor: pointer; }
 }
 </style>
 
+
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE RESPONSIVE — pricing.html
+   Breakpoints: 900px (tablet), 768px (mobile), 480px (small phone)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── ANNOUNCEMENT BANNER ── */
+@media (max-width: 768px) {
+    .announcement-banner {
+        font-size: 10px !important;
+        letter-spacing: 1px !important;
+        padding: 8px 40px 8px 12px !important;
+        min-height: 34px !important;
+        line-height: 1.4 !important;
+    }
+    .announcement-banner::before,
+    .announcement-banner::after { display: none !important; }
+}
+
+/* ── NAV ── */
+@media (max-width: 900px) {
+    nav { padding: 14px 20px !important; }
+
+    /* Hide desktop nav links */
+    .nav-links {
+        position: fixed !important;
+        top: 0 !important;
+        right: -100% !important;
+        width: 280px !important;
+        height: 100vh !important;
+        background: #1a0902 !important;
+        flex-direction: column !important;
+        padding: 80px 28px 40px !important;
+        gap: 4px !important;
+        transition: right 0.3s ease !important;
+        box-shadow: -4px 0 40px rgba(0,0,0,0.6) !important;
+        z-index: 9998 !important;
+        list-style: none !important;
+        align-items: flex-start !important;
+        overflow-y: auto !important;
+        border-left: 1px solid rgba(244,200,126,0.15) !important;
+    }
+    .nav-links.active { right: 0 !important; }
+
+    .nav-links > li { width: 100% !important; }
+
+    .nav-links > li > a {
+        font-size: 12px !important;
+        letter-spacing: 2px !important;
+        padding: 14px 0 !important;
+        border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+        display: flex !important;
+        width: 100% !important;
+        color: rgba(255,255,255,0.85) !important;
+    }
+
+    /* Mobile dropdown */
+    .dropdown-menu {
+        position: static !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        background: rgba(244,200,126,0.05) !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 6px !important;
+        max-height: 0 !important;
+        overflow: hidden !important;
+        transition: max-height 0.3s ease !important;
+        padding: 0 !important;
+        margin-top: 4px !important;
+    }
+    .has-dropdown.active .dropdown-menu {
+        max-height: 400px !important;
+        padding: 8px 0 !important;
+    }
+    .dropdown-menu a {
+        font-size: 12px !important;
+        padding: 10px 16px !important;
+        color: rgba(255,255,255,0.65) !important;
+    }
+    .dropdown-icon { margin-left: auto !important; }
+    .has-dropdown.active .dropdown-icon { transform: rotate(180deg) !important; }
+
+    /* Contact info in nav */
+    .contact-info {
+        gap: 10px !important;
+        flex-direction: row !important;
+        align-items: center !important;
+    }
+    .contact-info .phone { display: none !important; }
+    .login-link { display: none !important; }
+
+    /* Show hamburger */
+    .mobile-menu-btn {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 5px !important;
+        background: none !important;
+        border: none !important;
+        cursor: pointer !important;
+        padding: 4px !important;
+        width: 36px !important;
+        height: 36px !important;
+        z-index: 10001 !important;
+        position: relative !important;
+        flex-shrink: 0 !important;
+    }
+    .mobile-menu-btn span {
+        display: block !important;
+        width: 22px !important;
+        height: 2px !important;
+        background: #fff !important;
+        border-radius: 2px !important;
+        transition: all 0.3s ease !important;
+    }
+    .mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px) !important; }
+    .mobile-menu-btn.active span:nth-child(2) { opacity: 0 !important; }
+    .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px) !important; }
+
+    /* Overlay when menu open */
+    .nav-links.active::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        right: 280px;
+        background: rgba(0,0,0,0.5);
+        z-index: -1;
+    }
+
+    .nav-cta-btn { display: none !important; }
+    .nav-cart-icon { width: 34px !important; height: 34px !important; }
+}
+
+/* ── PAGE HERO ── */
+@media (max-width: 768px) {
+    .page-hero { min-height: 55vh !important; }
+    .page-hero-content { padding: 48px 20px 40px !important; }
+    .page-hero h1 { font-size: 30px !important; line-height: 1.15 !important; letter-spacing: -0.5px !important; }
+    .page-hero-eyebrow { font-size: 8px !important; letter-spacing: 2px !important; gap: 8px !important; }
+    .hero-cta-row { flex-direction: column !important; gap: 12px !important; align-items: stretch !important; }
+    .btn-primary, .btn-secondary { width: 100% !important; text-align: center !important; padding: 14px 20px !important; font-size: 11px !important; }
+}
+
+/* ── TAB SELECTOR ── */
+@media (max-width: 768px) {
+    .tab-selector-section { padding: 16px 16px 0 !important; }
+    .tab-selector { border-radius: 10px !important; }
+    .tab-btn { font-size: 11px !important; padding: 12px 16px !important; letter-spacing: 1px !important; }
+}
+
+/* ── MAIN LAYOUT ── */
+@media (max-width: 900px) {
+    .pricing-main { padding: 32px 20px 60px !important; }
+    .content-with-sidebar {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    .filter-sidebar {
+        position: static !important;
+        top: auto !important;
+        border-radius: 10px !important;
+    }
+}
+@media (max-width: 480px) {
+    .pricing-main { padding: 20px 14px 48px !important; }
+}
+
+/* ── SERVICE CARDS ── */
+@media (max-width: 768px) {
+    .services-grid { grid-template-columns: 1fr !important; gap: 14px !important; }
+    .service-card { padding: 20px 16px !important; }
+    .card-title { font-size: 17px !important; }
+    .card-price { font-size: 24px !important; }
+    .card-actions { flex-direction: column !important; gap: 8px !important; }
+    .btn-book-now { width: 100% !important; }
+    .card-detail-link { text-align: center !important; }
+    .video-grid { grid-template-columns: 1fr !important; gap: 14px !important; }
+    .services-divider { margin: 24px 0 20px !important; }
+}
+
+/* ── HOW IT WORKS SECTION ── */
+@media (max-width: 900px) {
+    .how-it-works-section { padding: 56px 24px 48px !important; }
+    .hiw-header h2 { font-size: 26px !important; }
+    .hiw-header p { font-size: 14px !important; }
+    .hiw-steps-row {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 28px !important;
+    }
+    .hiw-steps-row::before { display: none !important; }
+}
+@media (max-width: 540px) {
+    .hiw-steps-row { grid-template-columns: 1fr !important; }
+    .hiw-num { width: 52px !important; height: 52px !important; font-size: 17px !important; }
+    .how-it-works-section { padding: 40px 16px 36px !important; }
+}
+
+/* ── HOW PRINTS SECTION ── */
+@media (max-width: 900px) {
+    .how-prints-inner { padding: 56px 24px 48px !important; }
+    .how-prints-title { font-size: 26px !important; }
+    .how-prints-steps {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0 !important;
+    }
+    .how-prints-step { width: 100% !important; max-width: 360px !important; }
+    .how-prints-step-arrow { transform: rotate(90deg) !important; padding: 8px 0 !important; }
+    .how-prints-badges { flex-direction: column !important; gap: 10px !important; margin-top: 32px !important; }
+    .how-prints-badge { justify-content: flex-start !important; }
+}
+
+/* ── PRINTS GRID ── */
+@media (max-width: 768px) {
+    .prints-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+}
+@media (max-width: 480px) {
+    .prints-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── BOOKING MODAL ── */
+@media (max-width: 768px) {
+    .modal-content {
+        grid-template-columns: 1fr !important;
+        max-height: 92vh !important;
+        border-radius: 16px !important;
+        margin: 0 !important;
+    }
+    .modal-left { display: none !important; }
+    .modal-right { padding: 28px 20px 24px !important; overflow-y: auto !important; }
+    .modal-right-title { font-size: 22px !important; }
+    .modal-field-row { grid-template-columns: 1fr !important; }
+    .modal-service-chips { gap: 6px !important; }
+    .modal-chip { font-size: 11px !important; padding: 8px 12px !important; }
+    .modal-submit-btn { padding: 16px !important; font-size: 12px !important; }
+}
+
+/* ── FOOTER CTA ── */
+@media (max-width: 768px) {
+    .footer-cta-hero {
+        flex-direction: column !important;
+        padding: 40px 20px !important;
+        margin: 20px 12px !important;
+        gap: 24px !important;
+    }
+    .footer-cta-text h2 { font-size: 26px !important; letter-spacing: -0.5px !important; }
+    .footer-cta-actions { flex-direction: column !important; width: 100% !important; gap: 12px !important; }
+    .footer-cta-btn-primary, .footer-cta-btn-outline { width: 100% !important; text-align: center !important; padding: 16px !important; }
+    .footer-cta-contact { flex-direction: column !important; padding: 32px 20px !important; gap: 20px !important; text-align: center !important; }
+    .footer-cta-phone { font-size: 22px !important; }
+}
+
+/* ── FOOTER ── */
+@media (max-width: 900px) {
+    .ft-columns { grid-template-columns: 1fr 1fr 1fr !important; padding: 40px 20px !important; gap: 28px !important; }
+    .ft-bottom { padding: 18px 20px !important; flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+    .ft-payment { padding: 20px !important; }
+}
+@media (max-width: 640px) {
+    .ft-columns { grid-template-columns: 1fr 1fr !important; padding: 32px 16px !important; gap: 24px !important; }
+}
+@media (max-width: 420px) {
+    .ft-columns { grid-template-columns: 1fr !important; }
+    .ft-legal { flex-wrap: wrap !important; gap: 10px !important; }
+}
+
+/* ── FAQ ── */
+@media (max-width: 768px) {
+    .faq-section { padding: 56px 20px !important; }
+    .faq-question { font-size: 14px !important; }
+}
+
+/* ── GLOBAL TYPOGRAPHY MOBILE ── */
+@media (max-width: 768px) {
+    h1 { font-size: 28px !important; }
+    h2 { font-size: 22px !important; }
+    h3 { font-size: 18px !important; }
+    .section-heading { font-size: 22px !important; }
+}
+
+/* Prevent horizontal scroll */
+@media (max-width: 768px) {
+    body { overflow-x: hidden !important; }
+}
+</style>
 </head>
 <body>
 
@@ -2959,79 +3315,92 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 <!-- NAV — identical to index.html -->
-<nav id="mainNav">
-    <div class="nav-container">
-        <a href="index.html" class="nav-logo">
-            <span class="jwm-logo-lockup">
-                <svg class="jwm-logo-mark" width="22" height="38" viewBox="0 0 22 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="11" y1="0" x2="11" y2="38" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-                    <path d="M11 10 L17 19 L11 28 L5 19 Z" fill="none" stroke="#f4c87e" stroke-width="1.2"/>
-                    <circle cx="11" cy="19" r="1.8" fill="#f4c87e"/>
-                    <line x1="11" y1="0" x2="11" y2="8" stroke="#f4c87e" stroke-width="1.2"/>
-                    <line x1="11" y1="30" x2="11" y2="38" stroke="#f4c87e" stroke-width="1.2"/>
-                </svg>
-                <span class="jwm-logo-text">
-                    <span class="jwm-logo-jwm">JWM</span>
-                    <span class="jwm-logo-sub">Photography</span>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <!-- Redesigned JWM Logo Mark -->
+                <span class="jwm-logo-lockup">
+                    <!-- Diamond mark with gold accent -->
+                    <svg class="jwm-logo-mark" width="22" height="38" viewBox="0 0 22 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Vertical line -->
+                        <line x1="11" y1="0" x2="11" y2="38" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                        <!-- Diamond -->
+                        <path d="M11 10 L17 19 L11 28 L5 19 Z" fill="none" stroke="#f4c87e" stroke-width="1.2"/>
+                        <!-- Inner dot -->
+                        <circle cx="11" cy="19" r="1.8" fill="#f4c87e"/>
+                        <!-- Top tick -->
+                        <line x1="11" y1="0" x2="11" y2="8" stroke="#f4c87e" stroke-width="1.2"/>
+                        <!-- Bottom tick -->
+                        <line x1="11" y1="30" x2="11" y2="38" stroke="#f4c87e" stroke-width="1.2"/>
+                    </svg>
+                    <span class="jwm-logo-text">
+                        <span class="jwm-logo-jwm">JWM</span>
+                        <span class="jwm-logo-sub">Photography</span>
+                    </span>
                 </span>
-            </span>
-        </a>
-        <ul class="nav-links">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="portfolio.html">PORTFOLIO</a></li>
-            <li class="has-dropdown">
-                <a href="pricing.html" style="color:#f4c87e;">
-                    SERVICES
-                    <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                </a>
-                <ul class="dropdown-menu">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="portfolio.html">PORTFOLIO</a></li>
+                <li class="has-dropdown">
+                    <a href="pricing.html">
+                        SERVICES
+                        <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <ul class="dropdown-menu">
                     <li><a href="pricing.html#portrait">Portrait Photography</a></li>
                     <li><a href="pricing.html#commercial">Commercial &amp; Brand Photography</a></li>
                     <li><a href="pricing.html#events">Event &amp; Wedding Photography</a></li>
                     <li><a href="pricing.html#video">Video Production</a></li>
                     <li><a href="pricing.html#retouching">Photo Editing &amp; Retouching</a></li>
-                    <li class="dropdown-divider"></li>
-                    <li><a href="pricing.html">View Packages</a></li>
-                </ul>
-            </li>
-            <li class="has-dropdown">
-                <a href="#company">
-                    STUDIO
-                    <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="process.html">Our Workflow</a></li>
-                    <li><a href="blog.html">Photography Journal</a></li>
-                    <li><a href="careers.html">Join the Team</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                </ul>
-            </li>
-        </ul>
-        <div class="contact-info">
-            <a href="tel:+15129800393" class="phone">(512) 980-0393</a>
-            <a href="client_portal.html" class="login-link">LOG IN</a>
-            <button class="nav-cart-icon" onclick="openCart()" aria-label="View cart">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                    <line x1="3" y1="6" x2="21" y2="6"/>
-                    <path d="M16 10a4 4 0 0 1-8 0"/>
-                </svg>
-                <span class="nav-cart-badge" id="navCartBadge">0</span>
-            </button>
-            <button class="nav-cta-btn" onclick="openBookingModal()">BOOK NOW</button>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <span></span><span></span><span></span>
-            </button>
+                        <li class="dropdown-divider"></li>
+                        <li><a href="pricing.html">View Packages</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="#company">
+                        STUDIO
+                        <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="process.html">Our Workflow</a></li>
+                        <li><a href="blog.html">Photography Journal</a></li>
+                        <li><a href="careers.html">Join the Team</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="contact-info">
+                <a href="tel:+19402178680" class="phone">(512) 980-0393</a>
+                <a href="client_portal.html" class="login-link">LOG IN</a>
+                <button class="nav-cart-icon" id="navCartBtn" onclick="openCart()" aria-label="View cart">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <path d="M16 10a4 4 0 0 1-8 0"/>
+                    </svg>
+                    <span class="nav-cart-badge" id="navCartBadge"></span>
+                </button>
+                <button class="nav-cta-btn" onclick="openBookingModal()">BOOK NOW</button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
 <!-- PAGE HERO — Multi-Video Background -->
 <div class="page-hero">
     <!-- Background video layer — multiple videos cycling in a loop -->
     <div class="page-hero-video-bg">
-        <video class="hero-vid hero-vid-active" id="heroVid0" autoplay muted playsinline preload="auto" webkit-playsinline>
+        <video class="hero-vid hero-vid-active" id="heroVid0" autoplay loop muted playsinline preload="auto" webkit-playsinline>
             <source src="13590170_3840_2160_60fps.mp4" type="video/mp4">
         </video>
         <video class="hero-vid" id="heroVid1" muted playsinline preload="auto" webkit-playsinline>
@@ -3398,8 +3767,11 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
 
-        <!-- HOW IT WORKS — FULL WIDTH SECTION -->
-        <div class="how-it-works-section">
+    </div><!-- close services-section -->
+</div><!-- close pricing-main -->
+
+<!-- HOW IT WORKS — FULL WIDTH (outside pricing-main) -->
+<div class="how-it-works-section" id="hiwSection">
             <div class="how-it-works-inner">
                 <div class="hiw-header">
                     <div class="section-label"><span>How It Works</span></div>
@@ -3428,11 +3800,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="hiw-step-desc">Complete payment in your portal. Full-resolution, watermark-free images unlock immediately for download.</div>
                     </div>
                 </div>
-            </div>
         </div>
-    </div>
+</div><!-- close how-it-works-section -->
 
-    <!-- ══════════════ PRINTS TAB ══════════════ -->
+<div class="pricing-main"><!-- reopen for prints tab -->
     <div class="prints-section" id="printsSection">
         <div class="content-with-sidebar">
 
@@ -3517,8 +3888,11 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
 
-        <!-- HOW PRINTS WORK — FULL WIDTH SECTION -->
-        <div class="how-prints-section">
+    </div><!-- close prints-section -->
+</div><!-- close pricing-main -->
+
+<!-- HOW PRINTS WORK — FULL WIDTH (outside pricing-main) -->
+<div class="how-prints-section" id="howPrintsSection">
             <div class="how-prints-inner">
                 <div class="how-prints-header">
                     <div class="how-prints-eyebrow"><span>How It Works</span></div>
@@ -3586,10 +3960,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         Archival-Grade Paper
                     </div>
                 </div>
-            </div>
         </div>
-    </div>
-</div>
+</div><!-- close how-prints-section -->
 
 <!-- FAQ SECTION -->
 <div class="faq-section" id="faqSection">
@@ -3627,14 +3999,12 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- FOOTER — identical structure and Diamondback Coding credit as index.html -->
 <footer id="site-footer">
 
-
         <!-- Main Columns -->
         <div class="ft-columns">
 
             <!-- Brand -->
             <div>
                 <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;margin-bottom:20px;">
-                    <!-- Diamond mark — matches nav logo -->
                     <svg width="20" height="34" viewBox="0 0 22 38" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
                         <line x1="11" y1="0" x2="11" y2="38" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
                         <path d="M11 10 L17 19 L11 28 L5 19 Z" fill="none" stroke="#f4c87e" stroke-width="1.2" opacity="0.8"/>
@@ -3665,212 +4035,112 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
             <!-- Services -->
-        <div>
-            <div class="ft-col-heading">Services</div>
-            <ul class="ft-col-links">
-                <li><a href="pricing.html#portrait" class="ft-col-link">Portrait &amp; Headshot</a></li>
-                <li><a href="pricing.html#commercial" class="ft-col-link">Commercial &amp; Brand</a></li>
-                <li><a href="pricing.html#events" class="ft-col-link">Event &amp; Wedding</a></li>
-                <li><a href="pricing.html#aerial" class="ft-col-link">Aerial &amp; Drone</a></li>
-                <li><a href="pricing.html#video" class="ft-col-link">Cinematic Video</a></li>
-                <li><a href="pricing.html#retouching" class="ft-col-link">Post-Production</a></li>
-            </ul>
-        </div>
-        <!-- Studio -->
-        <div>
-            <div class="ft-col-heading">Studio</div>
-            <ul class="ft-col-links">
-                <li><a href="about.html" class="ft-col-link">About JWM</a></li>
-                <li><a href="portfolio.html" class="ft-col-link">Our Portfolio</a></li>
-                <li><a href="process.html" class="ft-col-link">Our Workflow</a></li>
-                <li><a href="careers.html" class="ft-col-link">Join Our Team</a></li>
-                <li><a href="contact.html" class="ft-col-link">Contact Us</a></li>
-            </ul>
-        </div>
-        <!-- Resources -->
-        <div>
-            <div class="ft-col-heading">Resources</div>
-            <ul class="ft-col-links">
-                <li><a href="blog.html" class="ft-col-link">Photography Journal</a></li>
-                <li><a href="pricing.html" class="ft-col-link">Packages &amp; Pricing</a></li>
-                <li><a href="faq.html" class="ft-col-link">FAQ</a></li>
-                <li><a href="client_portal.html" class="ft-col-link">Client Portal</a></li>
-                <li><a href="contact.html" class="ft-col-link">Get a Quote</a></li>
-            </ul>
-        </div>
-        <!-- Contact -->
-        <div>
-            <div class="ft-col-heading">Contact</div>
-            <div class="ft-contact-item">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7B4422" stroke-width="2" style="flex-shrink:0;margin-top:3px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.31 12 19.79 19.79 0 0 1 1.23 3.38 2 2 0 0 1 3.2 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <div>
-                    <div class="ft-contact-label">Phone</div>
-                    <a href="tel:+15129800393" class="ft-contact-val">(512) 980-0393</a>
-                </div>
+            <div>
+                <div class="ft-col-heading">Services</div>
+                <ul class="ft-col-links">
+                    <li><a href="pricing.html#portrait" class="ft-col-link">Portrait Photography</a></li>
+                    <li><a href="pricing.html#commercial" class="ft-col-link">Commercial &amp; Brand</a></li>
+                    <li><a href="pricing.html#events" class="ft-col-link">Events &amp; Weddings</a></li>
+                    <li><a href="pricing.html#video" class="ft-col-link">Video Production</a></li>
+                    <li><a href="pricing.html#aerial" class="ft-col-link">Aerial &amp; Drone</a></li>
+                    <li><a href="pricing.html#retouching" class="ft-col-link">Photo Editing</a></li>
+                </ul>
             </div>
-            <div class="ft-contact-item">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7B4422" stroke-width="2" style="flex-shrink:0;margin-top:3px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <div>
-                    <div class="ft-contact-label">Email</div>
-                    <a href="/cdn-cgi/l/email-protection#e38b868f8f8ca389948e938b8c978ccd808c8e" class="ft-contact-val"><span class="__cf_email__" data-cfemail="81e9e4ededeec1ebf6ecf1e9eef5eeafe2eeec">[email&#160;protected]</span></a>
-                </div>
-            </div>
-            <div class="ft-contact-item">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7B4422" stroke-width="2" style="flex-shrink:0;margin-top:3px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <div>
-                    <div class="ft-contact-label">Based In</div>
-                    <span class="ft-contact-val" style="cursor:default;">Texas, USA &middot; Nationwide</span>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Payment -->
-    <div class="ft-payment">
-        <span class="ft-payment-label">We Accept</span>
-        <div class="ft-payment-badges">
-            <div class="ft-pay-badge"><svg viewBox="0 0 72 24" width="42" height="14" xmlns="http://www.w3.org/2000/svg"><text x="0" y="18" font-family="Arial,sans-serif" font-size="20" font-weight="900" fill="rgba(255,255,255,0.35)" letter-spacing="-1">VISA</text></svg></div>
-            <div class="ft-pay-badge"><svg viewBox="0 0 52 32" width="34" height="22" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="16" r="14" fill="#EB001B" opacity="0.7"/><circle cx="34" cy="16" r="14" fill="#F79E1B" opacity="0.7"/><path d="M26 5.4a14 14 0 0 1 0 21.2A14 14 0 0 1 26 5.4z" fill="#FF5F00" opacity="0.7"/></svg></div>
-            <div class="ft-pay-badge"><svg viewBox="0 0 80 24" width="46" height="14" xmlns="http://www.w3.org/2000/svg"><text x="0" y="18" font-family="Arial,sans-serif" font-size="14" font-weight="800" fill="rgba(255,255,255,0.35)" letter-spacing="2">AMEX</text></svg></div>
-            <div class="ft-pay-badge"><svg viewBox="0 0 90 28" width="58" height="16" xmlns="http://www.w3.org/2000/svg"><text x="0" y="20" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="rgba(255,255,255,0.35)">DISCOVER</text><circle cx="80" cy="14" r="8" fill="#F76F20" opacity="0.7"/></svg></div>
-            <div class="ft-pay-badge"><svg viewBox="0 0 86 24" width="50" height="14" xmlns="http://www.w3.org/2000/svg"><text x="0" y="18" font-family="Arial,sans-serif" font-size="16" font-weight="800" fill="#009CDE" opacity="0.7">Pay</text><text x="34" y="18" font-family="Arial,sans-serif" font-size="16" font-weight="800" fill="#003087" opacity="0.7">Pal</text></svg></div>
-        </div>
-    </div>
+            <!-- Studio -->
+            <div>
+                <div class="ft-col-heading">Studio</div>
+                <ul class="ft-col-links">
+                    <li><a href="about.html" class="ft-col-link">About JWM</a></li>
+                    <li><a href="portfolio.html" class="ft-col-link">Our Portfolio</a></li>
+                    <li><a href="process.html" class="ft-col-link">Our Workflow</a></li>
+                    <li><a href="careers.html" class="ft-col-link">Join Our Team</a></li>
+                    <li><a href="contact.html" class="ft-col-link">Contact Us</a></li>
+                </ul>
+            </div>
 
-    <!-- Bottom bar — same as index.html with Diamondback Coding credit -->
-    <div class="ft-bottom">
-        <p class="ft-copy">&copy; 2026 JWM Photography, Inc. — All rights reserved.</p>
-        <div class="ft-legal">
-            <a href="privacy_policy.html" class="ft-legal-link">Privacy Policy</a>
-            <a href="terms_of_service.html" class="ft-legal-link">Terms of Service</a>
-            <a href="sitemap.html" class="ft-legal-link">Sitemap</a>
+            <!-- Resources -->
+            <div>
+                <div class="ft-col-heading">Resources</div>
+                <ul class="ft-col-links">
+                    <li><a href="blog.html" class="ft-col-link">Photography Journal</a></li>
+                    <li><a href="pricing.html" class="ft-col-link">Packages &amp; Pricing</a></li>
+                    <li><a href="faq.html" class="ft-col-link">FAQ</a></li>
+                    <li><a href="client_portal.html" class="ft-col-link">Client Portal</a></li>
+                    <li><a href="contact.html" class="ft-col-link">Get a Quote</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <div class="ft-col-heading">Contact</div>
+                <div class="ft-contact-item">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7B4422" stroke-width="2" style="flex-shrink:0;margin-top:3px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.31 12 19.79 19.79 0 0 1 1.23 3.38 2 2 0 0 1 3.2 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <div>
+                        <div class="ft-contact-label">Phone</div>
+                        <a href="tel:+15129800393" class="ft-contact-val">(512) 980-0393</a>
+                    </div>
+                </div>
+                <div class="ft-contact-item">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7B4422" stroke-width="2" style="flex-shrink:0;margin-top:3px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <div>
+                        <div class="ft-contact-label">Email</div>
+                        <a href="/cdn-cgi/l/email-protection#620a070e0e0d2208150f120a0d160d4c010d0f" class="ft-contact-val"><span class="__cf_email__" data-cfemail="e088858c8c8fa08a978d90888f948fce838f8d">[email&#160;protected]</span></a>
+                    </div>
+                </div>
+                <div class="ft-contact-item">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7B4422" stroke-width="2" style="flex-shrink:0;margin-top:3px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <div>
+                        <div class="ft-contact-label">Based In</div>
+                        <span class="ft-contact-val" style="cursor:default;">Texas, USA &middot; Nationwide</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <a href="https://diamondbackcoding.com" target="_blank" rel="noopener" class="ft-built">
-            <span>Built by&nbsp;</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="flex-shrink:0;opacity:0.85;">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                <line x1="12" y1="22.08" x2="12" y2="12"/>
-            </svg>
-            <strong>&nbsp;Diamondback Coding</strong>
-        </a>
-    </div>
-</footer>
+
+        <!-- Payment -->
+        <div class="ft-payment">
+            <span class="ft-payment-label">We Accept</span>
+            <div class="ft-payment-badges">
+                <div class="ft-pay-badge"><svg viewBox="0 0 72 24" width="42" height="14" xmlns="http://www.w3.org/2000/svg"><text x="0" y="18" font-family="Arial,sans-serif" font-size="20" font-weight="900" fill="rgba(255,255,255,0.35)" letter-spacing="-1">VISA</text></svg></div>
+                <div class="ft-pay-badge"><svg viewBox="0 0 52 32" width="34" height="22" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="16" r="14" fill="#EB001B" opacity="0.7"/><circle cx="34" cy="16" r="14" fill="#F79E1B" opacity="0.7"/><path d="M26 5.4a14 14 0 0 1 0 21.2A14 14 0 0 1 26 5.4z" fill="#FF5F00" opacity="0.7"/></svg></div>
+                <div class="ft-pay-badge"><svg viewBox="0 0 80 24" width="46" height="14" xmlns="http://www.w3.org/2000/svg"><text x="0" y="18" font-family="Arial,sans-serif" font-size="14" font-weight="800" fill="rgba(255,255,255,0.35)" letter-spacing="2">AMEX</text></svg></div>
+                <div class="ft-pay-badge"><svg viewBox="0 0 90 28" width="58" height="16" xmlns="http://www.w3.org/2000/svg"><text x="0" y="20" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="rgba(255,255,255,0.35)">DISCOVER</text><circle cx="80" cy="14" r="8" fill="#F76F20" opacity="0.7"/></svg></div>
+                <div class="ft-pay-badge"><svg viewBox="0 0 86 24" width="50" height="14" xmlns="http://www.w3.org/2000/svg"><text x="0" y="18" font-family="Arial,sans-serif" font-size="16" font-weight="800" fill="#009CDE" opacity="0.7">Pay</text><text x="34" y="18" font-family="Arial,sans-serif" font-size="16" font-weight="800" fill="#003087" opacity="0.7">Pal</text></svg></div>
+                <div class="ft-pay-badge" style="gap:6px;">
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.8"><rect x="3" y="10" width="18" height="10" rx="2"/><path d="M3 10l9-7 9 7"/><line x1="12" y1="10" x2="12" y2="20"/><line x1="7" y1="10" x2="7" y2="20"/><line x1="17" y1="10" x2="17" y2="20"/></svg>
+                    <span style="font-size:10px;font-weight:600;color:rgba(255,255,255,0.25);letter-spacing:0.5px;">Wire</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="ft-bottom">
+            <p class="ft-copy">© 2026 JWM Photography, Inc. — All rights reserved.</p>
+            <div class="ft-legal">
+                <a href="privacy_policy.html" class="ft-legal-link">Privacy Policy</a>
+                <a href="terms_of_service.html" class="ft-legal-link">Terms of Service</a>
+                <a href="sitemap.html" class="ft-legal-link">Sitemap</a>
+            </div>
+            <a href="https://diamondbackcoding.com" target="_blank" rel="noopener" class="ft-built">
+                <span>Built by&nbsp;</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="flex-shrink:0;opacity:0.85;">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                    <line x1="12" y1="22.08" x2="12" y2="12"/>
+                </svg>
+                <strong>&nbsp;Diamondback Coding</strong>
+            </a>
+        </div>
+
+    </footer>
 
 <!-- BACK TO TOP — up arrow SVG, same as index.html -->
 <button class="btt-btn" id="bttBtn" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
 
-<!-- BOOKING MODAL — Two-column layout matching index.html -->
-<div class="modal-overlay" id="bookingModal">
-    <div class="modal-content">
-        <!-- LEFT PANEL -->
-        <div class="modal-left">
-            <div class="modal-left-deco"></div>
-            <div class="modal-eyebrow">JWM Photography</div>
-            <div class="modal-left-title">Let's make something <em>unforgettable.</em></div>
-            <div class="modal-left-sub">Fill out the form and we'll be in touch within 24 hours to discuss your project.</div>
-            <div class="modal-trust-row">
-                <div class="modal-trust-item">
-                    <div class="modal-trust-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.31 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.2 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    </div>
-                    <div>
-                        <div class="modal-trust-label">Response Within 24 Hours</div>
-                        <div class="modal-trust-sub">We personally review every request</div>
-                    </div>
-                </div>
-                <div class="modal-trust-item">
-                    <div class="modal-trust-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    </div>
-                    <div>
-                        <div class="modal-trust-label">No Commitment Required</div>
-                        <div class="modal-trust-sub">Free consultation, no obligation</div>
-                    </div>
-                </div>
-                <div class="modal-trust-item">
-                    <div class="modal-trust-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </div>
-                    <div>
-                        <div class="modal-trust-label">Nationwide Coverage</div>
-                        <div class="modal-trust-sub">Texas based, available everywhere</div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-contact-links">
-                <a href="tel:+15129800393" class="modal-contact-link">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.31 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.2 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    (512) 980-0393
-                </a>
-                <a href="/cdn-cgi/l/email-protection#fd9598919192bd978a908d95928992d39e9290" class="modal-contact-link">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    <span class="__cf_email__" data-cfemail="5b333e3737341b312c362b33342f3475383436">[email&#160;protected]</span>
-                </a>
-            </div>
-        </div>
-        <!-- RIGHT PANEL -->
-        <div class="modal-right">
-            <div class="modal-right-header">
-                <div class="modal-right-title">Book a <span>Session</span></div>
-                <button class="modal-close-btn" onclick="closeBookingModal()">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                </button>
-            </div>
-            <div class="modal-service-label">What are you interested in?</div>
-            <div class="modal-service-chips" id="bkServiceChips">
-                <div class="modal-chip" onclick="selectBkChip(this,'Portrait &amp; Headshot')">Portrait</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Commercial &amp; Brand')">Commercial</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Event &amp; Wedding')">Events / Wedding</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Aerial &amp; Drone')">Aerial / Drone</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Cinematic Video Production')">Video</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Real Estate Photography')">Real Estate</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Wildlife &amp; Western')">Western / Ranch</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Other')">Other</div>
-            </div>
-            <div class="modal-field-row">
-                <div class="modal-field">
-                    <input type="text" id="bkFirstName" placeholder=" ">
-                    <label>First Name</label>
-                </div>
-                <div class="modal-field">
-                    <input type="text" id="bkLastName" placeholder=" ">
-                    <label>Last Name</label>
-                </div>
-            </div>
-            <div class="modal-field">
-                <input type="email" id="bkEmail" placeholder=" ">
-                <label>Email Address</label>
-            </div>
-            <div class="modal-field-row">
-                <div class="modal-field">
-                    <input type="tel" id="bkPhone" placeholder=" ">
-                    <label>Phone Number</label>
-                </div>
-                <div class="modal-field">
-                    <input type="text" id="bkService" placeholder=" ">
-                    <label>Preferred Date / Timeframe</label>
-                </div>
-            </div>
-            <div class="modal-field">
-                <textarea id="bkNotes" placeholder=" "></textarea>
-                <label>Tell us about your project</label>
-            </div>
-            <button class="modal-submit-btn" onclick="submitBooking()">
-                Send Booking Request
-                <div class="btn-arrow">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </div>
-            </button>
-            <div class="modal-submit-note">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                Your information is kept private and never shared.
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <!-- CART DRAWER -->
 <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
@@ -4478,7 +4748,6 @@ function selectBkChip(el, service) {
 }
 function openBookingModal(service) {
     if (service) {
-        // Pre-select matching chip
         document.querySelectorAll('#bkServiceChips .modal-chip').forEach(c => {
             if (c.textContent.trim().toLowerCase().includes(service.toLowerCase().split(' ')[0]) || service.toLowerCase().includes(c.getAttribute('onclick').split("'")[1].toLowerCase().split(' ')[0])) {
                 c.classList.add('selected');
@@ -4487,12 +4756,45 @@ function openBookingModal(service) {
         const svcInput = document.getElementById('bkService');
         if (svcInput) svcInput.value = service;
     }
-    document.getElementById('bookingModal').classList.add('active');
+    const overlay = document.getElementById('bookingModal');
+    overlay.style.display = 'flex';
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.right = '0';
+    overlay.style.bottom = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.zIndex = '2147483647';
+    overlay.style.alignItems = 'center';
+    overlay.style.justifyContent = 'center';
+    overlay.style.background = 'rgba(0,0,0,0.75)';
+    overlay.style.padding = '20px';
+    overlay.style.boxSizing = 'border-box';
+    overlay.style.backdropFilter = 'blur(6px)';
+    overlay.style.webkitBackdropFilter = 'blur(6px)';
     document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    window.scrollTo(0, 0);
 }
 function closeBookingModal() {
-    document.getElementById('bookingModal').classList.remove('active');
+    const overlay = document.getElementById('bookingModal');
+    overlay.style.display = 'none';
+    overlay.style.position = '';
+    overlay.style.top = '';
+    overlay.style.left = '';
+    overlay.style.width = '';
+    overlay.style.height = '';
+    overlay.style.zIndex = '';
+    overlay.style.alignItems = '';
+    overlay.style.justifyContent = '';
+    overlay.style.background = '';
+    overlay.style.padding = '';
+    overlay.style.boxSizing = '';
+    overlay.style.backdropFilter = '';
+    overlay.style.webkitBackdropFilter = '';
     document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
 }
 document.getElementById('bookingModal').addEventListener('click', function(e) { if (e.target === this) closeBookingModal(); });
 document.getElementById('itemDetailOverlay').addEventListener('click', function(e) { if (e.target === this) closeItemDetail(); });
@@ -4527,6 +4829,11 @@ function switchTab(tab) {
     const isServices = tab === 'services';
     document.getElementById('servicesSection').style.display = isServices ? 'block' : 'none';
     document.getElementById('printsSection').style.display = isServices ? 'none' : 'block';
+    const hiw = document.getElementById('hiwSection');
+    const howPrints = document.getElementById('howPrintsSection');
+    if (hiw) hiw.style.display = isServices ? 'block' : 'none';
+    if (howPrints) howPrints.style.display = isServices ? 'none' : 'block';
+    if (!isServices) { renderPrints(printsData); }
     document.getElementById('tabServices').classList.toggle('active', isServices);
     document.getElementById('tabPrints').classList.toggle('active', !isServices);
     history.replaceState(null, '', isServices ? '#services' : '#prints');
@@ -4712,7 +5019,7 @@ window.addEventListener('scroll', function() {
 // ═══════════════════════════════════════════
 // MOBILE MENU
 // ═══════════════════════════════════════════
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
     var btn = document.getElementById('mobileMenuBtn');
     var navLinks = document.querySelector('.nav-links');
     if (!btn || !navLinks) return;
@@ -4720,19 +5027,24 @@ window.addEventListener('scroll', function() {
         e.stopPropagation();
         btn.classList.toggle('active');
         navLinks.classList.toggle('active');
+        document.body.classList.toggle('nav-open');
     });
     document.addEventListener('click', function(e) {
         if (!e.target.closest('nav')) {
             btn.classList.remove('active');
             navLinks.classList.remove('active');
+            document.body.classList.remove('nav-open');
         }
     });
     navLinks.querySelectorAll('.has-dropdown').forEach(function(item) {
-        item.addEventListener('click', function(e) {
-            if (window.innerWidth <= 900) { e.preventDefault(); item.classList.toggle('active'); }
+        item.querySelector('a').addEventListener('click', function(e) {
+            if (window.innerWidth <= 900) {
+                e.preventDefault();
+                item.classList.toggle('active');
+            }
         });
     });
-})();
+});
 
 // ═══════════════════════════════════════════
 // CARD REVEAL
@@ -4757,28 +5069,40 @@ function observeCards() {
 document.addEventListener('DOMContentLoaded', function() {
     // ── Multi-video hero cycle ──
     const heroVids = Array.from(document.querySelectorAll('.hero-vid'));
-    if (heroVids.length > 1) {
+    if (heroVids.length >= 1) {
         let currentVid = 0;
-        heroVids[0].play().catch(() => {});
+        // Remove loop from all — we handle looping manually via 'ended'
+        heroVids.forEach(function(v) { v.loop = false; v.removeAttribute('loop'); });
+        // Re-add loop ONLY to vid0 as safety fallback
+        heroVids[0].loop = false;
+
+        function playVid(idx) {
+            heroVids.forEach(function(v, i) {
+                v.classList.toggle('hero-vid-active', i === idx);
+            });
+            heroVids[idx].currentTime = 0;
+            heroVids[idx].play().catch(function() {
+                // This source failed — skip to next or restart from 0
+                var next = (idx + 1) % heroVids.length;
+                if (next === idx) {
+                    // Only one video, just loop it
+                    heroVids[0].loop = true;
+                    heroVids[0].play().catch(() => {});
+                } else {
+                    currentVid = next;
+                    playVid(next);
+                }
+            });
+        }
+
         heroVids.forEach(function(vid, i) {
             vid.addEventListener('ended', function() {
-                heroVids[currentVid].classList.remove('hero-vid-active');
                 currentVid = (currentVid + 1) % heroVids.length;
-                const next = heroVids[currentVid];
-                next.currentTime = 0;
-                next.classList.add('hero-vid-active');
-                next.play().catch(function() {
-                    // If next video source not found, restart from video 0
-                    currentVid = 0;
-                    heroVids[0].classList.add('hero-vid-active');
-                    heroVids[0].currentTime = 0;
-                    heroVids[0].play().catch(() => {});
-                });
+                playVid(currentVid);
             });
         });
-    } else if (heroVids.length === 1) {
-        heroVids[0].loop = true;
-        heroVids[0].play().catch(() => {});
+
+        playVid(0);
     }
     loadCart();
     updateCartUI();
@@ -4947,5 +5271,115 @@ document.getElementById('chatbotInput').addEventListener('keypress', function(e)
     window.addEventListener('scroll', function(){ btn.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
 })();
 </script>
+
+<!-- BOOKING MODAL -->
+<div class="modal-overlay" id="bookingModal">
+    <div class="modal-content">
+        <!-- LEFT PANEL -->
+        <div class="modal-left">
+            <div class="modal-left-deco"></div>
+            <div class="modal-eyebrow">JWM Photography</div>
+            <div class="modal-left-title">Let's make something <em>unforgettable.</em></div>
+            <div class="modal-left-sub">Fill out the form and we'll be in touch within 24 hours to discuss your project.</div>
+            <div class="modal-trust-row">
+                <div class="modal-trust-item">
+                    <div class="modal-trust-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.31 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.2 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <div>
+                        <div class="modal-trust-label">Response Within 24 Hours</div>
+                        <div class="modal-trust-sub">We personally review every request</div>
+                    </div>
+                </div>
+                <div class="modal-trust-item">
+                    <div class="modal-trust-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <div>
+                        <div class="modal-trust-label">No Commitment Required</div>
+                        <div class="modal-trust-sub">Free consultation, no obligation</div>
+                    </div>
+                </div>
+                <div class="modal-trust-item">
+                    <div class="modal-trust-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <div>
+                        <div class="modal-trust-label">Nationwide Coverage</div>
+                        <div class="modal-trust-sub">Texas based, available everywhere</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-contact-links">
+                <a href="tel:+15129800393" class="modal-contact-link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.31 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.2 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    (512) 980-0393
+                </a>
+                <a href="/cdn-cgi/l/email-protection#fd9598919192bd978a908d95928992d39e9290" class="modal-contact-link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <span class="__cf_email__" data-cfemail="5b333e3737341b312c362b33342f3475383436">[email&#160;protected]</span>
+                </a>
+            </div>
+        </div>
+        <!-- RIGHT PANEL -->
+        <div class="modal-right">
+            <div class="modal-right-header">
+                <div class="modal-right-title">Book a <span>Session</span></div>
+                <button class="modal-close-btn" onclick="closeBookingModal()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="modal-service-label">What are you interested in?</div>
+            <div class="modal-service-chips" id="bkServiceChips">
+                <div class="modal-chip" onclick="selectBkChip(this,'Portrait &amp; Headshot')">Portrait</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Commercial &amp; Brand')">Commercial</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Event &amp; Wedding')">Events / Wedding</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Aerial &amp; Drone')">Aerial / Drone</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Cinematic Video Production')">Video</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Real Estate Photography')">Real Estate</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Wildlife &amp; Western')">Western / Ranch</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Other')">Other</div>
+            </div>
+            <div class="modal-field-row">
+                <div class="modal-field">
+                    <input type="text" id="bkFirstName" placeholder=" ">
+                    <label>First Name</label>
+                </div>
+                <div class="modal-field">
+                    <input type="text" id="bkLastName" placeholder=" ">
+                    <label>Last Name</label>
+                </div>
+            </div>
+            <div class="modal-field">
+                <input type="email" id="bkEmail" placeholder=" ">
+                <label>Email Address</label>
+            </div>
+            <div class="modal-field-row">
+                <div class="modal-field">
+                    <input type="tel" id="bkPhone" placeholder=" ">
+                    <label>Phone Number</label>
+                </div>
+                <div class="modal-field">
+                    <input type="text" id="bkService" placeholder=" ">
+                    <label>Preferred Date / Timeframe</label>
+                </div>
+            </div>
+            <div class="modal-field">
+                <textarea id="bkNotes" placeholder=" "></textarea>
+                <label>Tell us about your project</label>
+            </div>
+            <button class="modal-submit-btn" onclick="submitBooking()">
+                Send Booking Request
+                <div class="btn-arrow">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </div>
+            </button>
+            <div class="modal-submit-note">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Your information is kept private and never shared.
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
