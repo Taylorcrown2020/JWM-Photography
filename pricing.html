@@ -279,20 +279,24 @@ nav.nav-solid {
     font-style: normal !important;
 }
 .nav-cta-btn {
-    background: #000 !important;
-    color: #fff !important;
-    border: 1px solid #000 !important;
+    background: transparent !important;
+    color: #f4c87e !important;
     padding: 11px 28px !important;
     font-size: 11px !important;
     font-weight: 700 !important;
     letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+    border: 1px solid rgba(244,200,126,0.4) !important;
+    cursor: pointer !important;
     border-radius: 6px !important;
+    transition: all 0.3s !important;
     font-family: 'Inter', sans-serif !important;
 }
 .nav-cta-btn:hover {
-    background: var(--leather-deeper) !important;
-    border-color: var(--leather-deeper) !important;
-    color: #fff !important;
+    background: #f4c87e !important;
+    color: #000 !important;
+    border-color: #f4c87e !important;
+    box-shadow: 0 0 20px rgba(244,200,126,0.25) !important;
 }
 .dropdown-divider {
     height: 1px;
@@ -356,23 +360,24 @@ nav.nav-solid {
 
 /* NAV CTA — Exact match to index.html */
 .nav-cta-btn {
-    background: #000;
-    color: #fff;
+    background: transparent;
+    color: #f4c87e;
     padding: 11px 28px;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    border: 1px solid #000;
+    border: 1px solid rgba(244,200,126,0.4);
     cursor: pointer;
     border-radius: 6px;
     transition: all 0.3s;
     font-family: 'Inter', sans-serif;
 }
 .nav-cta-btn:hover {
-    background: var(--leather-deeper);
-    border-color: var(--leather-deeper);
-    color: #fff;
+    background: #f4c87e;
+    color: #000;
+    border-color: #f4c87e;
+    box-shadow: 0 0 20px rgba(244,200,126,0.25);
 }
 
 .mobile-menu-btn {
@@ -2262,10 +2267,7 @@ select.form-input { cursor: pointer; }
 .modal-overlay {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: rgba(0,0,0,0.75);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
@@ -2276,16 +2278,16 @@ select.form-input { cursor: pointer; }
     box-sizing: border-box;
 }
 .modal-overlay.active { display: flex; }
-
 .modal-content {
     background: #fff;
     width: 100%;
     max-width: 960px;
-    max-height: 88vh;
+    max-height: calc(100vh - 40px);
     border-radius: 20px;
     overflow: hidden;
     display: grid;
     grid-template-columns: 380px 1fr;
+    grid-template-rows: 1fr;
     position: relative;
     box-shadow: 0 40px 100px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
     animation: modalSlideIn 0.35s cubic-bezier(0.22,1,0.36,1);
@@ -2295,14 +2297,14 @@ select.form-input { cursor: pointer; }
     from { opacity:0; transform: translateY(24px) scale(0.97); }
     to   { opacity:1; transform: translateY(0) scale(1); }
 }
-
 .modal-left {
-    background: linear-gradient(160deg, var(--leather) 0%, var(--leather-dark) 100%);
+    background: linear-gradient(160deg, #7B4422 0%, #4A2510 100%);
     padding: 48px 40px;
     display: flex;
     flex-direction: column;
     position: relative;
     overflow: hidden;
+    min-height: 0;
 }
 .modal-left::before {
     content: '';
@@ -2315,282 +2317,63 @@ select.form-input { cursor: pointer; }
 }
 .modal-left-deco {
     position: absolute;
-    right: -60px;
-    bottom: -60px;
-    width: 260px;
-    height: 260px;
+    right: -60px; bottom: -60px;
+    width: 260px; height: 260px;
     border-radius: 50%;
     border: 1px solid rgba(244,200,126,0.07);
     pointer-events: none;
 }
 .modal-left-deco::before {
-    content: '';
-    position: absolute;
-    inset: 30px;
-    border-radius: 50%;
-    border: 1px solid rgba(244,200,126,0.05);
+    content: ''; position: absolute; inset: 30px;
+    border-radius: 50%; border: 1px solid rgba(244,200,126,0.05);
 }
 .modal-left-deco::after {
-    content: '';
-    position: absolute;
-    inset: 60px;
-    border-radius: 50%;
-    border: 1px solid rgba(244,200,126,0.04);
+    content: ''; position: absolute; inset: 60px;
+    border-radius: 50%; border: 1px solid rgba(244,200,126,0.04);
 }
-.modal-eyebrow {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 3.5px;
-    color: #f4c87e;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    position: relative;
-}
-.modal-left-title {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 34px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.2;
-    margin-bottom: 12px;
-    position: relative;
-}
+.modal-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 3.5px; color: #f4c87e; text-transform: uppercase; margin-bottom: 16px; position: relative; }
+.modal-left-title { font-family: 'Playfair Display', Georgia, serif; font-size: 34px; font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 12px; position: relative; }
 .modal-left-title em { color: #f4c87e; font-style: italic; }
-.modal-left-sub {
-    font-size: 14px;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.65);
-    margin-bottom: 36px;
-    position: relative;
-}
-
-/* Trust badges */
-.modal-trust-row {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 36px;
-    position: relative;
-}
-.modal-trust-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-.modal-trust-icon {
-    width: 36px;
-    height: 36px;
-    background: rgba(244,200,126,0.1);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    color: #f4c87e;
-}
-.modal-trust-label {
-    font-size: 13px;
-    font-weight: 600;
-    color: #ccc;
-}
-.modal-trust-sub {
-    font-size: 11px;
-    color: rgba(255,255,255,0.5);
-    margin-top: 1px;
-}
-
-/* Contact links */
-.modal-contact-links {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: auto;
-    position: relative;
-}
-.modal-contact-link {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: #ccc;
-    font-size: 13px;
-    transition: color 0.2s;
-}
+.modal-left-sub { font-size: 14px; line-height: 1.7; color: #666; margin-bottom: 36px; position: relative; }
+.modal-trust-row { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; position: relative; }
+.modal-trust-item { display: flex; align-items: center; gap: 12px; }
+.modal-trust-icon { width: 36px; height: 36px; background: rgba(244,200,126,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #f4c87e; }
+.modal-trust-label { font-size: 13px; font-weight: 600; color: #ccc; }
+.modal-trust-sub { font-size: 11px; color: #555; margin-top: 1px; }
+.modal-contact-links { display: flex; flex-direction: column; gap: 10px; margin-top: auto; position: relative; }
+.modal-contact-link { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #888; font-size: 13px; transition: color 0.2s; }
 .modal-contact-link:hover { color: #f4c87e; }
 .modal-contact-link svg { flex-shrink: 0; }
-
-/* ── RIGHT PANEL ────────────────────── */
-.modal-right {
-    padding: 48px 44px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-}
-.modal-right-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-bottom: 32px;
-}
-.modal-right-title {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 26px;
-    font-weight: 700;
-    color: #0a0a0a;
-    line-height: 1.2;
-}
+.modal-right { padding: 48px 44px; overflow-y: auto; display: flex; flex-direction: column; min-height: 0; }
+.modal-right-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; }
+.modal-right-title { font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; color: #0a0a0a; line-height: 1.2; }
 .modal-right-title span { color: #f4c87e; }
-.modal-close-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    background: #f5f5f5;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s, transform 0.15s;
-    flex-shrink: 0;
-    margin-left: 16px;
-    color: #666;
-}
+.modal-close-btn { width: 36px; height: 36px; border-radius: 8px; background: #f5f5f5; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, transform 0.15s; flex-shrink: 0; margin-left: 16px; color: #666; }
 .modal-close-btn:hover { background: #e8e8e8; transform: scale(1.05); color: #000; }
-
-/* Service chips */
-.modal-service-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: #999;
-    margin-bottom: 10px;
-}
-.modal-service-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 28px;
-}
-.modal-chip {
-    padding: 8px 14px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 600;
-    border: 1.5px solid #e5e5e5;
-    background: #fafafa;
-    color: #666;
-    cursor: pointer;
-    transition: all 0.2s;
-    user-select: none;
-    line-height: 1;
-}
+.modal-service-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #999; margin-bottom: 10px; }
+.modal-service-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.modal-chip { padding: 8px 14px; border-radius: 6px; font-size: 12px; font-weight: 600; border: 1.5px solid #e5e5e5; background: #fafafa; color: #666; cursor: pointer; transition: all 0.2s; user-select: none; line-height: 1; }
 .modal-chip:hover { border-color: #f4c87e; color: #0a0a0a; background: rgba(244,200,126,0.06); }
 .modal-chip.selected { border-color: #f4c87e; background: rgba(244,200,126,0.1); color: #0a0a0a; font-weight: 700; }
-
-/* Floating label fields */
-.modal-field {
-    position: relative;
-    margin-bottom: 20px;
-}
-.modal-field-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-}
-.modal-field input,
-.modal-field textarea {
-    width: 100%;
-    padding: 22px 16px 10px;
-    font-size: 14px;
-    font-family: 'Inter', sans-serif;
-    border: 1.5px solid #e5e5e5;
-    border-radius: 10px;
-    background: #fafafa;
-    color: #0a0a0a;
-    transition: border-color 0.2s, background 0.2s;
-    outline: none;
-    resize: none;
-}
-.modal-field input:focus,
-.modal-field textarea:focus {
-    border-color: #f4c87e;
-    background: #fff;
-}
-.modal-field label {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    font-size: 13px;
-    color: #aaa;
-    pointer-events: none;
-    transition: all 0.18s cubic-bezier(0.4,0,0.2,1);
-    font-weight: 500;
-}
+.modal-field { position: relative; margin-bottom: 20px; }
+.modal-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.modal-field input, .modal-field textarea { width: 100%; padding: 22px 16px 10px; font-size: 14px; font-family: 'Inter', sans-serif; border: 1.5px solid #e5e5e5; border-radius: 10px; background: #fafafa; color: #0a0a0a; transition: border-color 0.2s, background 0.2s; outline: none; resize: none; }
+.modal-field input:focus, .modal-field textarea:focus { border-color: #f4c87e; background: #fff; }
+.modal-field label { position: absolute; top: 16px; left: 16px; font-size: 13px; color: #aaa; pointer-events: none; transition: all 0.18s cubic-bezier(0.4,0,0.2,1); font-weight: 500; }
 .modal-field input:focus ~ label,
 .modal-field input:not(:placeholder-shown) ~ label,
 .modal-field textarea:focus ~ label,
-.modal-field textarea:not(:placeholder-shown) ~ label {
-    top: 7px;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    color: #f4c87e;
-}
+.modal-field textarea:not(:placeholder-shown) ~ label { top: 7px; font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #f4c87e; }
 .modal-field textarea { min-height: 100px; padding-top: 24px; }
-
-/* Submit button */
-.modal-submit-btn {
-    width: 100%;
-    padding: 16px;
-    background: #0a0a0a;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.25s, transform 0.15s;
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
+.modal-submit-btn { width: 100%; padding: 16px; background: #0a0a0a; color: #fff; border: none; border-radius: 10px; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: background 0.25s, transform 0.15s; margin-top: 8px; display: flex; align-items: center; justify-content: center; gap: 10px; }
 .modal-submit-btn:hover { background: #222; transform: translateY(-1px); }
 .modal-submit-btn:active { transform: translateY(0); }
 .modal-submit-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
-.modal-submit-btn .btn-arrow {
-    width: 28px;
-    height: 28px;
-    background: #f4c87e;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s;
-}
+.modal-submit-btn .btn-arrow { width: 28px; height: 28px; background: #f4c87e; border-radius: 6px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s; }
 .modal-submit-btn:hover .btn-arrow { transform: translateX(3px); }
-.modal-submit-note {
-    text-align: center;
-    font-size: 11px;
-    color: #bbb;
-    margin-top: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-}
-
+.modal-submit-note { text-align: center; font-size: 11px; color: #bbb; margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 5px; }
 @media (max-width: 768px) {
-    .modal-content {
-        grid-template-columns: 1fr;
-        max-height: 96vh;
-        border-radius: 16px;
-    }
+    .modal-content { grid-template-columns: 1fr; max-height: 96vh; border-radius: 16px; }
     .modal-left { display: none; }
     .modal-right { padding: 36px 24px; }
     .modal-field-row { grid-template-columns: 1fr; }
@@ -2828,6 +2611,19 @@ footer ul a:hover, footer p a:hover { color: #f4c87e !important; }
 .btt-btn.visible { opacity: 1; transform: translateY(0); }
 .btt-btn:hover { background: #7B4422; border-color: rgba(244,200,126,0.7); }
 
+/* ── SCROLL REVEAL ── */
+.reveal {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1);
+    will-change: opacity, transform;
+}
+.reveal.reveal-scale { transform: scale(0.94); }
+.reveal.visible {
+    opacity: 1;
+    transform: none;
+}
+
 /* ─── CHATBOT ─── */
 .chatbot-toggle {
     position: fixed;
@@ -2939,13 +2735,13 @@ footer ul a:hover, footer p a:hover { color: #f4c87e !important; }
 
 /* ─── CONTACT CTA SECTION ─── */
 .footer-cta-section {
-    padding: 0;
+    padding: 0 0 80px;
     background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.80) 100%),
                 var(--cta-bg-image) center/cover;
     background-attachment: fixed;
     color: var(--white);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 .footer-cta-section::before {
     content: '';
@@ -2953,6 +2749,7 @@ footer ul a:hover, footer p a:hover { color: #f4c87e !important; }
     top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(0,0,0,0.5);
     z-index: 1;
+    pointer-events: none;
 }
 .footer-cta-wrapper { position: relative; z-index: 2; }
 .footer-cta-hero {
@@ -4607,8 +4404,9 @@ function updateCartUI() {
     if (footer && empty) { footer.style.display = cart.length > 0 ? 'block' : 'none'; empty.style.display = cart.length > 0 ? 'none' : 'flex'; }
 }
 function renderCartItems() {
-    const list = document.getElementById('cartItemsList');
+    const list  = document.getElementById('cartItemsList');
     const empty = document.getElementById('cartEmpty');
+    if (!list) return;
     list.querySelectorAll('.cart-item').forEach(el => el.remove());
     if (cart.length === 0) { if (empty) empty.style.display = 'flex'; return; }
     if (empty) empty.style.display = 'none';
@@ -4799,58 +4597,26 @@ async function submitCheckout() {
 function selectBkChip(el, service) {
     document.querySelectorAll('#bkServiceChips .modal-chip').forEach(c => c.classList.remove('selected'));
     el.classList.add('selected');
-    const svcInput = document.getElementById('bkService');
-    if (svcInput) svcInput.value = service;
+    const hidden = document.getElementById('bkServiceHidden');
+    if (hidden) hidden.value = service;
 }
 function openBookingModal(service) {
     if (service) {
         document.querySelectorAll('#bkServiceChips .modal-chip').forEach(c => {
-            if (c.textContent.trim().toLowerCase().includes(service.toLowerCase().split(' ')[0]) || service.toLowerCase().includes(c.getAttribute('onclick').split("'")[1].toLowerCase().split(' ')[0])) {
+            c.classList.remove('selected');
+            if (c.textContent.trim().toLowerCase().includes(service.toLowerCase().split(' ')[0])) {
                 c.classList.add('selected');
+                const hidden = document.getElementById('bkServiceHidden');
+                if (hidden) hidden.value = service;
             }
         });
-        const svcInput = document.getElementById('bkService');
-        if (svcInput) svcInput.value = service;
     }
-    const overlay = document.getElementById('bookingModal');
-    overlay.style.display = 'flex';
-    overlay.style.position = 'fixed';
-    overlay.style.top = '0';
-    overlay.style.left = '0';
-    overlay.style.right = '0';
-    overlay.style.bottom = '0';
-    overlay.style.width = '100%';
-    overlay.style.height = '100%';
-    overlay.style.zIndex = '2147483647';
-    overlay.style.alignItems = 'center';
-    overlay.style.justifyContent = 'center';
-    overlay.style.background = 'rgba(0,0,0,0.75)';
-    overlay.style.padding = '20px';
-    overlay.style.boxSizing = 'border-box';
-    overlay.style.backdropFilter = 'blur(6px)';
-    overlay.style.webkitBackdropFilter = 'blur(6px)';
+    document.getElementById('bookingModal').classList.add('active');
     document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
-    window.scrollTo(0, 0);
 }
 function closeBookingModal() {
-    const overlay = document.getElementById('bookingModal');
-    overlay.style.display = 'none';
-    overlay.style.position = '';
-    overlay.style.top = '';
-    overlay.style.left = '';
-    overlay.style.width = '';
-    overlay.style.height = '';
-    overlay.style.zIndex = '';
-    overlay.style.alignItems = '';
-    overlay.style.justifyContent = '';
-    overlay.style.background = '';
-    overlay.style.padding = '';
-    overlay.style.boxSizing = '';
-    overlay.style.backdropFilter = '';
-    overlay.style.webkitBackdropFilter = '';
+    document.getElementById('bookingModal').classList.remove('active');
     document.body.style.overflow = '';
-    document.documentElement.style.overflow = '';
 }
 document.getElementById('bookingModal').addEventListener('click', function(e) { if (e.target === this) closeBookingModal(); });
 document.getElementById('itemDetailOverlay').addEventListener('click', function(e) { if (e.target === this) closeItemDetail(); });
@@ -4861,21 +4627,43 @@ document.addEventListener('keydown', function(e) {
         closeBookingModal(); closeItemDetail(); closeServiceDetail(); closeCheckout(); closeCart();
     }
 });
-async function submitBooking() {
-    const firstName = document.getElementById('bkFirstName').value.trim();
-    const email = document.getElementById('bkEmail').value.trim();
-    const service = document.getElementById('bkService').value.trim();
-    if (!firstName || !email) { alert('Please fill in your name and email.'); return; }
-    const data = {
-        firstName, lastName: document.getElementById('bkLastName').value.trim(),
-        email, phone: document.getElementById('bkPhone').value.trim(),
-        service, notes: document.getElementById('bkNotes').value.trim()
+async function submitBooking(event) {
+    if (event) event.preventDefault();
+    const submitBtn = document.getElementById('bkSubmitBtn');
+    const originalHTML = submitBtn.innerHTML;
+    const fullName = document.getElementById('bkFullName').value.trim();
+    const nameParts = fullName.split(' ');
+    const formData = {
+        firstName: nameParts[0] || 'Unknown',
+        lastName:  nameParts.slice(1).join(' ') || '',
+        email:     document.getElementById('bkEmail').value.trim(),
+        phone:     document.getElementById('bkPhone').value.trim(),
+        service:   document.getElementById('bkServiceHidden').value,
+        notes:     document.getElementById('bkNotes').value.trim()
     };
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>Sending...</span>';
     try {
-        await fetch('/api/booking', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) });
-    } catch(e) {}
-    closeBookingModal();
-    alert('Thank you! We received your booking request and will be in touch within 24 hours.');
+        const response = await fetch('/api/booking', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        });
+        const data = await response.json();
+        if (data.ok) {
+            closeBookingModal();
+            document.getElementById('bookingForm').reset();
+            document.querySelectorAll('#bkServiceChips .modal-chip').forEach(c => c.classList.remove('selected'));
+        } else {
+            alert('Error: ' + (data.message || 'Something went wrong. Please try again.'));
+        }
+    } catch (error) {
+        closeBookingModal();
+        alert("Thank you! We'll be in touch within 24 hours.");
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalHTML;
+    }
 }
 
 // ═══════════════════════════════════════════
@@ -4892,7 +4680,7 @@ function switchTab(tab) {
     if (!isServices) { renderPrints(printsData); }
     document.getElementById('tabServices').classList.toggle('active', isServices);
     document.getElementById('tabPrints').classList.toggle('active', !isServices);
-    history.replaceState(null, '', isServices ? '#services' : '#prints');
+    try { history.replaceState(null, '', isServices ? '#services' : '#prints'); } catch(e) {}
     // Swap FAQ dataset and re-render
     currentFaqData = isServices ? faqServices : faqPrints;
     renderFAQ();
@@ -4907,92 +4695,118 @@ function switchTab(tab) {
 // FILTER — SERVICES
 // ═══════════════════════════════════════════
 function filterServices(cat, btn) {
-    // Toggle: if already active, deselect back to 'all'
     if (btn.classList.contains('active') && cat !== 'all') {
         clearServiceFilters();
         return;
     }
     document.querySelectorAll('#servicesSidebar .filter-option').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const cards = document.querySelectorAll('#servicesContent .service-card');
+
     let count = 0;
-    cards.forEach(card => {
+
+    // Show/hide individual cards
+    document.querySelectorAll('#servicesContent .service-card').forEach(card => {
         const cats = card.getAttribute('data-category') || '';
         const show = cat === 'all' || cats.includes(cat);
         card.style.display = show ? '' : 'none';
         if (show) count++;
     });
+
+    // Show/hide entire service blocks based on whether they have any visible cards
+    document.querySelectorAll('#servicesContent .services-block').forEach(block => {
+        const hasVisible = Array.from(block.querySelectorAll('.service-card'))
+            .some(c => c.style.display !== 'none');
+        block.style.display = hasVisible ? '' : 'none';
+    });
+
     // Show/hide video divider
     const vd = document.getElementById('videoDivider');
     if (vd) vd.style.display = (cat === 'all' || cat === 'videography') ? '' : 'none';
-    document.getElementById('servicesFilterCount').textContent = `Showing ${count} service${count !== 1 ? 's' : ''}`;
+
+    document.getElementById('servicesFilterCount').textContent =
+        count > 0 ? `Showing ${count} service${count !== 1 ? 's' : ''}` : 'No services match this filter';
 }
 function filterServicesByPrice(min, max, btn) {
-    // Toggle: if already active, clear
     if (btn.classList.contains('active')) {
         clearServiceFilters();
         return;
     }
     document.querySelectorAll('#servicesSidebar .filter-option').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const cards = document.querySelectorAll('#servicesContent .service-card');
+
     let count = 0;
-    cards.forEach(card => {
+
+    document.querySelectorAll('#servicesContent .service-card').forEach(card => {
         const p = parseInt(card.getAttribute('data-price') || '0');
         const show = p >= min && p <= max;
         card.style.display = show ? '' : 'none';
         if (show) count++;
     });
-    document.getElementById('servicesFilterCount').textContent = `Showing ${count} service${count !== 1 ? 's' : ''}`;
+
+    // Show/hide entire blocks
+    document.querySelectorAll('#servicesContent .services-block').forEach(block => {
+        const hasVisible = Array.from(block.querySelectorAll('.service-card'))
+            .some(c => c.style.display !== 'none');
+        block.style.display = hasVisible ? '' : 'none';
+    });
+
+    // Always hide divider when price filtering
+    const vd = document.getElementById('videoDivider');
+    if (vd) vd.style.display = '';
+
+    document.getElementById('servicesFilterCount').textContent =
+        count > 0 ? `Showing ${count} service${count !== 1 ? 's' : ''}` : 'No services match this filter';
 }
 function clearServiceFilters() {
     document.querySelectorAll('#servicesSidebar .filter-option').forEach(b => b.classList.remove('active'));
     document.querySelector('#servicesSidebar .filter-option').classList.add('active');
+
+    // Show all cards and all blocks
     document.querySelectorAll('#servicesContent .service-card').forEach(c => c.style.display = '');
+    document.querySelectorAll('#servicesContent .services-block').forEach(b => b.style.display = '');
+
     const vd = document.getElementById('videoDivider');
     if (vd) vd.style.display = '';
-    const total = document.querySelectorAll('#servicesContent .service-card').length;
-    document.getElementById('servicesFilterCount').textContent = `Showing all services`;
+
+    document.getElementById('servicesFilterCount').textContent = 'Showing all services';
 }
 
 // ═══════════════════════════════════════════
 // FILTER — PRINTS
 // ═══════════════════════════════════════════
-let currentPrintFilter = 'all';
-let currentPrintPriceMin = 0, currentPrintPriceMax = 99999;
+var currentPrintTag = 'all';
+var currentPrintPriceMin = 0;
+var currentPrintPriceMax = 99999;
+
+// Collect all print filter buttons once the DOM is ready
+function getPrintTagBtns()   { return Array.from(document.querySelectorAll('#printsSidebar .filter-option')).filter(b => b.onclick && b.getAttribute('onclick') && b.getAttribute('onclick').includes('filterPrints(')); }
+function getPrintPriceBtns() { return Array.from(document.querySelectorAll('#printsSidebar .filter-option')).filter(b => b.getAttribute('onclick') && b.getAttribute('onclick').includes('filterPrintsByPrice')); }
 
 function filterPrints(tag, btn) {
-    // Toggle: if already active and not 'all', deselect
-    if (btn.classList.contains('active') && tag !== 'all') {
-        document.querySelectorAll('#printsSidebar .filter-group:nth-child(2) .filter-option, #printsSidebar .filter-group:nth-child(4) .filter-option').forEach(b => b.classList.remove('active'));
-        document.querySelector('#printsSidebar .filter-option').classList.add('active');
-        currentPrintFilter = 'all';
-        applyPrintFilters();
-        return;
-    }
-    document.querySelectorAll('#printsSidebar .filter-group:nth-child(2) .filter-option, #printsSidebar .filter-group:nth-child(4) .filter-option').forEach(b => b.classList.remove('active'));
+    // Clear all tag buttons, then activate this one
+    getPrintTagBtns().forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    currentPrintFilter = tag;
+    currentPrintTag = tag;
     applyPrintFilters();
 }
 function filterPrintsByPrice(min, max, btn) {
-    // Toggle: if already active, clear price filter
-    if (btn.classList.contains('active')) {
-        document.querySelectorAll('#printsSidebar .filter-group:nth-child(3) .filter-option').forEach(b => b.classList.remove('active'));
+    const wasActive = btn.classList.contains('active');
+    // Clear all price buttons
+    getPrintPriceBtns().forEach(b => b.classList.remove('active'));
+    if (wasActive) {
+        // Toggle off
         currentPrintPriceMin = 0;
         currentPrintPriceMax = 99999;
-        applyPrintFilters();
-        return;
+    } else {
+        btn.classList.add('active');
+        currentPrintPriceMin = min;
+        currentPrintPriceMax = max;
     }
-    document.querySelectorAll('#printsSidebar .filter-group:nth-child(3) .filter-option').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentPrintPriceMin = min;
-    currentPrintPriceMax = max;
     applyPrintFilters();
 }
 function applyPrintFilters() {
-    let filtered = printsData.filter(p => {
-        const tagMatch = currentPrintFilter === 'all' || p.tags.includes(currentPrintFilter);
+    const filtered = printsData.filter(function(p) {
+        const tagMatch = currentPrintTag === 'all' || (Array.isArray(p.tags) && p.tags.includes(currentPrintTag));
         const priceMatch = p.price >= currentPrintPriceMin && p.price <= currentPrintPriceMax;
         return tagMatch && priceMatch;
     });
@@ -5002,10 +4816,10 @@ function applyPrintFilters() {
 function clearPrintFilters() {
     document.querySelectorAll('#printsSidebar .filter-option').forEach(b => b.classList.remove('active'));
     document.querySelector('#printsSidebar .filter-option').classList.add('active');
-    currentPrintFilter = 'all';
+    currentPrintTag = 'all';
     currentPrintPriceMin = 0;
     currentPrintPriceMax = 99999;
-    renderPrints(printsData);
+    applyPrintFilters();
 }
 function updatePrintsCount(count) {
     const el = document.getElementById('printsFilterCount');
@@ -5104,6 +4918,7 @@ const faqPrints = [
 let currentFaqData = faqServices;
 function renderFAQ() {
     const list = document.getElementById('faqList');
+    if (!list) return;
     list.innerHTML = currentFaqData.map((item, i) => `
         <div class="faq-item" id="faq${i}">
             <button class="faq-question" onclick="toggleFAQ(${i})">
@@ -5115,6 +4930,12 @@ function renderFAQ() {
             </div>
         </div>
     `).join('');
+}
+// Failsafe: call renderFAQ as soon as this script executes (DOM already parsed)
+if (document.readyState !== 'loading') {
+    renderFAQ();
+} else {
+    document.addEventListener('DOMContentLoaded', renderFAQ);
 }
 function toggleFAQ(i) {
     const item = document.getElementById('faq' + i);
@@ -5271,19 +5092,75 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-/* ── Keep cart in sync across page navigation ── */
-/* pageshow fires on both fresh loads AND bfcache restores (back/forward) */
-window.addEventListener('pageshow', function() {
-    loadCart(); updateCartUI(); renderCartItems();
+/* ── SCROLL REVEAL OBSERVER ── */
+(function() {
+    var revealSelectors = [
+        '.faq-item',
+        '.faq-heading',
+        '.how-it-works-section',
+        '.how-prints-section',
+        '.footer-cta-section',
+        '.section-header',
+        '.tab-selector-section',
+    ];
+
+    function applyReveal() {
+        revealSelectors.forEach(function(sel) {
+            document.querySelectorAll(sel).forEach(function(el) {
+                if (!el.classList.contains('reveal')) {
+                    el.classList.add('reveal');
+                }
+            });
+        });
+    }
+
+    var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                var el = entry.target;
+                var siblings = Array.from((el.parentElement || document.body).querySelectorAll('.reveal:not(.visible)'));
+                var idx = siblings.indexOf(el);
+                var delay = Math.min(idx * 70, 350);
+                setTimeout(function() { el.classList.add('visible'); }, delay);
+                io.unobserve(el);
+            }
+        });
+    }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+
+    function observe() {
+        applyReveal();
+        document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', observe);
+    } else {
+        setTimeout(observe, 120);
+    }
+})();
+
+/* ── CART SYNC — fires on every possible navigation/focus event ── */
+function syncCart() {
+    loadCart();
+    updateCartUI();
+    renderCartItems();
+}
+
+/* Fresh page load or bfcache restore */
+window.addEventListener('pageshow', function(e) { syncCart(); });
+
+/* Tab becomes visible after being in background */
+document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'visible') { syncCart(); }
 });
-/* Sync when localStorage is written by another tab/page */
+
+/* localStorage written by another tab or same-page action */
 window.addEventListener('storage', function(e) {
-    if (e.key === 'jwm_cart') { loadCart(); updateCartUI(); renderCartItems(); }
+    if (e.key === 'jwm_cart' || e.key === null) { syncCart(); }
 });
-/* Sync when window regains focus after being in the background */
-window.addEventListener('focus', function() {
-    loadCart(); updateCartUI(); renderCartItems();
-});
+
+/* Window regains focus */
+window.addEventListener('focus', function() { syncCart(); });
 </script>
 
 <!-- CHATBOT -->
@@ -5400,18 +5277,23 @@ document.querySelectorAll('.quick-action-btn').forEach(btn => {
         setTimeout(() => addBotMessage(quickResponses[action]), 500);
     });
 });
-document.getElementById('chatbotSendBtn').addEventListener('click', function() {
-    const input = document.getElementById('chatbotInput');
-    const message = input.value.trim();
-    if (message) {
-        addUserMessage(message);
-        input.value = '';
-        setTimeout(() => addBotMessage("Great question! For the fastest answer, call us at (512) 980-0393 or email hello@jwmphoto.com — we'd love to chat about your photography needs!"), 1000);
-    }
-});
-document.getElementById('chatbotInput').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') document.getElementById('chatbotSendBtn').click();
-});
+var _sendBtn = document.getElementById('chatbotSendBtn');
+var _chatInput = document.getElementById('chatbotInput');
+if (_sendBtn) {
+    _sendBtn.addEventListener('click', function() {
+        var msg = _chatInput ? _chatInput.value.trim() : '';
+        if (msg) {
+            addUserMessage(msg);
+            _chatInput.value = '';
+            setTimeout(() => addBotMessage("Great question! For the fastest answer, call us at (512) 980-0393 or email hello@jwmphoto.com — we'd love to chat about your photography needs!"), 1000);
+        }
+    });
+}
+if (_chatInput) {
+    _chatInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && _sendBtn) _sendBtn.click();
+    });
+}
 
 /* BACK TO TOP */
 (function(){
@@ -5424,110 +5306,126 @@ document.getElementById('chatbotInput').addEventListener('keypress', function(e)
 <!-- BOOKING MODAL -->
 <div class="modal-overlay" id="bookingModal">
     <div class="modal-content">
-        <!-- LEFT PANEL -->
+
+        <!-- LEFT INFO PANEL -->
         <div class="modal-left">
             <div class="modal-left-deco"></div>
             <div class="modal-eyebrow">JWM Photography</div>
-            <div class="modal-left-title">Let's make something <em>unforgettable.</em></div>
-            <div class="modal-left-sub">Fill out the form and we'll be in touch within 24 hours to discuss your project.</div>
+            <h2 class="modal-left-title">Let's make something<br><em>unforgettable.</em></h2>
+            <p class="modal-left-sub">Tell us about your vision and we'll craft the perfect session for you — from concept to final gallery.</p>
+
             <div class="modal-trust-row">
                 <div class="modal-trust-item">
                     <div class="modal-trust-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.31 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.2 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                     </div>
                     <div>
-                        <div class="modal-trust-label">Response Within 24 Hours</div>
-                        <div class="modal-trust-sub">We personally review every request</div>
+                        <div class="modal-trust-label">24-Hour Response</div>
+                        <div class="modal-trust-sub">We reply to every inquiry, same day</div>
                     </div>
                 </div>
                 <div class="modal-trust-item">
                     <div class="modal-trust-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                     </div>
                     <div>
-                        <div class="modal-trust-label">No Commitment Required</div>
-                        <div class="modal-trust-sub">Free consultation, no obligation</div>
+                        <div class="modal-trust-label">4.9&#9733; Average Rating</div>
+                        <div class="modal-trust-sub">Across 2,400+ delivered sessions</div>
                     </div>
                 </div>
                 <div class="modal-trust-item">
                     <div class="modal-trust-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
                     </div>
                     <div>
                         <div class="modal-trust-label">Nationwide Coverage</div>
-                        <div class="modal-trust-sub">Texas based, available everywhere</div>
+                        <div class="modal-trust-sub">Available in all 50 states</div>
+                    </div>
+                </div>
+                <div class="modal-trust-item">
+                    <div class="modal-trust-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <div>
+                        <div class="modal-trust-label">100% Licensed</div>
+                        <div class="modal-trust-sub">Full commercial rights on every image</div>
                     </div>
                 </div>
             </div>
+
             <div class="modal-contact-links">
                 <a href="tel:+15129800393" class="modal-contact-link">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.31 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.2 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.31 12a19.79 19.79 0 0 1-3.08-8.63A2 2 0 0 1 3.2 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                     (512) 980-0393
                 </a>
                 <a href="mailto:hello@jwmphoto.com" class="modal-contact-link">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                     hello@jwmphoto.com
                 </a>
+                <span class="modal-contact-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Texas, USA &middot; Nationwide Travel
+                </span>
             </div>
         </div>
-        <!-- RIGHT PANEL -->
+
+        <!-- RIGHT FORM PANEL -->
         <div class="modal-right">
             <div class="modal-right-header">
-                <div class="modal-right-title">Book a <span>Session</span></div>
-                <button class="modal-close-btn" onclick="closeBookingModal()">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <div>
+                    <div class="modal-right-title">Book Your <span>Session</span></div>
+                </div>
+                <button class="modal-close-btn" onclick="closeBookingModal()" aria-label="Close">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="16" height="16"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                 </button>
             </div>
-            <div class="modal-service-label">What are you interested in?</div>
-            <div class="modal-service-chips" id="bkServiceChips">
-                <div class="modal-chip" onclick="selectBkChip(this,'Portrait &amp; Headshot')">Portrait</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Commercial &amp; Brand')">Commercial</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Event &amp; Wedding')">Events / Wedding</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Aerial &amp; Drone')">Aerial / Drone</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Cinematic Video Production')">Video</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Real Estate Photography')">Real Estate</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Wildlife &amp; Western')">Western / Ranch</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Other')">Other</div>
-            </div>
-            <div class="modal-field-row">
+
+            <form id="bookingForm" onsubmit="submitBooking(event)">
+                <div class="modal-service-label">I'm interested in</div>
+                <div class="modal-service-chips" id="bkServiceChips">
+                    <div class="modal-chip" onclick="selectBkChip(this,'Portrait &amp; Headshot')">Portrait &amp; Headshot</div>
+                    <div class="modal-chip" onclick="selectBkChip(this,'Commercial &amp; Brand')">Commercial &amp; Brand</div>
+                    <div class="modal-chip" onclick="selectBkChip(this,'Events &amp; Weddings')">Events &amp; Weddings</div>
+                    <div class="modal-chip" onclick="selectBkChip(this,'Video Production')">Video Production</div>
+                    <div class="modal-chip" onclick="selectBkChip(this,'Aerial &amp; Drone')">Aerial &amp; Drone</div>
+                    <div class="modal-chip" onclick="selectBkChip(this,'Multiple Services')">Multiple Services</div>
+                </div>
+                <input type="hidden" id="bkServiceHidden" name="service">
+
+                <div class="modal-field-row">
+                    <div class="modal-field">
+                        <input type="text" id="bkFullName" name="fullName" placeholder=" " required autocomplete="name">
+                        <label for="bkFullName">Full Name</label>
+                    </div>
+                    <div class="modal-field">
+                        <input type="tel" id="bkPhone" name="phone" placeholder=" " required autocomplete="tel">
+                        <label for="bkPhone">Phone Number</label>
+                    </div>
+                </div>
+
                 <div class="modal-field">
-                    <input type="text" id="bkFirstName" placeholder=" ">
-                    <label>First Name</label>
+                    <input type="email" id="bkEmail" name="email" placeholder=" " required autocomplete="email">
+                    <label for="bkEmail">Email Address</label>
                 </div>
+
                 <div class="modal-field">
-                    <input type="text" id="bkLastName" placeholder=" ">
-                    <label>Last Name</label>
+                    <textarea id="bkNotes" name="details" placeholder=" " required rows="4"></textarea>
+                    <label for="bkNotes">Tell us about your project</label>
                 </div>
-            </div>
-            <div class="modal-field">
-                <input type="email" id="bkEmail" placeholder=" ">
-                <label>Email Address</label>
-            </div>
-            <div class="modal-field-row">
-                <div class="modal-field">
-                    <input type="tel" id="bkPhone" placeholder=" ">
-                    <label>Phone Number</label>
+
+                <button type="submit" class="modal-submit-btn" id="bkSubmitBtn">
+                    <span>Send Your Inquiry</span>
+                    <span class="btn-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </span>
+                </button>
+                <div class="modal-submit-note">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    Your info is private &amp; never shared
                 </div>
-                <div class="modal-field">
-                    <input type="text" id="bkService" placeholder=" ">
-                    <label>Preferred Date / Timeframe</label>
-                </div>
-            </div>
-            <div class="modal-field">
-                <textarea id="bkNotes" placeholder=" "></textarea>
-                <label>Tell us about your project</label>
-            </div>
-            <button class="modal-submit-btn" onclick="submitBooking()">
-                Send Booking Request
-                <div class="btn-arrow">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </div>
-            </button>
-            <div class="modal-submit-note">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                Your information is kept private and never shared.
-            </div>
+            </form>
         </div>
+
     </div>
 </div>
 </body>

@@ -2600,6 +2600,21 @@
             color: var(--grey-600);
         }
 
+/* ── SCROLL REVEAL ── */
+.reveal {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1);
+    will-change: opacity, transform;
+}
+.reveal.reveal-left  { transform: translateX(-40px); }
+.reveal.reveal-right { transform: translateX(40px); }
+.reveal.reveal-scale { transform: scale(0.94); }
+.reveal.visible {
+    opacity: 1;
+    transform: none;
+}
+
 /* CHATBOT CSS — MODERN COUNTRY */
 .chatbot-toggle {
     position: fixed;
@@ -2982,11 +2997,12 @@
     background: #fff;
     width: 100%;
     max-width: 960px;
-    max-height: 94vh;
+    max-height: calc(100vh - 40px);
     border-radius: 20px;
     overflow: hidden;
     display: grid;
     grid-template-columns: 380px 1fr;
+    grid-template-rows: 1fr;
     position: relative;
     box-shadow: 0 40px 100px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
     animation: modalSlideIn 0.35s cubic-bezier(0.22,1,0.36,1);
@@ -3004,6 +3020,7 @@
     flex-direction: column;
     position: relative;
     overflow: hidden;
+    min-height: 0;
 }
 .modal-left::before {
     content: '';
@@ -3126,6 +3143,7 @@
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    min-height: 0;
 }
 .modal-right-header {
     display: flex;
@@ -8519,29 +8537,37 @@ const quickResponses = {
     'contact': "Reach us anytime:\n\nPhone: (512) 980-0393\nEmail: hello@jwmphoto.com\nHours: Mon–Sat 8AM–6PM CST\nBased in Texas · Nationwide Travel\n\nWe'd love to hear about your project!"
 };
 
-document.querySelectorAll('.quick-action-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const action = this.getAttribute('data-action');
-        addUserMessage(this.textContent.trim());
-        setTimeout(() => addBotMessage(quickResponses[action]), 500);
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.quick-action-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            const action = this.getAttribute('data-action');
+            addUserMessage(this.textContent.trim());
+            setTimeout(() => addBotMessage(quickResponses[action]), 500);
+        });
     });
-});
 
-document.getElementById('chatbotSendBtn').addEventListener('click', function() {
-    const input = document.getElementById('chatbotInput');
-    const message = input.value.trim();
-    if (message) {
-        addUserMessage(message);
-        input.value = '';
-        setTimeout(() => {
-            addBotMessage("Great question! For the fastest answer, call us at (512) 980-0393 or email hello@jwmphoto.com — we'd love to chat about your photography needs!");
-        }, 1000);
+    var sendBtn = document.getElementById('chatbotSendBtn');
+    var chatInput = document.getElementById('chatbotInput');
+
+    if (sendBtn) {
+        sendBtn.addEventListener('click', function() {
+            const message = chatInput.value.trim();
+            if (message) {
+                addUserMessage(message);
+                chatInput.value = '';
+                setTimeout(() => {
+                    addBotMessage("Great question! For the fastest answer, call us at (512) 980-0393 or email hello@jwmphoto.com — we'd love to chat about your photography needs!");
+                }, 1000);
+            }
+        });
     }
-});
 
-document.getElementById('chatbotInput').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-        document.getElementById('chatbotSendBtn').click();
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('chatbotSendBtn').click();
+            }
+        });
     }
 });
         // Mobile Menu Toggle
@@ -9729,25 +9755,179 @@ select.co-form-input { cursor: pointer; }
     window.submitCheckout = submitCheckout;
 
     /* ── INIT ── */
-    loadCart(); updateBadge();
+    loadCart(); updateCartUI(); renderCartItems();
+
+    /* ── SCROLL REVEAL OBSERVER ── */
+(function() {
+    var revealItems = [
+        { sel: '.photo-showcase-section',  cls: '' },
+        { sel: '.brand-building-section',  cls: '' },
+        { sel: '.features-section',        cls: '' },
+        { sel: '#webDevShowcase',          cls: '' },
+        { sel: '#crmShowcase',             cls: '' },
+        { sel: '.jwm-shop',                cls: '' },
+        { sel: '.blog-section',            cls: '' },
+        { sel: '.maps-section',            cls: '' },
+        { sel: '.footer-cta-section',      cls: '' },
+        { sel: '.feature-card',            cls: '' },
+        { sel: '.feature-card-modern',     cls: '' },
+        { sel: '.blog-card',               cls: '' },
+        { sel: '.section-header',          cls: '' },
+        { sel: '.hero-cta',                cls: 'reveal-scale' },
+    ];
+
+    function applyReveal() {
+        revealItems.forEach(function(item) {
+            document.querySelectorAll(item.sel).forEach(function(el) {
+                if (!el.classList.contains('reveal')) {
+                    el.classList.add('reveal');
+                    if (item.cls) el.classList.add(item.cls);
+                }
+            });
+        });
+    }
+
+    var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                // Stagger children of grid containers
+                var el = entry.target;
+                var parent = el.parentElement;
+                if (parent) {
+                    var siblings = Array.from(parent.querySelectorAll('.reveal:not(.visible)'));
+                    var idx = siblings.indexOf(el);
+                    var delay = Math.min(idx * 80, 320);
+                    setTimeout(function() { el.classList.add('visible'); }, delay);
+                } else {
+                    el.classList.add('visible');
+                }
+                io.unobserve(el);
+            }
+        });
+    }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+
+    function observe() {
+        applyReveal();
+        document.querySelectorAll('.reveal').forEach(function(el) {
+            io.observe(el);
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', observe);
+    } else {
+        // Small delay so layout paints first
+        setTimeout(observe, 120);
+    }
+})();
+/* END SCROLL REVEAL */
 
     /* Close on Escape */
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') { closeCart(); closeCheckout(); }
     });
 
-    /* Keep cart in sync across page navigation and bfcache */
-    window.addEventListener('pageshow', function() {
-        loadCart(); updateBadge(); renderCartItems();
+    /* ── CART SYNC — fires on every possible navigation/focus event ── */
+    function syncCart() {
+        loadCart();
+        updateCartUI();
+        renderCartItems();
+    }
+
+    /* Fresh page load or bfcache restore */
+    window.addEventListener('pageshow', function() { syncCart(); });
+
+    /* Tab becomes visible after being in background */
+    document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'visible') { syncCart(); }
     });
+
+    /* localStorage written by another tab or same-page action */
     window.addEventListener('storage', function(e) {
-        if (e.key === CART_KEY) { loadCart(); updateBadge(); renderCartItems(); }
+        if (e.key === CART_KEY || e.key === null) { syncCart(); }
     });
-    window.addEventListener('focus', function() {
-        loadCart(); updateBadge(); renderCartItems();
-    });
+
+    /* Window regains focus */
+    window.addEventListener('focus', function() { syncCart(); });
 })();
 </script>
+
+<!-- CHATBOT -->
+<div class="chatbot-container">
+    <button class="chatbot-toggle" id="chatbotToggle" onclick="toggleChatbot()">
+        <svg class="chat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+        <span class="chatbot-badge" id="chatbotBadge">1</span>
+    </button>
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <div class="chatbot-header-info">
+                <div class="chatbot-avatar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                        <circle cx="12" cy="13" r="4"></circle>
+                    </svg>
+                </div>
+                <div>
+                    <div class="chatbot-title">JWM Photography</div>
+                    <div class="chatbot-status"><span class="status-dot"></span> We're here to help</div>
+                </div>
+            </div>
+            <button class="chatbot-close" onclick="toggleChatbot()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot-message">
+                <div class="message-avatar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                        <circle cx="12" cy="13" r="4"></circle>
+                    </svg>
+                </div>
+                <div class="message-content">
+                    <p>Hey there! 👋 Welcome to JWM Photography. Ask me about our sessions, pricing, booking, or anything else — we'd love to help tell your story.</p>
+                    <div class="message-time">Just now</div>
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-quick-actions">
+            <button class="quick-action-btn" data-action="pricing">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                Packages
+            </button>
+            <button class="quick-action-btn" data-action="booking">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Book a Session
+            </button>
+            <button class="quick-action-btn" data-action="services">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"></path></svg>
+                Our Work
+            </button>
+            <button class="quick-action-btn" data-action="contact">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                Contact
+            </button>
+        </div>
+        <div class="chatbot-input-container">
+            <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your question..." />
+            <button class="chatbot-send" id="chatbotSendBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
