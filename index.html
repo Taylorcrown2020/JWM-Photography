@@ -8132,6 +8132,73 @@ function selectChip(el, value) {
     el.classList.add('selected');
     document.getElementById('service').value = value;
 }
+
+function openModal() {
+    document.getElementById('contactModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+    document.getElementById('contactModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+document.getElementById('contactModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+});
+
+async function handleSubmit(event) {
+    event.preventDefault();
+    const submitBtn = document.getElementById('modalSubmitBtn');
+    const originalHTML = submitBtn.innerHTML;
+    const fullName = document.getElementById('fullName').value.trim();
+    const nameParts = fullName.split(' ');
+    const formData = {
+        firstName: nameParts[0] || 'Unknown',
+        lastName:  nameParts.slice(1).join(' ') || '',
+        email:     document.getElementById('email').value.trim(),
+        phone:     document.getElementById('phone').value.trim(),
+        service:   document.getElementById('service').value,
+        notes:     document.getElementById('details').value.trim()
+    };
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>Sending...</span>';
+    try {
+        const response = await fetch('/api/booking', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        });
+        const data = await response.json();
+        if (data.ok) {
+            closeModal();
+            document.getElementById('contactForm').reset();
+            document.querySelectorAll('.modal-chip').forEach(c => c.classList.remove('selected'));
+            document.getElementById('successModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        } else {
+            alert('Error: ' + (data.message || 'Something went wrong. Please try again.'));
+        }
+    } catch (error) {
+        console.error('Form submission error:', error);
+        alert('Network error. Please check your connection and try again.');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalHTML;
+    }
+}
+
+function closeSuccessModal() {
+    document.getElementById('successModal').style.display = 'none';
+    document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        if (document.getElementById('contactModal').classList.contains('active')) closeModal();
+        if (document.getElementById('successModal').style.display === 'flex') closeSuccessModal();
+    }
+});
+document.addEventListener('click', function(e) {
+    if (e.target === document.getElementById('successModal')) closeSuccessModal();
+});
 </script>
 
     <!-- Quiz Modal — JWM Photography Session Finder -->
@@ -8369,7 +8436,7 @@ function selectChip(el, value) {
                 'wedding':    { name: 'Wedding & Event Coverage',    price: 'from $1,499', desc: 'Multi-hour documentary coverage, second shooter available, gallery in 5 business days.' },
                 'video':      { name: 'Cinematic Video Production',  price: 'Custom Quote', desc: 'Full pre- to post-production: scripting, 4K capture, color grading, and sound design.' }
             };
-            const result = typeMap[quizData.shoot_type] || { name: 'Custom Session', price: 'Custom Quote', desc: "Tell us about your project and we'll put together a bespoke package for you."};
+            const result = typeMap[quizData.shoot_type] || { name: 'Custom Session', price: 'Custom Quote', desc: "Tell us about your project and we'll put together a bespoke package for you." };
             document.getElementById('planName').textContent        = result.name;
             document.getElementById('planPrice').textContent       = result.price;
             document.getElementById('planDescription').textContent = result.desc;
@@ -9656,7 +9723,8 @@ select.co-form-input { cursor: pointer; }
         currentStep = 5;
         document.querySelectorAll('.checkout-step').forEach(function(s){ s.classList.remove('active'); });
         document.getElementById('coStep5').classList.add('active');
-        clearCart();
+        // Cart is cleared when the user clicks Done — not here.
+        // This prevents the cart from being wiped if the user navigates away before dismissing.
     }
     window.submitCheckout = submitCheckout;
 
@@ -9668,11 +9736,16 @@ select.co-form-input { cursor: pointer; }
         if (e.key === 'Escape') { closeCart(); closeCheckout(); }
     });
 
-    /* Keep badge fresh when returning from pricing.html */
-    window.addEventListener('storage', function(e) {
-        if (e.key === CART_KEY) { loadCart(); updateBadge(); }
+    /* Keep cart in sync across page navigation and bfcache */
+    window.addEventListener('pageshow', function() {
+        loadCart(); updateBadge(); renderCartItems();
     });
-    window.addEventListener('focus', function() { loadCart(); updateBadge(); });
+    window.addEventListener('storage', function(e) {
+        if (e.key === CART_KEY) { loadCart(); updateBadge(); renderCartItems(); }
+    });
+    window.addEventListener('focus', function() {
+        loadCart(); updateBadge(); renderCartItems();
+    });
 })();
 </script>
 

@@ -2083,6 +2083,27 @@ h1, h2, h3,
 }
 .size-option:hover { border-color: var(--leather); background: var(--parchment); }
 .size-option.selected { border-color: var(--leather); background: var(--leather); color: #fff; }
+
+/* Per-item size selector */
+.per-item-size-block {
+    background: #faf8f4;
+    border: 1px solid rgba(123,68,34,0.15);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+}
+.per-item-size-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--leather-deeper);
+    margin-bottom: 4px;
+}
+.per-item-size-qty {
+    font-size: 11px;
+    color: var(--grey-600);
+    margin-bottom: 10px;
+}
+.per-item-size-block .size-options { margin-bottom: 0; }
 .order-review-items { margin-bottom: 20px; }
 .review-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(123,68,34,0.08); align-items: center; }
 .review-item-img { width: 56px; height: 56px; border-radius: 6px; object-fit: cover; border: 1px solid rgba(123,68,34,0.12); }
@@ -2237,18 +2258,22 @@ select.form-input { cursor: pointer; }
 }
 .btn-submit:hover { background: var(--leather); transform: translateY(-1px); }
 
-/* ── CONTACT/BOOKING MODAL — copied exactly from index.html ── */
+/* ── CONTACT/BOOKING MODAL (MODERN REDESIGN FROM INDEX.HTML) ── */
 .modal-overlay {
     display: none;
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0,0,0,0.75);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    z-index: 999999;
+    z-index: 2147483647;
     align-items: center;
     justify-content: center;
     padding: 20px;
+    box-sizing: border-box;
 }
 .modal-overlay.active { display: flex; }
 
@@ -2256,7 +2281,7 @@ select.form-input { cursor: pointer; }
     background: #fff;
     width: 100%;
     max-width: 960px;
-    max-height: 94vh;
+    max-height: 88vh;
     border-radius: 20px;
     overflow: hidden;
     display: grid;
@@ -2264,6 +2289,7 @@ select.form-input { cursor: pointer; }
     position: relative;
     box-shadow: 0 40px 100px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
     animation: modalSlideIn 0.35s cubic-bezier(0.22,1,0.36,1);
+    flex-shrink: 0;
 }
 @keyframes modalSlideIn {
     from { opacity:0; transform: translateY(24px) scale(0.97); }
@@ -2271,7 +2297,7 @@ select.form-input { cursor: pointer; }
 }
 
 .modal-left {
-    background: linear-gradient(160deg, var(--leather) 0%, var(--leather-dark) 100%) !important;
+    background: linear-gradient(160deg, var(--leather) 0%, var(--leather-dark) 100%);
     padding: 48px 40px;
     display: flex;
     flex-direction: column;
@@ -2337,6 +2363,8 @@ select.form-input { cursor: pointer; }
     margin-bottom: 36px;
     position: relative;
 }
+
+/* Trust badges */
 .modal-trust-row {
     display: flex;
     flex-direction: column;
@@ -2370,6 +2398,8 @@ select.form-input { cursor: pointer; }
     color: rgba(255,255,255,0.5);
     margin-top: 1px;
 }
+
+/* Contact links */
 .modal-contact-links {
     display: flex;
     flex-direction: column;
@@ -2382,13 +2412,14 @@ select.form-input { cursor: pointer; }
     align-items: center;
     gap: 10px;
     text-decoration: none;
-    color: #888;
+    color: #ccc;
     font-size: 13px;
     transition: color 0.2s;
 }
 .modal-contact-link:hover { color: #f4c87e; }
 .modal-contact-link svg { flex-shrink: 0; }
 
+/* ── RIGHT PANEL ────────────────────── */
 .modal-right {
     padding: 48px 44px;
     overflow-y: auto;
@@ -2425,6 +2456,8 @@ select.form-input { cursor: pointer; }
     color: #666;
 }
 .modal-close-btn:hover { background: #e8e8e8; transform: scale(1.05); color: #000; }
+
+/* Service chips */
 .modal-service-label {
     font-size: 11px;
     font-weight: 700;
@@ -2454,6 +2487,8 @@ select.form-input { cursor: pointer; }
 }
 .modal-chip:hover { border-color: #f4c87e; color: #0a0a0a; background: rgba(244,200,126,0.06); }
 .modal-chip.selected { border-color: #f4c87e; background: rgba(244,200,126,0.1); color: #0a0a0a; font-weight: 700; }
+
+/* Floating label fields */
 .modal-field {
     position: relative;
     margin-bottom: 20px;
@@ -2504,6 +2539,8 @@ select.form-input { cursor: pointer; }
     color: #f4c87e;
 }
 .modal-field textarea { min-height: 100px; padding-top: 24px; }
+
+/* Submit button */
 .modal-submit-btn {
     width: 100%;
     padding: 16px;
@@ -2547,6 +2584,7 @@ select.form-input { cursor: pointer; }
     justify-content: center;
     gap: 5px;
 }
+
 @media (max-width: 768px) {
     .modal-content {
         grid-template-columns: 1fr;
@@ -2557,6 +2595,8 @@ select.form-input { cursor: pointer; }
     .modal-right { padding: 36px 24px; }
     .modal-field-row { grid-template-columns: 1fr; }
 }
+
+/* ── FOOTER CSS MATCHING INDEX.HTML ── */
 /* Element-level overrides — same as index.html western leather theme */
 footer { background: var(--leather-deeper) !important; color: #c4a882 !important; }
 footer h3, footer h4 { color: rgba(255,255,255,0.9) !important; }
@@ -2918,19 +2958,14 @@ footer ul a:hover, footer p a:hover { color: #f4c87e !important; }
 .footer-cta-hero {
     padding: 120px 80px;
     max-width: 1600px;
-    margin: 0 auto;
-    margin-top: 96px;
-    margin-bottom: 96px;
-    margin-left: 40px;
-    margin-right: 40px;
+    margin: 96px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 60px;
-    background: linear-gradient(135deg, var(--leather) 0%, var(--leather-dark) 100%);
+    background: rgba(60,60,60,0.3);
     backdrop-filter: blur(10px);
-    border-radius: 12px;
-    border: none;
+    border-radius: 16px;
 }
 .footer-cta-text { flex: 1; }
 .footer-cta-text h2 {
@@ -2943,19 +2978,19 @@ footer ul a:hover, footer p a:hover { color: #f4c87e !important; }
 }
 .footer-cta-actions { display: flex; gap: 20px; align-items: center; flex-shrink: 0; }
 .footer-cta-btn-primary {
-    background: #fff;
+    background: var(--gold);
     color: #000;
     padding: 18px 48px;
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    border: 2px solid #fff;
+    border: 2px solid var(--gold);
     cursor: pointer;
     transition: all 0.3s;
     border-radius: 8px;
 }
-.footer-cta-btn-primary:hover { background: var(--parchment); color: #000; transform: translateY(-2px); }
+.footer-cta-btn-primary:hover { background: #e6b86b; transform: translateY(-2px); }
 .footer-cta-contact {
     padding: 80px 60px;
     max-width: 1600px;
@@ -2963,27 +2998,25 @@ footer ul a:hover, footer p a:hover { color: #f4c87e !important; }
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: transparent;
-    border-top: none;
 }
 .footer-cta-call-info { display: flex; flex-direction: column; gap: 8px; }
-.footer-cta-call-label { font-size: 13px; color: rgba(255,255,255,0.4); letter-spacing: 0.5px; }
+.footer-cta-call-label { font-size: 13px; color: rgba(255,255,255,0.6); letter-spacing: 0.5px; }
 .footer-cta-phone { font-size: 28px; font-weight: 500; color: var(--white); text-decoration: none; transition: color 0.3s; }
 .footer-cta-phone:hover { color: var(--gold); }
 .footer-cta-btn-outline {
     background: transparent;
-    color: rgba(255,255,255,0.8);
+    color: var(--white);
     padding: 16px 40px;
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    border: 2px solid rgba(255,255,255,0.35);
+    border: 2px solid var(--white);
     cursor: pointer;
     transition: all 0.3s;
     border-radius: 8px;
 }
-.footer-cta-btn-outline:hover { background: #fff; color: #000; border-color: #fff; }
+.footer-cta-btn-outline:hover { background: var(--white); color: #000; }
 @media (max-width: 900px) {
     .footer-cta-hero { flex-direction: column; padding: 64px 32px; margin: 40px 20px; gap: 32px; }
     .footer-cta-text h2 { font-size: 36px; }
@@ -4075,7 +4108,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7B4422" stroke-width="2" style="flex-shrink:0;margin-top:3px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                     <div>
                         <div class="ft-contact-label">Email</div>
-                        <a href="/cdn-cgi/l/email-protection#620a070e0e0d2208150f120a0d160d4c010d0f" class="ft-contact-val"><span class="__cf_email__" data-cfemail="e088858c8c8fa08a978d90888f948fce838f8d">[email&#160;protected]</span></a>
+                        <a href="mailto:hello@jwmphoto.com" class="ft-contact-val">hello@jwmphoto.com</a>
                     </div>
                 </div>
                 <div class="ft-contact-item">
@@ -4223,15 +4256,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
                 <div class="size-select-group" id="sizeSelectGroup" style="display:none;">
-                    <label class="size-select-label">Print Size</label>
-                    <div class="size-options">
-                        <button type="button" class="size-option selected" onclick="selectSize(this,'4x6')">4&times;6"</button>
-                        <button type="button" class="size-option" onclick="selectSize(this,'5x7')">5&times;7"</button>
-                        <button type="button" class="size-option" onclick="selectSize(this,'8x10')">8&times;10"</button>
-                        <button type="button" class="size-option" onclick="selectSize(this,'11x14')">11&times;14"</button>
-                        <button type="button" class="size-option" onclick="selectSize(this,'16x20')">16&times;20"</button>
-                        <button type="button" class="size-option" onclick="selectSize(this,'24x36')">24&times;36"</button>
-                    </div>
+                    <label class="size-select-label">Print Size Per Item</label>
+                    <p style="font-size:12px;color:var(--grey-600);margin-bottom:14px;line-height:1.5;">Choose a print size for each item in your order.</p>
+                    <div id="perItemSizes"></div>
                     <div class="checkout-form-full">
                         <div class="form-group"><label class="form-label">Street Address</label><input type="text" class="form-input" id="coAddress" placeholder="123 Main Street"></div>
                     </div>
@@ -4351,7 +4378,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js" defer></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ═══════════════════════════════════════════
 // PRINTS DATA
 // ═══════════════════════════════════════════
@@ -4608,6 +4635,7 @@ function renderCartItems() {
     });
 }
 function openCart() {
+    loadCart();
     renderCartItems(); updateCartUI();
     document.getElementById('cartOverlay').classList.add('active');
     document.getElementById('cartDrawer').classList.add('open');
@@ -4625,12 +4653,14 @@ function clearCart() { cart = []; saveCart(); updateCartUI(); renderCartItems();
 // ═══════════════════════════════════════════
 let currentStep = 1;
 let shippingMode = 'digital';
-let selectedSize = '4x6';
+let itemSizes = {};
 
 function openCheckout() {
     closeCart();
     currentStep = 1;
     shippingMode = 'digital';
+    itemSizes = {};
+    document.getElementById('sizeSelectGroup').style.display = 'none';
     renderCheckoutProgress(1);
     document.querySelectorAll('.checkout-step').forEach(s => s.classList.remove('active'));
     document.getElementById('coStep1').classList.add('active');
@@ -4667,12 +4697,40 @@ function selectShipping(el, mode) {
     shippingMode = mode;
     document.querySelectorAll('.shipping-option').forEach(o => o.classList.remove('selected'));
     el.classList.add('selected');
-    document.getElementById('sizeSelectGroup').style.display = mode === 'mail' ? 'block' : 'none';
+    const group = document.getElementById('sizeSelectGroup');
+    if (mode === 'mail') {
+        buildPerItemSizes();
+        group.style.display = 'block';
+    } else {
+        group.style.display = 'none';
+    }
 }
-function selectSize(el, size) {
-    selectedSize = size;
-    document.querySelectorAll('.size-option').forEach(o => o.classList.remove('selected'));
-    el.classList.add('selected');
+function buildPerItemSizes() {
+    loadCart();
+    const container = document.getElementById('perItemSizes');
+    if (!container) return;
+    cart.forEach(item => { if (!itemSizes[item.id]) itemSizes[item.id] = '4x6'; });
+    const sizes = ['4x6','5x7','8x10','11x14','16x20','24x36'];
+    container.innerHTML = cart.map(item => `
+        <div class="per-item-size-block">
+            <div class="per-item-size-name">${item.title}</div>
+            <div class="per-item-size-qty">Qty: ${item.qty}</div>
+            <div class="size-options">
+                ${sizes.map(s => `
+                    <button type="button"
+                        class="size-option${itemSizes[item.id] === s ? ' selected' : ''}"
+                        onclick="selectItemSize(this,'${item.id}','${s}')">
+                        ${s.replace('x','&times;')}"
+                    </button>`).join('')}
+            </div>
+        </div>
+    `).join('');
+}
+function selectItemSize(btn, itemId, size) {
+    itemSizes[itemId] = size;
+    const block = btn.closest('.per-item-size-block');
+    block.querySelectorAll('.size-option').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
 }
 function buildOrderReview() {
     const shipping = shippingMode === 'mail' ? 18 : 0;
@@ -4681,13 +4739,20 @@ function buildOrderReview() {
     const taxAmount = subtotal * TX_TAX_RATE;
     const stripeFee = ((subtotal + taxAmount) * 0.029) + 0.30;
     const total = subtotal + taxAmount + stripeFee;
-    document.getElementById('orderReviewItems').innerHTML = cart.map(item => `
+    document.getElementById('orderReviewItems').innerHTML = cart.map(item => {
+        const sizeLabel = shippingMode === 'mail'
+            ? ' + ' + (itemSizes[item.id] || '4x6').replace('x','×') + '" Print'
+            : '';
+        return `
         <div class="review-item">
             <img class="review-item-img" src="${item.img}" alt="${item.title}">
-            <div><div class="review-item-name">${item.title}</div><div class="review-item-detail">Qty: ${item.qty} · Digital${shippingMode === 'mail' ? ` + ${selectedSize}" Print` : ''}</div></div>
+            <div>
+                <div class="review-item-name">${item.title}</div>
+                <div class="review-item-detail">Qty: ${item.qty} · Digital${sizeLabel}</div>
+            </div>
             <div class="review-item-price">$${(item.price * item.qty).toFixed(2)}</div>
-        </div>
-    `).join('');
+        </div>`;
+    }).join('');
     document.getElementById('orderTotals').innerHTML = `
         <div class="total-line"><span>Subtotal</span><span>$${(getCartTotal()).toFixed(2)}</span></div>
         <div class="total-line"><span>Shipping</span><span>${shipping > 0 ? '$' + shipping.toFixed(2) : 'Free'}</span></div>
@@ -4699,18 +4764,20 @@ function buildOrderReview() {
 async function submitCheckout() {
     const customerName = (document.getElementById('coFirstName').value + ' ' + document.getElementById('coLastName').value).trim() || 'Guest';
     const email = document.getElementById('coEmail').value || '';
-    const shipping = shippingMode === 'mail' ? 18 : 0;
-    const subtotal = getCartTotal();
     const orderData = {
         customerName, email,
-        phone: document.getElementById('coPhone').value,
-        address: document.getElementById('coAddress') ? document.getElementById('coAddress').value : '',
+        phone:    document.getElementById('coPhone').value,
+        address:  document.getElementById('coAddress')  ? document.getElementById('coAddress').value  : '',
         address2: document.getElementById('coAddress2') ? document.getElementById('coAddress2').value : '',
-        city: document.getElementById('coMailCity') ? document.getElementById('coMailCity').value : '',
-        state: document.getElementById('coState') ? document.getElementById('coState').value : '',
-        zip: document.getElementById('coZip') ? document.getElementById('coZip').value : '',
-        shippingMode, selectedSize,
-        items: cart.map(i => ({ id: i.id, title: i.title, price: i.price, qty: i.qty }))
+        city:     document.getElementById('coMailCity') ? document.getElementById('coMailCity').value  : '',
+        state:    document.getElementById('coState')    ? document.getElementById('coState').value     : '',
+        zip:      document.getElementById('coZip')      ? document.getElementById('coZip').value       : '',
+        shippingMode,
+        selectedSize: Object.entries(itemSizes).map(([id,s]) => id + ':' + s).join(', ') || '4x6',
+        items: cart.map(i => ({
+            id: i.id, title: i.title, price: i.price, qty: i.qty,
+            printSize: shippingMode === 'mail' ? (itemSizes[i.id] || '4x6') : null
+        }))
     };
     try {
         const res = await fetch('/api/order', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(orderData) });
@@ -4723,8 +4790,7 @@ async function submitCheckout() {
     currentStep = 5;
     document.querySelectorAll('.checkout-step').forEach(s => s.classList.remove('active'));
     document.getElementById('coStep5').classList.add('active');
-    // Clear the cart now that purchase is confirmed
-    clearCart();
+    // Cart cleared when user clicks Done
 }
 
 // ═══════════════════════════════════════════
@@ -4827,6 +4893,9 @@ function switchTab(tab) {
     document.getElementById('tabServices').classList.toggle('active', isServices);
     document.getElementById('tabPrints').classList.toggle('active', !isServices);
     history.replaceState(null, '', isServices ? '#services' : '#prints');
+    // Swap FAQ dataset and re-render
+    currentFaqData = isServices ? faqServices : faqPrints;
+    renderFAQ();
     const tabEl = document.querySelector('.tab-selector-section');
     if (tabEl) {
         setTimeout(() => { window.scrollTo({ top: tabEl.offsetTop - 120, behavior: 'smooth' }); }, 50);
@@ -4946,21 +5015,96 @@ function updatePrintsCount(count) {
 // ═══════════════════════════════════════════
 // FAQ
 // ═══════════════════════════════════════════
-const faqData = [
-    { q: 'How does the client portal work?', a: 'After you book a session or complete a print purchase, you\'ll receive an email with login credentials to your private client portal. Inside, you can communicate with JWM, view watermarked photo/video previews, make payments, and download your final deliverables once payment is complete.' },
-    { q: 'When will I receive my gallery after a session?', a: 'Gallery delivery times vary by service. Portrait and headshot sessions are typically delivered within 3 business days. Commercial and brand sessions within 5 business days. Event and wedding coverage within 5 business days. Aerial projects within 3 business days. Rush turnaround is available for most services.' },
-    { q: 'Can I download my photos before paying?', a: 'Watermarked preview images are available in your client portal as soon as your gallery is ready. Full-resolution, watermark-free files are unlocked immediately after your payment is processed.' },
-    { q: 'What print sizes are available for physical delivery?', a: 'Physical prints can be ordered in 4×6", 5×7", 8×10", 11×14", 16×20", and 24×36" sizes. All prints are produced on professional archival paper. Digital download of the full-resolution file is always included regardless of whether you add physical mail delivery.' },
-    { q: 'How long does physical print delivery take?', a: 'Physical prints are professionally produced and shipped within 2-3 business days of payment confirmation. Standard mail delivery takes an additional 3-5 business days, for a total estimated delivery window of 5-7 business days. A tracking number is sent to your email once your order ships.' },
-    { q: 'Do I own the rights to my photos after a session?', a: 'For personal sessions, you receive a full personal-use license — you can share, print, and display your photos freely. For commercial sessions, a commercial-use license is included, granting rights for advertising, websites, and marketing materials.' },
-    { q: 'Can I reschedule or cancel my booking?', a: 'Rescheduling is available with at least 48 hours notice at no charge. Cancellations made more than 72 hours before your session are fully refundable. Cancellations within 72 hours may be subject to a rescheduling fee.' },
-    { q: 'Is drone photography available in my area?', a: 'Drone services are available nationwide with advance booking. All drone operations are conducted by FAA Part 107 certified pilots. Certain urban areas or flight-restricted zones may require additional permit processing time.' },
-    { q: 'Can you shoot events outside of Texas?', a: 'Absolutely. While we\'re based in Texas, we travel for commercial projects, destination weddings, and events nationwide. Travel costs are discussed during the booking process. Contact us early for out-of-state bookings to ensure availability.' },
-    { q: 'What payment methods are accepted?', a: 'All payments are processed securely through Stripe, which accepts all major credit and debit cards (Visa, Mastercard, American Express, Discover), Apple Pay, and Google Pay. For session services, payment is managed through your private client portal.' },
+const faqServices = [
+    {
+        q: 'How do I book a session?',
+        a: "Click any 'Book Now' button on the site, fill out the quick inquiry form, and we'll be in touch within 24 hours to confirm details, answer questions, and lock in your date. A 50% deposit secures your booking — the balance is due on delivery of your gallery."
+    },
+    {
+        q: 'How long does a typical session take?',
+        a: "Portrait and headshot sessions run 1–2 hours. Commercial and brand sessions are typically booked as half-day (4 hours) or full-day (8 hours) rates. Event and wedding coverage ranges from 4 to 12+ hours. Aerial sessions are usually 1–3 hours depending on location size."
+    },
+    {
+        q: 'When will I receive my photos after a session?',
+        a: "Portrait and headshot galleries are delivered within 3 business days. Commercial and brand sessions within 5 business days. Event and wedding galleries within 5 business days. Aerial photography within 3 business days. Rush turnaround (24–48 hours) is available for most services — ask when booking."
+    },
+    {
+        q: 'Do I own the rights to my photos?',
+        a: "For personal sessions you receive a full personal-use license — you can share, print, post, and display your photos freely. Commercial sessions include a commercial-use license covering advertising, websites, social media, and marketing materials. All licenses are perpetual with no expiration date."
+    },
+    {
+        q: 'Can I reschedule or cancel my booking?',
+        a: "Rescheduling is free with at least 48 hours' notice — just contact us and we'll find a new date. Cancellations more than 72 hours before the session are fully refundable minus a 5% processing fee. Cancellations within 72 hours may forfeit the deposit, but we're always happy to work with you if something unexpected comes up."
+    },
+    {
+        q: 'Do you travel outside of Texas?',
+        a: "Absolutely. We shoot commercial projects, destination weddings, and events nationwide. Travel is billed at cost (flights, hotel, ground transport) and discussed transparently during booking. Contact us early for out-of-state work to check availability and plan logistics."
+    },
+    {
+        q: 'What equipment do you use?',
+        a: "We shoot on professional Canon and Sony mirrorless systems with a full complement of prime and zoom lenses. Lighting uses Profoto strobes and LED continuous setups. Video is captured in 4K RAW and graded in DaVinci Resolve. Drone work uses DJI Mavic 3 Pro and Inspire 2 platforms operated by FAA Part 107 certified pilots."
+    },
+    {
+        q: 'How does the client portal work?',
+        a: "After your session you'll receive login credentials to your private client portal. Inside you can view your gallery, download full-resolution files once payment is complete, approve selects, communicate directly with the JWM team, and place print orders."
+    },
+    {
+        q: 'What payment methods do you accept for sessions?',
+        a: "Session payments are handled through your client portal and processed securely via Stripe. We accept all major credit and debit cards (Visa, Mastercard, Amex, Discover), Apple Pay, and Google Pay. Wire transfer is available for larger commercial projects — contact us for details."
+    },
+    {
+        q: 'Is drone photography available in my area?',
+        a: "Drone services are available nationwide with advance booking. All operations are conducted by FAA Part 107 certified pilots. Most locations are accessible, though certain urban cores and flight-restricted zones may require permit processing (3–5 extra days). We handle all permit paperwork on your behalf."
+    },
 ];
+
+const faqPrints = [
+    {
+        q: 'What print sizes are available?',
+        a: "Every print is available in six sizes: 4×6\", 5×7\", 8×10\", 11×14\", 16×20\", and 24×36\". When you select Mail Physical Print at checkout, you choose a size individually for each item in your cart. A digital download of the full-resolution file is always included at no extra charge."
+    },
+    {
+        q: 'What materials are the prints made on?',
+        a: "All prints are produced on professional archival media. Standard prints use premium lustre or gloss photo paper with fade-resistant inks rated for 100+ years. Canvas wraps are hand-stretched on solid wood frames. Metal (ChromaLuxe) prints are infused directly onto aluminum for a vibrant, waterproof finish. Framed prints are matted and set in hardwood frames with UV-protective acrylic."
+    },
+    {
+        q: 'How long does physical delivery take?',
+        a: "Prints are produced and shipped within 2–3 business days of payment confirmation. Standard delivery adds another 3–5 business days, for a total of 5–7 business days. You'll receive a tracking number by email as soon as your order ships."
+    },
+    {
+        q: 'Can I order multiple prints in different sizes?',
+        a: "Yes. If you add multiple items to your cart and choose Mail Physical Print at checkout, you'll see individual size selectors for each item. You can order a 16×20\" of one image and an 8×10\" of another all in the same transaction."
+    },
+    {
+        q: 'Is a digital download always included?',
+        a: "Yes. Every print order includes the full-resolution digital file delivered to your client portal, regardless of whether you also add physical mail delivery. The file is unlocked immediately after payment is confirmed."
+    },
+    {
+        q: 'Can I download my image before I pay?',
+        a: "Watermarked preview images are available in your client portal immediately after purchase. The full-resolution, watermark-free file is unlocked automatically once payment is processed — no waiting for manual approval."
+    },
+    {
+        q: 'Do I own the rights to the print I purchase?',
+        a: "Print purchases include a personal-use license covering home display, personal social sharing, and gifting. Commercial use (advertising, editorial, resale) requires a separate commercial license — contact us if you need one for a specific image."
+    },
+    {
+        q: 'What payment methods are accepted for prints?',
+        a: "Print orders are processed securely through Stripe. We accept Visa, Mastercard, American Express, Discover, Apple Pay, and Google Pay. Your card details are never stored on our servers."
+    },
+    {
+        q: 'Can I return or exchange a print?',
+        a: "Because every print is produced to order we don't accept general returns. However, if your print arrives damaged, incorrect, or defective, contact us within 7 days with a photo of the issue and we'll reprint and reship at no cost to you."
+    },
+    {
+        q: 'Are limited edition prints really limited?',
+        a: "Yes. Limited edition prints are capped at a fixed run noted on the listing — once that edition sells out it will not be reprinted. Each limited edition print comes with a signed certificate of authenticity numbered to the edition size."
+    },
+];
+
+let currentFaqData = faqServices;
 function renderFAQ() {
     const list = document.getElementById('faqList');
-    list.innerHTML = faqData.map((item, i) => `
+    list.innerHTML = currentFaqData.map((item, i) => `
         <div class="faq-item" id="faq${i}">
             <button class="faq-question" onclick="toggleFAQ(${i})">
                 <span class="faq-q-text">${item.q}</span>
@@ -5096,6 +5240,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     loadCart();
     updateCartUI();
+    renderCartItems();
 
     // 2. Initialize Prints Data
     renderPrints(printsData);
@@ -5124,6 +5269,20 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 300);
         }
     }
+});
+
+/* ── Keep cart in sync across page navigation ── */
+/* pageshow fires on both fresh loads AND bfcache restores (back/forward) */
+window.addEventListener('pageshow', function() {
+    loadCart(); updateCartUI(); renderCartItems();
+});
+/* Sync when localStorage is written by another tab/page */
+window.addEventListener('storage', function(e) {
+    if (e.key === 'jwm_cart') { loadCart(); updateCartUI(); renderCartItems(); }
+});
+/* Sync when window regains focus after being in the background */
+window.addEventListener('focus', function() {
+    loadCart(); updateCartUI(); renderCartItems();
 });
 </script>
 
@@ -5265,92 +5424,71 @@ document.getElementById('chatbotInput').addEventListener('keypress', function(e)
 <!-- BOOKING MODAL -->
 <div class="modal-overlay" id="bookingModal">
     <div class="modal-content">
-
-        <!-- LEFT INFO PANEL -->
+        <!-- LEFT PANEL -->
         <div class="modal-left">
             <div class="modal-left-deco"></div>
             <div class="modal-eyebrow">JWM Photography</div>
-            <h2 class="modal-left-title">Let's make something<br><em>unforgettable.</em></h2>
-            <p class="modal-left-sub">Tell us about your vision and we'll craft the perfect session for you — from concept to final gallery.</p>
-
+            <div class="modal-left-title">Let's make something <em>unforgettable.</em></div>
+            <div class="modal-left-sub">Fill out the form and we'll be in touch within 24 hours to discuss your project.</div>
             <div class="modal-trust-row">
                 <div class="modal-trust-item">
                     <div class="modal-trust-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.31 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.2 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                     </div>
                     <div>
-                        <div class="modal-trust-label">24-Hour Response</div>
-                        <div class="modal-trust-sub">We reply to every inquiry, same day</div>
+                        <div class="modal-trust-label">Response Within 24 Hours</div>
+                        <div class="modal-trust-sub">We personally review every request</div>
                     </div>
                 </div>
                 <div class="modal-trust-item">
                     <div class="modal-trust-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
                     <div>
-                        <div class="modal-trust-label">4.9★ Average Rating</div>
-                        <div class="modal-trust-sub">Across 2,400+ delivered sessions</div>
+                        <div class="modal-trust-label">No Commitment Required</div>
+                        <div class="modal-trust-sub">Free consultation, no obligation</div>
                     </div>
                 </div>
                 <div class="modal-trust-item">
                     <div class="modal-trust-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                     </div>
                     <div>
                         <div class="modal-trust-label">Nationwide Coverage</div>
-                        <div class="modal-trust-sub">Available in all 50 states</div>
-                    </div>
-                </div>
-                <div class="modal-trust-item">
-                    <div class="modal-trust-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                    </div>
-                    <div>
-                        <div class="modal-trust-label">100% Licensed</div>
-                        <div class="modal-trust-sub">Full commercial rights on every image</div>
+                        <div class="modal-trust-sub">Texas based, available everywhere</div>
                     </div>
                 </div>
             </div>
-
             <div class="modal-contact-links">
                 <a href="tel:+15129800393" class="modal-contact-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.31 12a19.79 19.79 0 0 1-3.08-8.63A2 2 0 0 1 3.2 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.31 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.2 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                     (512) 980-0393
                 </a>
                 <a href="mailto:hello@jwmphoto.com" class="modal-contact-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                     hello@jwmphoto.com
                 </a>
-                <span class="modal-contact-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                    Texas, USA · Nationwide Travel
-                </span>
             </div>
         </div>
-
-        <!-- RIGHT FORM PANEL -->
+        <!-- RIGHT PANEL -->
         <div class="modal-right">
             <div class="modal-right-header">
-                <div>
-                    <div class="modal-right-title">Book Your <span>Session</span></div>
-                </div>
-                <button class="modal-close-btn" onclick="closeBookingModal()" aria-label="Close">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="16" height="16"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <div class="modal-right-title">Book a <span>Session</span></div>
+                <button class="modal-close-btn" onclick="closeBookingModal()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                 </button>
             </div>
-
-            <div class="modal-service-label">I'm interested in</div>
+            <div class="modal-service-label">What are you interested in?</div>
             <div class="modal-service-chips" id="bkServiceChips">
-                <div class="modal-chip" onclick="selectBkChip(this,'Portrait &amp; Headshot')">Portrait &amp; Headshot</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Commercial &amp; Brand')">Commercial &amp; Brand</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Events &amp; Weddings')">Events &amp; Weddings</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Video Production')">Video Production</div>
-                <div class="modal-chip" onclick="selectBkChip(this,'Aerial &amp; Drone')">Aerial &amp; Drone</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Portrait &amp; Headshot')">Portrait</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Commercial &amp; Brand')">Commercial</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Event &amp; Wedding')">Events / Wedding</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Aerial &amp; Drone')">Aerial / Drone</div>
+                <div class="modal-chip" onclick="selectBkChip(this,'Cinematic Video Production')">Video</div>
                 <div class="modal-chip" onclick="selectBkChip(this,'Real Estate Photography')">Real Estate</div>
                 <div class="modal-chip" onclick="selectBkChip(this,'Wildlife &amp; Western')">Western / Ranch</div>
                 <div class="modal-chip" onclick="selectBkChip(this,'Other')">Other</div>
             </div>
-
             <div class="modal-field-row">
                 <div class="modal-field">
                     <input type="text" id="bkFirstName" placeholder=" ">
@@ -5362,30 +5500,34 @@ document.getElementById('chatbotInput').addEventListener('keypress', function(e)
                 </div>
             </div>
             <div class="modal-field">
-                <input type="tel" id="bkPhone" placeholder=" ">
-                <label>Phone Number</label>
-            </div>
-            <div class="modal-field">
                 <input type="email" id="bkEmail" placeholder=" ">
                 <label>Email Address</label>
             </div>
+            <div class="modal-field-row">
+                <div class="modal-field">
+                    <input type="tel" id="bkPhone" placeholder=" ">
+                    <label>Phone Number</label>
+                </div>
+                <div class="modal-field">
+                    <input type="text" id="bkService" placeholder=" ">
+                    <label>Preferred Date / Timeframe</label>
+                </div>
+            </div>
             <div class="modal-field">
-                <textarea id="bkNotes" placeholder=" " rows="4"></textarea>
+                <textarea id="bkNotes" placeholder=" "></textarea>
                 <label>Tell us about your project</label>
             </div>
-
             <button class="modal-submit-btn" onclick="submitBooking()">
-                <span>Send Your Inquiry</span>
-                <span class="btn-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </span>
+                Send Booking Request
+                <div class="btn-arrow">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </div>
             </button>
             <div class="modal-submit-note">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                Your info is private &amp; never shared
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Your information is kept private and never shared.
             </div>
         </div>
-
     </div>
 </div>
 </body>
